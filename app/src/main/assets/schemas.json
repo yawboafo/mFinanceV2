@@ -1,0 +1,176 @@
+{
+
+  "Personal Info ":{
+    "Profile Picsa": {
+      "type": "image",
+      "default": "",
+      "tag": "img_profile_image1"
+
+    },
+    "Date of BirthA": {
+      "type": "date",
+      "default": "",
+      "tag": "dte_dob1"
+
+    },
+    "SignA": {
+      "type": "signature",
+      "default": "",
+      "tag": "sgn_signature1"
+
+    },
+    "GenderA": {
+      "type": "gender",
+      "default": "",
+      "tag": "gen_gender1"
+
+    },
+
+    "FingerPrintA": {
+      "type": "fingerPrint",
+      "default": "",
+      "tag": "fpt_fingerPrint1"
+
+    },
+    "Files": {
+      "type": "dropdown",
+      "tag": "spn_formats1",
+      "options": {
+        "0": "None",
+        "1": "Compact Disk",
+        "2": "Record/Vinyl",
+        "3": "MP3/Download",
+        "4": "Cassette",
+        "5": "8-Track",
+        "6": "Wax Cylinder",
+        "7": "Laser Disc",
+        "8": "Mini-Disk"
+      }
+    }
+
+
+  },
+  "General Account Information":{
+    "Account Type": {
+      "type": "string",
+      "default": "",
+      "hint": "Enter Account Type",
+      "tag": "edt_artist"
+    },
+    "Account Name": {
+      "type": "string",
+      "default": "",
+      "hint": "Enter Account Name",
+      "tag": "edt_name"
+    }
+
+
+
+
+
+
+
+  },
+  "General Account ":{
+    "Profile Pics": {
+      "type": "image",
+      "default": "",
+      "tag": "img_profile_image"
+
+    },
+    "Date of Birth": {
+      "type": "date",
+      "default": "",
+      "tag": "dte_dob"
+
+    },
+    "Sign": {
+      "type": "signature",
+      "default": "",
+      "tag": "sgn_signature"
+
+    },
+    "Gender": {
+      "type": "gender",
+      "default": "",
+      "tag": "gen_gender"
+
+    },
+
+    "FingerPrint": {
+      "type": "fingerPrint",
+      "default": "",
+      "tag": "fpt_fingerPrint"
+
+    },
+    "formats": {
+      "type": "dropdown",
+      "tag": "spn_formats",
+      "options": {
+        "0": "None",
+        "1": "Compact Disk",
+        "2": "Record/Vinyl",
+        "3": "MP3/Download",
+        "4": "Cassette",
+        "5": "8-Track",
+        "6": "Wax Cylinder",
+        "7": "Laser Disc",
+        "8": "Mini-Disk"
+      }
+    }
+
+
+  },
+  "General  ":{
+    "Profile Pics": {
+      "type": "image",
+      "default": "",
+      "tag": "img_profile_image"
+
+    },
+    "Date of Birth": {
+      "type": "date",
+      "default": "",
+      "tag": "dte_dob"
+
+    },
+    "Sign": {
+      "type": "signature",
+      "default": "",
+      "tag": "sgn_signature"
+
+    },
+    "Gender": {
+      "type": "gender",
+      "default": "",
+      "tag": "gen_gender"
+
+    },
+
+    "FingerPrint": {
+      "type": "fingerPrint",
+      "default": "",
+      "tag": "fpt_fingerPrint"
+
+    },
+    "formats": {
+      "type": "dropdown",
+      "tag": "spn_formats",
+      "options": {
+        "0": "None",
+        "1": "Compact Disk",
+        "2": "Record/Vinyl",
+        "3": "MP3/Download",
+        "4": "Cassette",
+        "5": "8-Track",
+        "6": "Wax Cylinder",
+        "7": "Laser Disc",
+        "8": "Mini-Disk"
+      }
+    }
+
+
+  }
+
+
+}

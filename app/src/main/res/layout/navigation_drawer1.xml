@@ -1,0 +1,116 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@color/primary"
+    tools:context="com.nfortics.ozimbosmall.NavigationDrawerFragment">
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/nav_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:weightSum="1"
+        android:background="@color/primary"
+        android:orientation="vertical"
+        >
+
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/nav_header_container"
+        android:id="@+id/relativeLayout2"
+        android:layout_above="@+id/relativeLayout1">
+
+        <RelativeLayout
+            android:id="@+id/ListOne"
+
+            android:background="@color/primary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:showDividers="end">
+
+            <android.support.v7.widget.RecyclerView
+                android:background="@color/primary"
+
+                android:id="@+id/drawerlistOne"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/primary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profileimg"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@drawable/logout"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@android:color/transparent"
+
+            android:layout_weight="0.36"
+
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Akosua Menu"
+            android:id="@+id/txtUsername"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_alignTop="@+id/profileimg"
+            android:layout_alignLeft="@+id/txtUserid"
+            android:layout_alignStart="@+id/txtUserid"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Signed in as "
+            android:id="@+id/txtUserid"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:visibility="invisible"
+            android:layout_alignTop="@+id/txtUsername"
+            android:layout_toRightOf="@+id/profileimg"
+            android:layout_toEndOf="@+id/profileimg"
+            android:layout_marginLeft="10dp" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

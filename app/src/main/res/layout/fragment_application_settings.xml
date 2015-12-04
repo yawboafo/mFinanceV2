@@ -1,0 +1,152 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nfortics.mfinanceV2.Fragments.SettingsPages.ApplicationSettingsFrag">
+
+  <ScrollView
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent">
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+
+
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+
+
+
+
+              <RelativeLayout
+                  android:id="@+id/generalAppSet"
+                  android:layout_width="match_parent"
+                  android:layout_below="@+id/divide"
+                  android:layout_height="match_parent"
+                  android:layout_alignParentBottom="true"
+                  android:padding="5dp">
+
+
+                  <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentTop="true"
+                      android:layout_alignParentLeft="true"
+                      android:layout_alignParentStart="true"
+                      android:visibility="gone"
+                      android:id="@+id/linearLayout8">
+
+                      <TextView
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="General"
+                          android:id="@+id/generalTitle"
+                          android:layout_margin="2.5dp"
+                          android:textColor="#194e9a" />
+                      <ImageView
+                          android:layout_width="16dp"
+                          android:layout_height="16dp"
+                          android:src="@drawable/adda"
+                          android:id="@+id/imageViewGeneral"
+                          android:layout_alignParentEnd="true" />
+                  </RelativeLayout>
+
+                  <RelativeLayout
+                      android:id="@+id/GeneralCon"
+                      android:layout_below="@+id/linearLayout8"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Device ID"
+                          android:id="@+id/deviceID"
+
+                          android:layout_alignParentLeft="true"
+                          android:layout_alignParentStart="true"
+                          android:layout_alignParentRight="true"
+                          android:layout_alignParentEnd="true"
+                          android:layout_margin="2.5dp"
+                          android:textColor="#a8a8a8" />
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="359092054250034"
+                          android:id="@+id/deviceIDvalue"
+                          android:layout_below="@+id/deviceID"
+                          android:layout_alignParentLeft="true"
+                          android:layout_alignParentStart="true"
+                          android:layout_margin="2.5dp" />
+
+                      <ImageView
+                          android:layout_width="54dp"
+                          android:layout_height="54dp"
+                          android:id="@+id/padlock"
+                          android:layout_below="@+id/deviceID"
+                          android:layout_toRightOf="@+id/deviceIDvalue"
+                          android:layout_toEndOf="@+id/deviceIDvalue"
+                          android:layout_alignBottom="@+id/deviceIDvalue"
+                          android:src="@android:drawable/ic_secure"
+                          android:layout_margin="2.5dp" />
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Printer Setup"
+                          android:id="@+id/printerSetup"
+                          android:layout_below="@+id/deviceIDvalue"
+                          android:layout_alignParentLeft="true"
+                          android:layout_alignParentStart="true"
+                          android:layout_toLeftOf="@+id/printerConnectButton"
+                          android:layout_toStartOf="@+id/printerConnectButton"
+                          android:layout_margin="2.5dp"
+                          android:textColor="#a8a8a8" />
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="TPII BlueTeeth Printer"
+                          android:id="@+id/prntername"
+                          android:layout_below="@+id/printerSetup"
+                          android:layout_alignParentLeft="true"
+                          android:layout_alignParentStart="true"
+                          android:layout_toStartOf="@+id/printerConnectButton"
+                          android:layout_toLeftOf="@+id/printerConnectButton"
+                          android:layout_margin="2.5dp" />
+
+                      <Button
+                          style="@style/btnSummary"
+                          android:layout_width="wrap_content"
+                          android:layout_height="40dp"
+                          android:text="SetUp Printer"
+                          android:id="@+id/printerConnectButton"
+                          android:layout_alignParentBottom="true"
+                          android:layout_alignParentRight="true"
+                          android:layout_alignParentEnd="true"
+                          android:layout_marginRight="30dp"
+                          android:layout_marginEnd="30dp" />
+                  </RelativeLayout>
+
+              </RelativeLayout>
+              <LinearLayout
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="0.5dp"
+                  android:background="#a8a8a8"
+                  android:id="@+id/divid"
+                  android:layout_below="@+id/generalAppSet"
+                  android:layout_marginTop="2dp"/>
+
+          </RelativeLayout>
+      </RelativeLayout>
+
+  </ScrollView>
+
+</RelativeLayout>

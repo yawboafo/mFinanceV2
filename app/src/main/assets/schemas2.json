@@ -1,0 +1,113 @@
+{
+  "General Information":{
+
+    "Mothers Name": {
+      "type": "string",
+      "default": "",
+      "priority": "3",
+      "hint": "Enter your mamas name",
+      "tag": "edt_munName"
+
+    },
+    "First Name": {
+      "type": "string",
+      "default": "",
+      "hint": "Enter First Name",
+      "priority": "0",
+      "tag": "edt_fname"
+    },
+    "Date of Birth": {
+      "type": "date",
+      "default": "",
+      "priority": "2",
+      "tag": "dte_dob"
+
+    },
+    "Street Address": {
+      "type": "string",
+      "default": "",
+      "hint": "Enter Street Address",
+      "tag": "edt_address",
+      "priority": "1"
+    }
+
+
+  },
+
+  "Personal Info":{
+    "Profile Pics": {
+      "type": "image",
+      "default": "",
+      "priority": "2",
+      "tag": "img_profile_image"
+
+    },
+    "Date of Birth": {
+      "type": "date",
+      "default": "",
+      "priority": "0",
+      "tag": "dte_dobe"
+
+    },
+    "Sign": {
+      "type": "signature",
+      "default": "",
+      "priority": "1",
+      "tag": "sgn_signature"
+
+    },
+    "Gender": {
+      "type": "gender",
+      "default": "",
+      "priority": "3",
+      "tag": "gen_gender"
+
+    },
+    "FingerPrint": {
+      "type": "fingerPrint",
+      "default": "",
+      "priority": "4",
+      "tag": "fpt_fingerPrint"
+
+    },
+    "formats": {
+      "type": "dropdown",
+      "priority": "5",
+      "tag": "spn_formats",
+      "options": {
+        "0": "None",
+        "1": "Compact Disk",
+        "2": "Record/Vinyl",
+        "3": "MP3/Download",
+        "4": "Cassette",
+        "5": "8-Track",
+        "6": "Wax Cylinder",
+        "7": "Laser Disc",
+        "8": "Mini-Disk"
+      }
+    },
+    "Savings Account": {
+      "type": "mul",
+      "default": "",
+      "priority": "6",
+      "tag": "mul_savings_Account",
+      "toggles": {
+        "1":["Ghs"],
+        "2":["Usd"],
+        "3":["Euro"]
+      }
+    }
+
+
+  },
+  "Image Data":{
+    "Images": {
+      "type": "pictures",
+      "default": "",
+      "priority": "0",
+      "tag": "pic_pictures"
+
+    }
+
+  }
+}

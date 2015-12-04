@@ -1,0 +1,174 @@
+<resources>
+    <string name="app_name">mFinance</string>
+
+    <string name="hello_world">Welcome</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="button_biometric">Biometric</string>
+    <string name="button_signIn">Sign In</string>
+
+    <color name="primary">#194e9a</color>
+    <color name="primary_dark">#2B579A</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#9E9E9E</color>
+    <color name="primary_text">#FFFFFF</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="whitesmoker">#E6E6E6</color>
+    <string-array name="tabs">
+        <item>Current Account</item>
+        <item>Savings Account</item>
+        <item>Foreign Account</item>
+
+    </string-array>
+
+    <string-array name="Settingstabs">
+        <item>Profile</item>
+        <item>General</item>
+        <item>Application</item>
+
+    </string-array>
+
+
+
+    <string-array name="image_ids">
+        <item>@drawable/image_1</item>
+        <item>@drawable/image_2</item>
+        <item>@drawable/image_3</item>
+        <item>@drawable/image_4</item>
+        <item>@drawable/image_5</item>
+        <item>@drawable/image_6</item>
+        <item>@drawable/image_7</item>
+        <item>@drawable/image_8</item>
+        <item>@drawable/image_9</item>
+        <item>@drawable/image_1</item>
+        <item>@drawable/image_2</item>
+        <item>@drawable/image_3</item>
+        <item>@drawable/image_4</item>
+        <item>@drawable/image_5</item>
+        <item>@drawable/image_6</item>
+        <item>@drawable/image_7</item>
+        <item>@drawable/image_8</item>
+        <item>@drawable/image_9</item>
+    </string-array>
+
+
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string-array name="collection_type">
+        <item>Deposit</item>
+        <item>Loan Repayment</item>
+    </string-array>
+    <string-array name="ccml_collection_categories">
+        <item>Electronic Card</item>
+
+    </string-array>
+
+    <string-array name="collection_categories">
+        <item>Account Number</item>
+        <item>Phone Number</item>
+        <item>Electronic Card</item>
+
+    </string-array>
+    <string-array name="ccml_withdrawal_categories">
+
+        <item>Electronic Card</item>
+        <item>Finger Print</item>
+
+
+
+    </string-array>
+
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_base2">BaseActivity2</string>
+    <string name="title_activity_field_collection">FieldCollection</string>
+    <string name="title_activity_customers">Customers</string>
+    <string name="reset">Reset</string>
+    <string name="ok">Ok</string>
+    <string name="title_activity_customers_menu">CustomersMenuActivity</string>
+    <string name="title_activity_on_board_customer">OnBoardCustomerActivity</string>
+    <string name="title_activity_signature">SignatureActivity</string>
+    <string name="title_activity_finger_print">FingerPrintActivity</string>
+    <string name="title_activity_field_collection_menu">FieldCollectionMenuActivity</string>
+    <string name="title_activity_field_banking_menu">FieldBankingMenuActivity</string>
+    <string name="title_activity_customer">CustomerActivity</string>
+    <string name="sms_sending_info">You do not have internet connection, what would you like to do?</string>
+    <!-- <string name="serverUrl">http://mfinance.nfortics.com/hooks/mobisusu/apps/v1/</string> -->
+    <!-- <string name="serverUrl2">http://mfinance.nfortics.com/hooks/mobisusu/apps/v2/</string> -->
+    <string name="serverUrl">http://mbackofficehq.com/hooks/mobisusu/apps/v1/</string>
+    <string name="serverUrl2">http://mbackofficehq.com/hooks/mobisusu/apps/v2/</string>
+
+    <string name="ProductionServerUrl1">http://mbackofficehq.com/hooks/mobisusu/apps/v1/</string>
+    <string name="DemoServerUrl1">http://demo.mbackofficehq.com/hooks/mobisusu/apps/v1/</string>
+    <string name="StagingServerUrl1">http://staging.mbackofficehq.com/hooks/mobisusu/apps/v1/</string>
+
+
+
+
+    <string name="ProductionServerUrl2">http://mbackofficehq.com/hooks/mobisusu/apps/v2/</string>
+    <string name="DemoServerUrl2">http://demo.mbackofficehq.com/hooks/mobisusu/apps/v2/</string>
+    <string name="StagingServerUrl2">http://staging.mbackofficehq.com/hooks/mobisusu/apps/v2/</string>
+
+    <string name="AirtimeServerUrl">http://198.50.103.178/airtime/api/</string>
+
+
+
+    <string name="serverUrl3">http://198.50.103.178/airtime/api/</string>
+    <string name="balance">Balance</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="statement">Statement</string>
+    <string name="string_searching_customer">Searching for a Customer</string>
+    <string name="string_conn_not_established">No Internet Connections</string>
+    <string name="customer_does_notexist">"Customer does not Exist "</string>
+    <string name="somethingwentwrong">"Something went wrong please Try Again "</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_balancenquiry">BalancenquiryActivity</string>
+    <string name="title_activity_mobile_vas">MobileVasActivity</string>
+    <string name="title_activity_risk_iqactivity_menu">RiskIQActivityMenu</string>
+
+
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur magna tortor, semper eu feugiat eu, vehicula vitae lacus.</string>
+    <string name="recyclerview_fab_example">RecyclerView FAB example</string>
+    <string name="floating_action_menu">Floating Action Menu</string>
+    <string name="title_activity_setting_active">SettingActive</string>
+
+
+    <string name="button0">0</string>
+    <string name="button1">1</string>
+    <string name="button2">2</string>
+    <string name="button3">3</string>
+    <string name="button4">4</string>
+    <string name="button5">5</string>
+    <string name="button6">6</string>
+    <string name="button7">7</string>
+    <string name="button8">8</string>
+    <string name="button9">9</string>
+    <string name="buttonAdd">+</string>
+    <string name="buttonSubtract">-</string>
+    <string name="buttonMultiply">*</string>
+    <string name="buttonDivide">/</string>
+    <string name="buttonToggleSign">+/-</string>
+    <string name="buttonDecimalPoint">.</string>
+    <string name="buttonEquals">=</string>
+    <string name="buttonClear">C</string>
+    <string name="buttonClearMemory">MC</string>
+    <string name="buttonAddToMemory">M+</string>
+    <string name="buttonSubtractFromMemory">M-</string>
+    <string name="buttonRecallMemory">MR</string>
+    <string name="buttonSquareRoot">√</string>
+    <string name="buttonSquared">x²</string>
+    <string name="buttonInvert">1/x</string>
+    <string name="buttonSine">sin</string>
+    <string name="buttonCosine">cos</string>
+    <string name="buttonTangent">tan</string>
+    <string name="title_activity_activity_setting">ActivitySetting</string>
+    <string name="title_activity_signature_pad">SignaturePad</string>
+
+
+</resources>

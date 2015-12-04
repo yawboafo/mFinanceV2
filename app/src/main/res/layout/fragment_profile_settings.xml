@@ -1,0 +1,257 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nfortics.mfinanceV2.Fragments.SettingsPages.ProfileSettingsFrag">
+
+ <ScrollView
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent">
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+
+         <RelativeLayout
+             android:id="@+id/profileHolder"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentStart="true"
+             android:padding="5dp"
+             android:layout_alignParentTop="true">
+
+             <de.hdodenhof.circleimageview.CircleImageView
+                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                 android:id="@+id/profile_image"
+                 android:layout_width="70dp"
+                 android:layout_height="70dp"
+                 android:src="@drawable/profile_avator"
+                 app:civ_border_width="2dp"
+                 app:civ_border_color="@android:color/transparent"
+                 android:layout_alignParentTop="true"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="5dp"
+                 />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Yaw Boafo"
+                 android:id="@+id/agentName"
+                 android:layout_below="@+id/profile_image"
+                 android:layout_centerHorizontal="true" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textAppearance="?android:attr/textAppearanceSmall"
+                 android:text="233240088705"
+                 android:id="@+id/agentMsisdn"
+                 android:layout_below="@+id/agentName"
+                 android:layout_centerHorizontal="true" />
+
+         </RelativeLayout>
+
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="0.5dp"
+             android:background="#a8a8a8"
+             android:layout_below="@+id/profileHolder"
+             android:layout_marginTop="2dp"/>
+
+
+
+
+
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/profileSettings"
+             android:layout_below="@+id/profileHolder"
+             android:padding="5dp">
+
+             <RelativeLayout
+
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentTop="true"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true"
+                 android:id="@+id/linearLayout6"
+                 android:visibility="gone"
+                 android:padding="3dp">
+
+                 <TextView
+                     android:layout_width="68dp"
+                     android:layout_height="wrap_content"
+                     android:text="Profile"
+                     android:id="@+id/profileTitle"
+                     android:textColor="#194e9a" />
+
+                 <ImageView
+                     android:layout_width="16dp"
+                     android:layout_height="16dp"
+                     android:src="@drawable/adda"
+                     android:id="@+id/imageViewProfile"
+                     android:layout_alignParentEnd="true" />
+             </RelativeLayout>
+
+             <RelativeLayout
+                 android:id="@+id/profileCon"
+                 android:layout_below="@+id/linearLayout6"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Branches"
+                     android:id="@+id/branchesTitle"
+                     android:textSize="16dp"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentStart="true"
+                     android:layout_alignParentRight="true"
+                     android:layout_alignParentEnd="true"
+                     android:textColor="#a8a8a8" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Odorkor,Malam,Dansoman"
+                     android:id="@+id/branchesValue"
+                     android:layout_below="@+id/branchesTitle"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentStart="true"
+                     android:layout_alignParentRight="true"
+                     android:layout_alignParentEnd="true"
+                     android:textSize="14dp"
+                     android:layout_margin="2.5dp"
+                     android:layout_marginTop="8dp" />
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:id="@+id/div"
+                     android:layout_width="match_parent"
+                     android:layout_height="0.5dp"
+                     android:background="#a8a8a8"
+                     android:layout_below="@+id/branchesValue"
+                     android:layout_marginTop="2dp"/>
+                 <TextView
+                     android:textSize="16dp"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Merchant"
+                     android:id="@+id/merchantTitle"
+                     android:layout_below="@+id/div"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentStart="true"
+                     android:layout_alignParentRight="true"
+                     android:layout_alignParentEnd="true"
+                     android:textColor="#a8a8a8" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Onango,CCML,Advance"
+                     android:id="@+id/merchantValue"
+                     android:layout_below="@+id/merchantTitle"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentStart="true"
+                     android:layout_alignParentRight="true"
+                     android:layout_alignParentEnd="true"
+                     android:textSize="14dp"
+                     android:layout_margin="2.5dp" />
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:id="@+id/di"
+                     android:layout_width="match_parent"
+                     android:layout_height="0.5dp"
+                     android:background="#a8a8a8"
+                     android:layout_below="@+id/merchantValue"
+                     android:layout_marginTop="2dp"/>
+                 <TextView
+                     android:textSize="16dp"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Transaction Limit"
+                     android:id="@+id/transactionTitle"
+                     android:layout_below="@+id/di"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentStart="true"
+                     android:layout_alignParentRight="true"
+                     android:layout_alignParentEnd="true"
+                     android:textColor="#a8a8a8" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Cash In-GHs2,500.00. CashOut-GHs3,800.00"
+                     android:id="@+id/transactionValue"
+                     android:layout_below="@+id/transactionTitle"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentStart="true"
+                     android:layout_alignParentRight="true"
+                     android:layout_alignParentEnd="true"
+                     android:textSize="14dp"
+                     android:layout_margin="2.5dp"
+                     android:layout_marginBottom="10dp" />
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:id="@+id/dis"
+                     android:layout_width="match_parent"
+                     android:layout_height="0.5dp"
+                     android:background="#a8a8a8"
+                     android:layout_below="@+id/transactionValue"
+                     android:layout_marginTop="2dp"/>
+                 <Button
+                     style="@style/btnSummary"
+                     android:layout_width="wrap_content"
+                     android:layout_height="40dp"
+                     android:text="Update Profile"
+                     android:id="@+id/updateprofileButton"
+                     android:layout_below="@+id/dis"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentStart="true"
+                     android:layout_marginRight="4dp"
+                     android:textSize="14dp"
+                     android:layout_marginTop="8dp" />
+
+                 <Button
+                     style="@style/btnSummary"
+                     android:layout_width="wrap_content"
+                     android:layout_height="40dp"
+                     android:text="Reset Pin"
+                     android:id="@+id/resetPinButton"
+                     android:gravity="center"
+                     android:textSize="14dp"
+                     android:layout_alignParentBottom="true"
+                     android:layout_toRightOf="@+id/updateprofileButton"
+                     android:layout_toEndOf="@+id/updateprofileButton"
+                     android:layout_marginRight="4dp"
+                     android:layout_marginTop="8dp" />
+
+
+
+
+
+             </RelativeLayout>
+
+         </RelativeLayout>
+         <LinearLayout
+             android:orientation="vertical"
+             android:id="@+id/divider"
+             android:layout_width="match_parent"
+             android:layout_height="0.5dp"
+             android:background="#a8a8a8"
+             android:layout_below="@+id/profileSettings"
+             android:layout_marginTop="2dp">
+
+         </LinearLayout>
+     </RelativeLayout>
+
+
+ </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,83 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <!-- <include -->
+    <!-- android:id="@+id/topbar" -->
+    <!-- layout="@layout/header_layout" /> -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dip" >
+
+            <LinearLayout
+                android:id="@+id/biometric_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/area"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:padding="0dip" >
+
+                <ImageView
+                    android:id="@+id/finger_print_image"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="20dip"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/white"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/button_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/biometric_layout"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:padding="0dip" >
+
+                <Button
+                    android:id="@+id/resetButton"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginTop="10dip"
+                    android:background="@drawable/gradient_black"
+                    android:gravity="center"
+                    android:padding="10dip"
+                    android:text="@string/reset"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/loginButton"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:background="@drawable/gradient_blue"
+                    android:gravity="center"
+                    android:padding="10dip"
+                    android:text="@string/ok"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

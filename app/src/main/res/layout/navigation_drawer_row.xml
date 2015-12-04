@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:clickable="true"
+    android:background="@color/primary"
+    android:padding="5dp">
+
+
+    <ImageView
+        android:layout_gravity="center_vertical"
+        android:id="@+id/listicon"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="22dp"
+        android:src="@drawable/useremail"
+        android:layout_marginStart="22dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/listText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="Hello Yaw"
+        android:padding="2dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:textSize="16dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/listicon"
+        android:layout_toEndOf="@+id/listicon" />
+
+</RelativeLayout>

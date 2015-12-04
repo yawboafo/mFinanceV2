@@ -1,0 +1,459 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nfortics.mfinanceV2.Activities.SettingActive">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/scrollView2"
+    android:fillViewport="false">
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/profileHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="5dp"
+            android:layout_alignParentTop="true">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/profile_avator"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/transparent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yaw Boafo"
+                android:id="@+id/agentName"
+                android:layout_below="@+id/profile_image"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="233240088705"
+                android:id="@+id/agentMsisdn"
+                android:layout_below="@+id/agentName"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#a8a8a8"
+            android:layout_below="@+id/profileHolder"
+            android:layout_marginTop="2dp"/>
+
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profileSettings"
+            android:layout_below="@+id/profileHolder"
+            android:padding="5dp">
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/linearLayout6"
+                android:padding="3dp">
+
+                <TextView
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:id="@+id/profileTitle"
+                    android:textColor="#194e9a" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/adda"
+                    android:id="@+id/imageViewProfile"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
+           <RelativeLayout
+               android:id="@+id/profileCon"
+               android:layout_below="@+id/linearLayout6"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Branches"
+                   android:id="@+id/branchesTitle"
+
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentStart="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                   android:textColor="#a8a8a8" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Odorkor,Malam,Dansoman"
+                   android:id="@+id/branchesValue"
+                   android:layout_below="@+id/branchesTitle"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentStart="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                   android:textStyle="bold"
+                   android:layout_margin="2.5dp" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Merchant"
+                   android:id="@+id/merchantTitle"
+                   android:layout_below="@+id/branchesValue"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentStart="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                   android:textColor="#a8a8a8" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Onango,CCML,Advance"
+                   android:id="@+id/merchantValue"
+                   android:layout_below="@+id/merchantTitle"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentStart="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                   android:textStyle="bold"
+                   android:layout_margin="2.5dp" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Transaction Limit"
+                   android:id="@+id/transactionTitle"
+                   android:layout_below="@+id/merchantValue"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentStart="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                   android:textColor="#a8a8a8" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Cash In-GHs2,500.00. CashOut-GHs3,800.00"
+                   android:id="@+id/transactionValue"
+                   android:layout_below="@+id/transactionTitle"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentStart="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                   android:textStyle="bold"
+                   android:layout_margin="2.5dp"
+                   android:layout_marginBottom="10dp" />
+
+               <Button
+                   style="@style/btnSummary"
+                   android:layout_width="wrap_content"
+                   android:layout_height="40dp"
+                   android:text="Update Profile"
+                   android:id="@+id/updateprofileButton"
+                   android:layout_below="@+id/transactionValue"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentStart="true"
+                   android:layout_marginRight="4dp"
+                   android:textSize="12dp" />
+
+               <Button
+                   style="@style/btnSummary"
+                   android:layout_width="wrap_content"
+                   android:layout_height="40dp"
+                   android:text="Reset Pin"
+                   android:id="@+id/resetPinButton"
+                   android:gravity="center"
+                   android:textSize="12dp"
+                   android:layout_alignParentBottom="true"
+                   android:layout_toRightOf="@+id/updateprofileButton"
+                   android:layout_toEndOf="@+id/updateprofileButton"
+                   android:layout_marginRight="4dp" />
+
+               <Button
+                   style="@style/btnSummary"
+                   android:layout_width="wrap_content"
+                   android:layout_height="40dp"
+                   android:text="Check for Update"
+                   android:id="@+id/checkUpdateButton"
+                   android:textSize="12dp"
+                   android:layout_alignParentBottom="true"
+                   android:layout_toRightOf="@+id/resetPinButton"
+                   android:layout_toEndOf="@+id/resetPinButton" />
+
+
+
+           </RelativeLayout>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#a8a8a8"
+            android:layout_below="@+id/profileSettings"
+            android:layout_marginTop="2dp">
+
+        </LinearLayout>
+
+
+
+
+
+        <RelativeLayout
+            android:layout_below="@+id/profileSettings"
+            android:id="@+id/applayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/linearLayout7">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Application"
+                    android:id="@+id/SettingsapplicationTitle"
+                    android:textColor="#194e9a" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/adda"
+                    android:id="@+id/imageViewApp"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_below="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:id="@+id/AppCon"
+                android:layout_height="wrap_content">
+
+
+                <Button
+                    style="@style/btnSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Check for Update"
+                    android:id="@+id/checkupdateButton"
+                    android:textSize="12dp"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Version"
+                    android:id="@+id/verionLabel"
+                    android:textColor="#a8a8a8"
+                    android:layout_below="@+id/checkupdateButton"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.0.15"
+                    android:id="@+id/versionValue"
+                    android:layout_below="@+id/verionLabel"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="4dp" />
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#a8a8a8"
+            android:id="@+id/divide"
+            android:layout_below="@+id/applayout"
+            android:layout_marginTop="2dp">
+
+        </LinearLayout>
+
+
+
+        <RelativeLayout
+           android:id="@+id/generalAppSet"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/divide"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:padding="5dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/linearLayout8">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="General"
+                    android:id="@+id/generalTitle"
+                    android:layout_margin="2.5dp"
+                    android:textColor="#194e9a" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/adda"
+                    android:id="@+id/imageViewGeneral"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
+         <RelativeLayout
+             android:id="@+id/GeneralCon"
+             android:layout_below="@+id/linearLayout8"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Device ID"
+                 android:id="@+id/deviceID"
+
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentEnd="true"
+                 android:layout_margin="2.5dp"
+                 android:textColor="#a8a8a8" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="359092054250034"
+                 android:id="@+id/deviceIDvalue"
+                 android:layout_below="@+id/deviceID"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true"
+                 android:layout_margin="2.5dp" />
+
+             <ImageView
+                 android:layout_width="54dp"
+                 android:layout_height="54dp"
+                 android:id="@+id/padlock"
+                 android:layout_below="@+id/deviceID"
+                 android:layout_toRightOf="@+id/deviceIDvalue"
+                 android:layout_toEndOf="@+id/deviceIDvalue"
+                 android:layout_alignBottom="@+id/deviceIDvalue"
+                 android:src="@android:drawable/ic_secure"
+                 android:layout_margin="2.5dp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Printer Setup"
+                 android:id="@+id/printerSetup"
+                 android:layout_below="@+id/deviceIDvalue"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true"
+                 android:layout_toLeftOf="@+id/printerConnectButton"
+                 android:layout_toStartOf="@+id/printerConnectButton"
+                 android:layout_margin="2.5dp"
+                 android:textColor="#a8a8a8" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="TPII BlueTeeth Printer"
+                 android:id="@+id/prntername"
+                 android:layout_below="@+id/printerSetup"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true"
+                 android:layout_toStartOf="@+id/printerConnectButton"
+                 android:layout_toLeftOf="@+id/printerConnectButton"
+                 android:layout_margin="2.5dp" />
+
+             <Button
+                 style="@style/btnSummary"
+                 android:layout_width="wrap_content"
+                 android:layout_height="40dp"
+                 android:text="SetUp Printer"
+                 android:id="@+id/printerConnectButton"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentEnd="true"
+                 android:layout_marginRight="30dp"
+                 android:layout_marginEnd="30dp" />
+         </RelativeLayout>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#a8a8a8"
+            android:id="@+id/divid"
+            android:layout_below="@+id/generalAppSet"
+            android:layout_marginTop="2dp"/>
+    </RelativeLayout>
+
+</ScrollView>
+
+</RelativeLayout>

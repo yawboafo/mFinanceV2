@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@color/primary"
+    app:theme="@style/appBarTheme"
+
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    <TextView
+        android:id="@+id/toolbarTitle"
+        style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mFinance"
+        android:gravity="left"
+
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/toolbarnotify"
+        style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+        android:background="?attr/selectableItemBackground"
+        android:drawableRight="@drawable/statements"
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1(new)"
+        android:visibility="gone"
+        android:gravity="end|right"
+        android:textSize="20dp" />
+
+
+</android.support.v7.widget.Toolbar>

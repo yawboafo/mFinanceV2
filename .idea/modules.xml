@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AJni_JAR/AJni_JAR.iml" filepath="$PROJECT_DIR$/AJni_JAR/AJni_JAR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DecodeWlt/DecodeWlt.iml" filepath="$PROJECT_DIR$/DecodeWlt/DecodeWlt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FDxSDKProAndroid/FDxSDKProAndroid.iml" filepath="$PROJECT_DIR$/FDxSDKProAndroid/FDxSDKProAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Grabba driver for android v1.68/Grabba driver for android v1.68.iml" filepath="$PROJECT_DIR$/Grabba driver for android v1.68/Grabba driver for android v1.68.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MFinanceV2.0.iml" filepath="$PROJECT_DIR$/MFinanceV2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/activation/activation.iml" filepath="$PROJECT_DIR$/activation/activation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/activeandroid-3.1.0/activeandroid-3.1.0.iml" filepath="$PROJECT_DIR$/activeandroid-3.1.0/activeandroid-3.1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/additionnal/additionnal.iml" filepath="$PROJECT_DIR$/additionnal/additionnal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/audio/audio.iml" filepath="$PROJECT_DIR$/audio/audio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/google-play-services/google-play-services.iml" filepath="$PROJECT_DIR$/google-play-services/google-play-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guice-2.0-no_aop/guice-2.0-no_aop.iml" filepath="$PROJECT_DIR$/guice-2.0-no_aop/guice-2.0-no_aop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/httpclient-4.5.1/httpclient-4.5.1.iml" filepath="$PROJECT_DIR$/httpclient-4.5.1/httpclient-4.5.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/m2iapi/m2iapi.iml" filepath="$PROJECT_DIR$/m2iapi/m2iapi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/m2iapip/m2iapip.iml" filepath="$PROJECT_DIR$/m2iapip/m2iapip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mail/mail.iml" filepath="$PROJECT_DIR$/mail/mail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microlog4android-1.0.0/microlog4android-1.0.0.iml" filepath="$PROJECT_DIR$/microlog4android-1.0.0/microlog4android-1.0.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/roboguice-1.0/roboguice-1.0.iml" filepath="$PROJECT_DIR$/roboguice-1.0/roboguice-1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sourceafis/sourceafis.iml" filepath="$PROJECT_DIR$/sourceafis/sourceafis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/universal-image-loader-1.9.3/universal-image-loader-1.9.3.iml" filepath="$PROJECT_DIR$/universal-image-loader-1.9.3/universal-image-loader-1.9.3.iml" />
+    </modules>
+  </component>
+</project>

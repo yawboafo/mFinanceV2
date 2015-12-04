@@ -1,0 +1,2 @@
+configurations.create("default")
+artifacts.add("default", file('guice-2.0-no_aop.jar'))

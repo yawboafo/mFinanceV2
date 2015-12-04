@@ -1,0 +1,204 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.nfortics.mfinanceV2.Activities.FieldCollection">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/container"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout5"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Large Text"
+                    android:id="@+id/fieldCollectTitle"
+                    android:gravity="left"
+                    android:padding="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="0.5dp"
+                    android:background="#194e9a"
+                     android:layout_below="@+id/fieldCollectTitle"
+                   ></LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/linearLayout5"
+                android:id="@+id/relativeLayout9"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Collection Type"
+                    android:id="@+id/collectionTypeLabel"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="3dp"
+                    android:textSize="16dp"
+                    android:textColor="#61000000"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:theme="@android:style/Theme.Holo.Light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/collectionTypeSpinner"
+                    android:layout_below="@+id/collectionTypeLabel"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="5dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout9"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/relativeLayout10"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Register Collection Using"
+                    android:id="@+id/collectionbyLabel"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="3dp"
+                    android:textSize="16dp"
+                    android:textColor="#61000000"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:theme="@android:style/Theme.Holo.Light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/collecyBySpinner"
+                    android:layout_below="@+id/collectionbyLabel"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Account Number "
+                    android:id="@+id/collectionNumberLabel"
+                    android:layout_below="@+id/collecyBySpinner"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignRight="@+id/collecyBySpinner"
+                    android:layout_alignEnd="@+id/collecyBySpinner"
+                    android:layout_margin="3dp"
+                    android:textSize="16dp"
+                    android:textColor="#61000000"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:background="@drawable/edittextstyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/collectionNumber"
+                    android:layout_below="@+id/collectionNumberLabel"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+
+
+                    android:layout_margin="5dp"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Amount"
+                    android:id="@+id/collectionAmountLabel"
+
+                    android:layout_below="@+id/collectionNumber"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignRight="@+id/collectionNumberLabel"
+                    android:layout_alignEnd="@+id/collectionNumberLabel"
+                    android:layout_margin="3dp"
+                    android:textSize="16dp"
+                    android:textColor="#61000000"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:background="@drawable/edittextstyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/collectionAmount"
+                    android:layout_below="@+id/collectionAmountLabel"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignRight="@+id/collectionAmountLabel"
+                    android:layout_margin="5dp"
+                    android:padding="5dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/relativeLayout10"
+                android:padding="5dp">
+
+                <Button
+                    style="@style/blueButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:id="@+id/submitButton"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="5dp" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

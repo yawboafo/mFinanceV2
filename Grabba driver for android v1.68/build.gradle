@@ -1,0 +1,2 @@
+configurations.create("default")
+artifacts.add("default", file('Grabba driver for android v1.68.jar'))
