@@ -3,6 +3,8 @@ package com.nfortics.mfinanceV2.Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -106,7 +108,7 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
     User user;
     private String username,pin;
 
-
+    private CoordinatorLayout coordinatorLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,6 +247,8 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
 
 
         }
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id
+                .cordinateLayout);
 
         txtSetPinTitle.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
     }
@@ -344,7 +348,12 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
 
                     if(newUser==null){
 
-                        utils.ErrorAlertDialog(LoginActivity.this,"Pin Does Not Match "+user.getMsisdn()+"' s Pin ","Login Failed ").show();
+                        Snackbar snackbar = Snackbar
+                                .make(coordinatorLayout, "Pin Does Not Match "+user.getMsisdn()+"' s Pin ", Snackbar.LENGTH_LONG);
+
+                        snackbar.show();
+
+                     //   utils.ErrorAlertDialog(LoginActivity.this,"Pin Does Not Match "+user.getMsisdn()+"' s Pin ","Login Failed ").show();
                     } else {
 
                         Application.setActiveAgent(newUser);
