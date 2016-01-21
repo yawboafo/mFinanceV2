@@ -34,6 +34,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.nfortics.mfinanceV2.Fragments.HomeFragment;
@@ -269,6 +270,33 @@ public class MainActivity
         RecyclerView.LayoutManager mlayout=new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyle.setLayoutManager(mlayout);
         recyle.setAdapter(summaryRecycleAdapter);
+
+        recyle.addOnItemTouchListener(new RecyclerTouchListener(MainActivity.this, recyle, new ClickListner() {
+            @Override
+            public void onClick(View view, int position) {
+                TextView txtAllactive = (TextView) view.findViewById(R.id.txtAllactive);
+
+                String value = txtAllactive.getText().toString();
+
+                switch (value) {
+
+                    case "CUSTOMERS":
+
+                        Intent intent = new Intent(MainActivity.this, CustomerActivity.class);
+                      //  intent.putExtra("name", nameHidden);
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+      //  recyle.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener());
     }
 
     @Override

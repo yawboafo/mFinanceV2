@@ -117,16 +117,16 @@
     <orderEntry type="library" exported="" name="design-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />
     <orderEntry type="module" module-name="httpclientandroidlib-1.2.1" exported="" />
-    <orderEntry type="module" module-name="FDxSDKProAndroid" exported="" />
     <orderEntry type="module" module-name="httpclient-4.5.1" exported="" />
+    <orderEntry type="module" module-name="FDxSDKProAndroid" exported="" />
     <orderEntry type="module" module-name="roboguice-1.0" exported="" />
     <orderEntry type="module" module-name="activeandroid-3.1.0" exported="" />
     <orderEntry type="module" module-name="google-play-services" exported="" />
-    <orderEntry type="module" module-name="m2iapi" exported="" />
     <orderEntry type="module" module-name="activation" exported="" />
+    <orderEntry type="module" module-name="m2iapi" exported="" />
     <orderEntry type="module" module-name="Grabba driver for android v1.68" exported="" />
-    <orderEntry type="module" module-name="m2iapip" exported="" />
     <orderEntry type="module" module-name="sourceafis" exported="" />
+    <orderEntry type="module" module-name="m2iapip" exported="" />
     <orderEntry type="module" module-name="guice-2.0-no_aop" exported="" />
     <orderEntry type="module" module-name="mail" exported="" />
     <orderEntry type="module" module-name="microlog4android-1.0.0" exported="" />
@@ -134,7 +134,7 @@
     <orderEntry type="module" module-name="AJni_JAR" exported="" />
     <orderEntry type="module" module-name="audio" exported="" />
     <orderEntry type="module" module-name="DecodeWlt" exported="" />
-    <orderEntry type="module" module-name="additionnal" exported="" />
     <orderEntry type="module" module-name="universal-image-loader-1.9.3" exported="" />
+    <orderEntry type="module" module-name="additionnal" exported="" />
   </component>
 </module>
