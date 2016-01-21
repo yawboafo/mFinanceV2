@@ -1,15 +1,21 @@
 package com.nfortics.mfinanceV2.Activities;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Message;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -49,11 +55,14 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.melnykov.fab.FloatingActionButton;
+
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.nfortics.mfinanceV2.Activities.MenuActivities.FieldCollectionMenuActivity;
 import com.nfortics.mfinanceV2.Application.Application;
 import com.nfortics.mfinanceV2.Dialogs.CustomerDetailDialog;
 import com.nfortics.mfinanceV2.Dialogs.CustomerDetailDialog.CustomerDetailDialogInteractionListener;
+import com.nfortics.mfinanceV2.FormWidgetGenerator.FormWidgetModel;
 import com.nfortics.mfinanceV2.Handlers.GeneralRequestHandler;
 import com.nfortics.mfinanceV2.Models.Account;
 import com.nfortics.mfinanceV2.Models.C_Branch;
@@ -61,10 +70,14 @@ import com.nfortics.mfinanceV2.Models.C_FingerPrintInfo;
 import com.nfortics.mfinanceV2.Models.Customer;
 import com.nfortics.mfinanceV2.Models.Merchant;
 import com.nfortics.mfinanceV2.Models.Msisdn;
+import com.nfortics.mfinanceV2.Models.OnBoard;
+import com.nfortics.mfinanceV2.Models.OnBoardModel;
 import com.nfortics.mfinanceV2.Models.ThirdPartyIntegration;
 import com.nfortics.mfinanceV2.Models.User;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Services.CustomersDownloadService;
+import com.nfortics.mfinanceV2.Services.OnBoardDataService;
+import com.nfortics.mfinanceV2.Services.VolleyServices;
 import com.nfortics.mfinanceV2.Typefacer;
 import com.nfortics.mfinanceV2.Utilities.Utils;
 import com.nfortics.mfinanceV2.ViewAdapters.CustomerViewAdapter;
@@ -75,11 +88,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class CustomerActivity extends
         BaseActivity
@@ -105,7 +121,7 @@ public class CustomerActivity extends
 
     User user;
     Merchant merchant;
-
+    private int mScrollOffset = 4;
     Msisdn msisdn ;
     ThirdPartyIntegration tpi ;
     Customer customer = new Customer();
@@ -115,8 +131,14 @@ public class CustomerActivity extends
     List<ThirdPartyIntegration> electronicCards ;
     List<C_FingerPrintInfo> fingerPrints ;
     List<Msisdn> msisdns ;
-
-    FloatingActionButton fab;
+    public static final String BASE_URL = Application.serverURL2 + "customers.json?";
+    FloatingActionMenu fab;
+    public static final String AUTHORITY =
+            "com.nfortics.mfinanceV2.provider";
+    // Account type
+    public static final String ACCOUNT_TYPE = "com.example.android.datasync";
+    // Account
+    public static final String ACCOUNT = "default_account";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,23 +148,16 @@ public class CustomerActivity extends
 
 
         view=generateActivityView();
-
         relativeLayout.removeAllViews();
 
 
         try{
-
             user=User.load(User.class, 1);
             if(generalSettings.getActivemerchant()==null){
-
                 merchant=Merchant.getAllMerchant(""+user.getId()).get(0);
             }else{
                 merchant=generalSettings.getActivemerchant();
-
             }
-
-
-
 
         }catch (Exception e){
 
@@ -152,28 +167,10 @@ public class CustomerActivity extends
         relativeLayout.addView(view);
        // setFloatingButton();
 
-
-        if(Customer.getAllCustomers().size()<=0){
-
-            pullAllCustomers();
-
-
-        }
-
-
         new LoadRecycleView(view).execute();
-        try{
-           // pullAllCustomers();
-           // FetchCustmersFromServer(user.getMsisdn(),merchant.getCode(),1);
 
-           // pullAllCustomers();
-
-            //FetchCustmersFromServer(user.getMsisdn(), merchant.getCode(), 1);
-        }catch (Exception e)
-        {
-
-        }
         EventListners();
+        BroadCastReciever();
 
     }
 
@@ -261,7 +258,7 @@ public class CustomerActivity extends
         handler.showProgressDialog();
         new CustomersDownloadService(handler).processRequest();
     }
-    public static final String BASE_URL = Application.serverURL2 + "customers.json?";
+
 
     private String buildURL(String msisdn,String code,String pageNum ){
 
@@ -730,7 +727,39 @@ public class CustomerActivity extends
 
 
 
+     void BroadCastReciever(){
 
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String someValue = intent.getStringExtra("response");
+
+            new LoadRecycleView(view).execute();
+            // ... do something ...
+        }
+    };
+    LocalBroadcastManager.getInstance(this)
+            .registerReceiver(receiver, new IntentFilter("myBroadcastIntent"));
+}
+
+
+    public void synAdapter() {
+
+
+
+       // ...
+        // Pass the settings flags by inserting them in a bundle
+        Bundle settingsBundle = new Bundle();
+        settingsBundle.putBoolean(
+                ContentResolver.SYNC_EXTRAS_MANUAL, true);
+        settingsBundle.putBoolean(
+                ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+        /*
+         * Request the sync for the default account, authority, and
+         * manual sync settings
+         */
+        ContentResolver.requestSync(new android.accounts.Account("mfinance","mfinanType"), AUTHORITY, settingsBundle);
+    }
 
     private TextWatcher FilerTextWatcher=new TextWatcher() {
         @Override
@@ -768,98 +797,308 @@ public class CustomerActivity extends
     }
 
 
-    void FloatingButton(View view){
-         fab = (FloatingActionButton)view.findViewById(R.id.fab);
-        fab.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+    private class OnclickMe implements View.OnClickListener{
 
+        private String value;
+       public OnclickMe(String value){
 
+           this.value=value;
+       }
 
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                   //Toast.makeText(CustomerActivity.this,"i was clicked",Toast.LENGTH_SHORT);
-                    Intent intent = new Intent(CustomerActivity.this, OnBoardCustomerActivity.class);
-                   // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(intent);
+        @Override
+        public void onClick(View v) {
 
-                    overridePendingTransition( R.anim.activity_animation, R.anim.activity_animation2);
+            if(v!=null){
+                Intent intent = new Intent(CustomerActivity.this, OnBoardCustomerActivity.class);
 
-                    return true;
-                }
+               // String aString="";
+              //  aString=v.getTag().toString();
+                intent.putExtra("type",value);
+                // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
 
-              //  Toast.makeText(CustomerActivity.this,"i was clicked",Toast.LENGTH_SHORT);
-                return true; // consume the event
+                overridePendingTransition(R.anim.activity_animation, R.anim.activity_animation2);
+                fab.close(false);
             }
-        });
+
+        }
+    }
+    private View generateCustomerDetailView(){
+
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.customer_detail_layout, null, false);
+
+        return activityView;
+    }
+
+    void FloatingButton(View view){
+         fab = (FloatingActionMenu)view.findViewById(R.id.fab);
+       // final FloatingActionButton programFab1 = new FloatingActionButton(this);
+        //programFab1.setButtonSize(FloatingActionButton.SIZE_MINI);
+        //programFab1.setLabelText("Account");
+        //  programFab1.setImageResource(R.drawable.ic_edit);
+       // fab.addMenuButton(programFab1);
+
+
+        String data="";
+        try{
+            JSONObject schema = new JSONObject( FormWidgetModel.parseFileToString(CustomerActivity.this, "schemas2.json") );
+          //  JSONObject    pop = schema1.getJSONObject("Soft Account");
+
+            JSONArray names=schema.names();
+            String name="";
+
+            for(int i=0;i<names.length();i++){
+                name = names.getString(i);
+                 FloatingActionButton but = new FloatingActionButton(this);
+                but.setButtonSize(FloatingActionButton.SIZE_MINI);
+                but.setLabelText(name);
+                but.setTag(name);
+                but.setOnClickListener(new OnclickMe(name));
+                fab.addMenuButton(but);
+               // Utils.log("Deadly Account ="+pop);
+            }
+
+          //  data=pop.toString();
+          //  Utils.log("Deadly Account ="+pop);
+        }catch (Exception ee){
+
+
+        }
+
+
+
+        /** fab.setOnMenuButtonClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 //Toast.makeText(CustomerActivity.this,"i was clicked",Toast.LENGTH_SHORT);
+                 Intent intent = new Intent(CustomerActivity.this, OnBoardCustomerActivity.class);
+                 // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                 startActivity(intent);
+
+                 overridePendingTransition(R.anim.activity_animation, R.anim.activity_animation2);
+             }
+         });***/
+
+
 
     }
     void SetRecycleView(View view){
-
+        ///fab = (FloatingActionButton)view.findViewById(R.id.fab);
       //  fab.attachToListView(listView);
         RecyclerView.LayoutManager mlayout=new LinearLayoutManager(CustomerActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView=(RecyclerView)view.findViewById(R.id.customrDisplay);
 
-
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //recyclerView.setLayoutManager(new LinearLayoutManager(CustomerActivity.this));
+        //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
        // customerViewAdapter=new CustomerViewAdapter(CustomerActivity.this,Customer.getAllCustomers());
        // recyclerView.setAdapter(customerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(CustomerActivity.this));
-
+       // fab.attachToRecyclerView(recyclerView);
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(CustomerActivity.this, recyclerView, new ClickListner() {
             @Override
             public void onClick(View view, int position) {
                 TextView hiddenCustomerId = (TextView) view.findViewById(R.id.txtcustomerid);
+                TextView name = (TextView) view.findViewById(R.id.txtCutomerName);
                 String hiddenId = hiddenCustomerId.getText().toString();
+                String nameHidden = name.getText().toString();
                 ////
-                // Toast.makeText(CustomerActivity.this, hiddenId, Toast.LENGTH_SHORT).show();
-                CustomerDetailDialog dialog = CustomerDetailDialog.newInstance(hiddenId);
+
+                // CustomerDetailDialog dialog = CustomerDetailDialog.newInstance(hiddenId);
                 //dialog.newInstance("","");
-                showDialog(dialog);
-
-
-                /**    RelativeLayout popmenu=(RelativeLayout)view.findViewById(R.id.popmenu);
-                 popmenu.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(final View v) {
-                PopupMenu popupMenu = new PopupMenu(CustomerActivity.this, v);
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                case R.id.item_Deposit:
-
-                Intent intent = new Intent(CustomerActivity.this, FieldCollectionActivity.class);
-                finish();
+                //  showDialog(dialog);
+                // Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.slide_in_up, R.anim.slide_out_up).toBundle();
+                Intent intent = new Intent(CustomerActivity.this, CustomerDetails.class);
+                intent.putExtra("name", nameHidden);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-
-                // Toast.makeText(CustomerActivity.this, "Comedy Clicked"+v.getTag(), Toast.LENGTH_SHORT).show();
-                return true;
-                case R.id.item_Withdrawal:
-                Toast.makeText(CustomerActivity.this, "Movies Clicked", Toast.LENGTH_SHORT).show();
-                return true;
-                case R.id.item_Balance:
-                Toast.makeText(CustomerActivity.this, "Music Clicked", Toast.LENGTH_SHORT).show();
-                return true;
-                }
-                return true;
-                }
-
-                ;
-                });
-                popupMenu.inflate(R.menu.customer_quick_actions);
-                popupMenu.show();
-                }
-                });
-                 ***/
-
-
+                //overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
             }
 
             @Override
             public void onLongClick(View view, int position) {
+                TextView hiddenCustomerId = (TextView) view.findViewById(R.id.txtCustomerPhonelabel);
+                TextView sync = (TextView) view.findViewById(R.id.txtCustomerPhonevalue);
+                String hiddenId = hiddenCustomerId.getText().toString();
+
+                Customer customer=Customer.getCustomer(hiddenId);
+
+               // OnBoardModel onBoardModel=null;
+               // try {
+                    // onBoardModel=Utils.MapsDb();
+              //  } catch (ClassNotFoundException e) {
+                 //   e.printStackTrace();
+               // } catch (IOException e) {
+                //    e.printStackTrace();
+                //}
+
+                Utils.log("local ID = "+customer.getLocal_id()+" ,sync stat= "+customer.getSync_status());
+           //     OnBoard onBoard=onBoardModel.getOnBoardMap().get(customer.getLocal_id());
+           /***     for(Map.Entry<String,String> entry:onBoard.getTextData().entrySet()){
+
+                    Utils.log("entry Key = "+entry.getKey()+" ,enytry Value = "+entry.getValue());
+                }
+
+                for(Map.Entry<String,String> entry:onBoard.getBase64data().entrySet()){
+
+                    Utils.log("entry Key = "+entry.getKey()+" ,enytry Value = "+entry.getValue());
+                }****/
+
+
+
+
+                String syncState = customer.getSync_status();
+
+                if (syncState.equals("complete")) {
+                    Utils.log("in complete");
+                    synAdapter();
+                } else if (syncState.equals("partial")) {
+                    Intent intent = new Intent(CustomerActivity.this, VolleyServices.class);
+                    intent.putExtra("cusID", hiddenId);
+                    intent.putExtra("actionType", "heavy");
+                    startService(intent);
+
+                } else if (syncState.equals("none")) {
+
+                    Utils.log("in none");
+                    Intent intent = new Intent(CustomerActivity.this, OnBoardDataService.class);
+                    intent.putExtra("cusID", hiddenId);
+                    intent.putExtra("actionType", "light");
+                    startService(intent);
+                }else if (syncState.equals("failed")){
+                    Utils.log("in failed");
+                    Intent intent = new Intent(CustomerActivity.this, VolleyServices.class);
+                    intent.putExtra("cusID", hiddenId);
+                    intent.putExtra("actionType", "heavy");
+                    startService(intent);
+                }
+
 
             }
         }));
         //fab.attachToRecyclerView(recyclerView);
+
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (Math.abs(dy) > mScrollOffset) {
+                    if (dy > 0) {
+
+                        fab.hideMenu(true);
+
+                        // menu1.hideMenu(true);
+                    } else {
+                        fab.showMenu(true);
+
+                        // menu1.showMenu(true);
+                    }
+                }
+            }
+        });
     }
 
+    Map<String,String> LoadCustomerToHashMap(Customer customer){
+
+        Map<String,String>map=new TreeMap<>();
+        map.put("first_name",customer.getFirst_name());
+        map.put("last_name",customer.getSurname());
+        map.put("other_names",customer.getOther_names());
+        map.put("gender",customer.getGender());
+        map.put("title", customer.getTitle());
+        map.put("id_type", customer.getIdentificationType());
+        map.put("id_value", customer.getIdentificationNumber());
+        map.put("dob", customer.getDob());
+        map.put("address1", customer.getHouseNumber());
+        map.put("address2", customer.getStreetName());
+        map.put("address3", customer.getCity());
+        map.put("phone_number", customer.getMobile_number());
+
+        /**
+         *    customer.setCustomer_id(cusID);
+
+
+         customer.setFullname(customer.getFullname());
+         customer.setFirst_name(customer.getFirst_name());
+         customer.setSurname(customer.getSurname());
+         customer.setOther_names(customer.getOther_names());
+         customer.setGender(customer.getGender());
+         customer.setTitle(customer.getTitle());
+         customer.setIdentificationType(customer.getIdentificationType());
+         customer.setIdentificationNumber(customer.getIdentificationNumber());
+         customer.setDob(customer.getDob());
+         customer.setHouseNumber(customer.getHouseNumber());
+         customer.setStreetName(customer.getStreetName());
+         customer.setCity(customer.getCity());
+         customer.setMobile_number(customer.getMobile_number());
+         *
+         * **/
+
+
+        return map;
+    }
+    Customer CreateCustomer(String cusID,Customer customer){
+
+
+
+        String first_name="";
+        String last_name="";
+        String other_names="";
+        String gender="";
+        String title="";
+        String id_type="";
+        String id_value="";
+        String dob="";
+        String address1="";
+        String address2="";
+        String address3="";
+        String phone_number="";
+
+
+
+
+
+        try{
+
+
+            customer.setCustomer_id(cusID);
+
+
+            customer.setFullname(customer.getFullname());
+            customer.setFirst_name(customer.getFirst_name());
+            customer.setSurname(customer.getSurname());
+            customer.setOther_names(customer.getOther_names());
+            customer.setGender(customer.getGender());
+            customer.setTitle(customer.getTitle());
+            customer.setIdentificationType(customer.getIdentificationType());
+            customer.setIdentificationNumber(customer.getIdentificationNumber());
+            customer.setDob(customer.getDob());
+            customer.setHouseNumber(customer.getHouseNumber());
+            customer.setStreetName(customer.getStreetName());
+            customer.setCity(customer.getCity());
+            customer.setMobile_number(customer.getMobile_number());
+        }catch (Exception e){}
+
+
+     //   customer.setSync_status(synsts);
+
+
+        ActiveAndroid.beginTransaction();
+        try{
+
+
+            Long ID=  customer.save();
+
+            Log.d("oxinbo","Inserted into DB = "+ID+" with cusID " +cusID);
+            ActiveAndroid.setTransactionSuccessful();
+        }finally {
+            ActiveAndroid.endTransaction();
+        }
+
+
+        return customer;
+    }
     public void showDialog(DialogFragment dialogFragment){
 
         FragmentManager manager = this.getSupportFragmentManager();
@@ -926,21 +1165,20 @@ public class CustomerActivity extends
         return popMenu;
     }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        new LoadRecycleView(view).execute();
+    }
 
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+            new LoadRecycleView(view).execute();
 
-
-
-
-
-
-
-
-
-
-
-
+    }
 
     @Override
     public void onBackPressed() {
@@ -966,13 +1204,13 @@ public class CustomerActivity extends
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog  = new ProgressDialog(CustomerActivity.this);
+         //   pDialog  = new ProgressDialog(CustomerActivity.this);
 
-            pDialog.setMessage("Fetching Customers...");
-            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            pDialog.setIndeterminate(true);
-            pDialog.setCancelable(false);
-            pDialog.show();
+           // pDialog.setMessage("Fetching Customers...");
+           // pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+           // pDialog.setIndeterminate(true);
+           // pDialog.setCancelable(false);
+            //pDialog.show();
         }
 
 
@@ -990,7 +1228,7 @@ public class CustomerActivity extends
             recyclerView=(RecyclerView)view.findViewById(R.id.customrDisplay);
             recyclerView.setAdapter(customerViewAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(CustomerActivity.this));
-            pDialog.hide();
+           // pDialog.dismiss();
 
 
         }

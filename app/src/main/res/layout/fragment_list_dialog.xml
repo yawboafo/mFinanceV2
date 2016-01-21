@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="20dp"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="300dp" tools:context="com.nfortics.mfinanceV2.Dialogs.ListDialog">
+
+
+    <TextView
+        android:padding="10dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/headingTitle"
+
+        android:gravity="center"
+        android:layout_alignRight="@+id/list"
+        android:layout_alignEnd="@+id/list"
+        android:layout_alignLeft="@+id/list"
+        android:layout_alignStart="@+id/list" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/headingTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout2"
+        android:background="#194e9a"></LinearLayout>
+
+
+
+
+
+    <ListView
+        android:layout_margin="20dp"
+        android:id="@+id/list"
+        android:divider="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="298dp"
+        android:layout_below="@+id/linearLayout2">
+
+    </ListView>
+</RelativeLayout>

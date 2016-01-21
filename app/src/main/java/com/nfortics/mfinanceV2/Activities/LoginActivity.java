@@ -3,21 +3,15 @@ package com.nfortics.mfinanceV2.Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.activeandroid.ActiveAndroid;
@@ -33,10 +27,7 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.cengalabs.flatui.views.FlatButton;
-import com.cengalabs.flatui.views.FlatTextView;
 import com.nfortics.mfinanceV2.Application.Application;
-import com.nfortics.mfinanceV2.Dialogs.QuestionDialog;
 import com.nfortics.mfinanceV2.Models.Branch;
 import com.nfortics.mfinanceV2.Models.Merchant;
 import com.nfortics.mfinanceV2.Models.Product;
@@ -125,7 +116,7 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
         setLabels();
         InitializeApp();
         EventListeners();
-        CalculateLabels();
+        padLabels();
 
     }
 
@@ -136,7 +127,7 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
     }
 
 
-    private void CalculateLabels(){
+    private void padLabels(){
 
         Button but0=(Button)findViewById(R.id.button0);
         but0.setOnClickListener(this);
@@ -147,7 +138,7 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
         but1.setTypeface(typefacer.squareLight());
 
 
-        Button but2=(Button)findViewById(R.id.button2);
+        Button but2=(Button)findViewById(R.id.activeButton);
         but2.setOnClickListener(this);
         but2.setTypeface(typefacer.squareLight());
 
@@ -1025,7 +1016,7 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
 
                 if(newUser==null){
 
-
+                    edtPin.setText("");
                     ToastUtil.showMessageToast("Pin Does Not Match " + user.getMsisdn() + "' s Pin ", false);
 
                    // utils.ErrorAlertDialog(LoginActivity.this,"Pin Does Not Match "+user.getMsisdn()+"' s Pin ","Login Failed ").show();

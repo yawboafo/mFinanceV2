@@ -3,17 +3,27 @@ package com.nfortics.mfinanceV2.Application;
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Configuration;
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
 import com.cengalabs.flatui.FlatUI;
 import com.grabba.Grabba;
 import com.grabba.GrabbaDriverNotInstalledException;
@@ -32,11 +42,15 @@ import com.nfortics.mfinanceV2.Models.Product;
 import com.nfortics.mfinanceV2.Models.Projects;
 import com.nfortics.mfinanceV2.Models.ServiceProvider;
 import com.nfortics.mfinanceV2.Models.ThirdPartyIntegration;
+import com.nfortics.mfinanceV2.Models.UnsyncedData;
 import com.nfortics.mfinanceV2.Models.User;
 import com.nfortics.mfinanceV2.R;
+import com.nfortics.mfinanceV2.Services.SyncDataService;
+import com.nfortics.mfinanceV2.Services.VolleyServices;
 import com.nfortics.mfinanceV2.Settings.GeneralSettings;
 import com.nfortics.mfinanceV2.Utilities.ToastUtil;
 import com.nfortics.mfinanceV2.Utilities.Utils;
+import com.nfortics.mfinanceV2.Volley.VolleySingleton;
 import com.nfortics.mfinanceV2.logic.BluetoothChatService;
 import com.nfortics.mfinanceV2.logic.CommunicateManager;
 import com.nfortics.mfinanceV2.logic.Printer;
@@ -54,6 +68,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import roboguice.application.GuiceApplication;
@@ -77,6 +92,7 @@ public class Application  extends GuiceApplication {
             deviceType,
             appVersion;
 
+    public static FragmentManager fragmentManager;
 
 
     private static String currentActivityState;
@@ -97,13 +113,88 @@ public class Application  extends GuiceApplication {
     private HandlerThread handlerThread;
     private Handler mHandler;
     private int isOpen = NO_CONNECTED;
+    private static transient List<BluetoothDevice>bluetoothDevices = new ArrayList<BluetoothDevice>();
     public static int screenWidth, screenheight;
        public static String activeAgentMsisdn;
+    public static String activeCustomerId;
+    public static Map<String,Bitmap> galleryImages=new TreeMap<>();
+    public static  Map<String,String> fingerPrintImages=new TreeMap<>();
+    public static Map<String,String> signatureImages=new TreeMap<>();
 
-    private Map<String,Bitmap> galleryImages=new HashMap<>();
+
+    public static Map<String,String> CollectionItems=new HashMap<>();
+    public static Map<String,String> CollectionItemsImages=new HashMap<>();
+
+    public static String activeSignatureLabel;
+    public static String activePictureLabel;
+
+    public static List<String> listOfKeysChecked=new ArrayList<>();
+    public static List<String> SignatureLabelsList=new ArrayList<>();
+    public static List<String> PictureLabelsList=new ArrayList<>();
+
+
+    public static Map<String,String> afistemplateList=new TreeMap<>();
+
+    public static Map<String,String> checkedImageLabels=new HashMap<>();
+    private static List<Map<String,Bitmap>> SignatureMap=new ArrayList<>();
+    private static List<Map<String,Bitmap>> PicturesImageMap=new ArrayList<>();
     private static List<Map<String,Bitmap>> galleryImageList=new ArrayList<>();
+    private static List<Map<String,Bitmap>> fingerPrintList=new ArrayList<>();
+    public static Map<String,String> otherImages= new TreeMap<>();
+    public static Map<String,String> basse64Images= new TreeMap<>();
+
+    public static Map<String,String> FingerPrintbase64Images= new TreeMap<>();
+
+    UnsyncedData unsyncedData;
+
+    public static VolleySingleton volleySingleton;
+    public static RequestQueue requestQueue;
+
+
+
+    public static List<Map<String, Bitmap>> getPicturesImageMap() {
+        return PicturesImageMap;
+    }
+
+
+    public static Map<String, String> getFingerPrintImages() {
+        return fingerPrintImages;
+    }
+
+    public static void setFingerPrintImages(Map<String, String> fingerPrintImages) {
+        Application.fingerPrintImages = fingerPrintImages;
+    }
+
+
+    public static Map<String, String> getCollectionItems() {
+        return CollectionItems;
+    }
+
+    public static void setCollectionItems(Map<String, String> collectionItems) {
+        CollectionItems = collectionItems;
+    }
+
+    public static void setPicturesImageMap(List<Map<String, Bitmap>> picturesImageMap) {
+        PicturesImageMap = picturesImageMap;
+    }
     //private final Logger logger = LoggerFactory.getLogger();
 
+
+    public static List<Map<String, Bitmap>> getFingerPrintList() {
+        return fingerPrintList;
+    }
+
+    public static void setFingerPrintList(List<Map<String, Bitmap>> fingerPrintList) {
+        Application.fingerPrintList = fingerPrintList;
+    }
+
+    public static List<Map<String, Bitmap>> getSignatureMap() {
+        return SignatureMap;
+    }
+
+    public static void setSignatureMap(List<Map<String, Bitmap>> signatureMap) {
+        SignatureMap = signatureMap;
+    }
 
     public static List<Map<String, Bitmap>> getGalleryImageList() {
         return galleryImageList;
@@ -113,20 +204,20 @@ public class Application  extends GuiceApplication {
        galleryImageList = galleryImage;
     }
 
-    private static transient List<BluetoothDevice>bluetoothDevices = new ArrayList<BluetoothDevice>();
 
 
-    public Map<String, Bitmap> getGalleryImages() {
+
+    public static   Map<String, Bitmap> getGalleryImages() {
         return galleryImages;
     }
 
-    public void setGalleryImages(Map<String, Bitmap> galleryImages) {
-        this.galleryImages = galleryImages;
+    public static  void setGalleryImages(Map<String, Bitmap> galleryImag) {
+       galleryImages = galleryImag;
     }
 
     private void InitializeSettings() {
         GeneralSettings.initialize(openFile(GeneralSettings.class.getName()));
-
+        UnsyncedData.initialize(openFile(UnsyncedData.class.getName()));
     }
 
     private InputStream openFile(String fileName) {
@@ -153,10 +244,20 @@ public class Application  extends GuiceApplication {
         initializeDB();
         InitializeSettings();
         initializeDB();
+        unsyncedData=UnsyncedData.getInstance();
         if (Utils.deviceIsGrabba()) {
             runGrabbaProcesses();
         }
-     Application.setCurrentActivityState("Application");
+
+
+
+
+
+        volleySingleton= VolleySingleton.getsInstance();
+        requestQueue=VolleySingleton.getRequestQueue();
+
+
+        Application.setCurrentActivityState("Application");
 
 
         Log.d("oxinbo", "current Activity " + com.nfortics.mfinanceV2.Application.Application.getCurrentActivityState());
@@ -467,4 +568,8 @@ public class Application  extends GuiceApplication {
             mbatteryComponent.setActivity(currentActivity);
         }
     }
+
+
+
+
 }

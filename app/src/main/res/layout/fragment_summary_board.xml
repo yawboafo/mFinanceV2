@@ -39,7 +39,7 @@
         android:textSize="16dp" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="289 Transaction"
@@ -51,8 +51,8 @@
         android:paddingLeft="12dp"
         android:textColor="#ffffff"
         android:gravity="center_vertical"
-        android:layout_toStartOf="@+id/button2"
-        android:layout_toLeftOf="@+id/button2" />
+        android:layout_toStartOf="@+id/activeButton"
+        android:layout_toLeftOf="@+id/activeButton" />
 
     <Button
 
@@ -61,7 +61,7 @@
         android:layout_height="50dp"
         android:textSize="14dp"
         android:text="2009"
-        android:id="@+id/button"
+        android:id="@+id/disabledButton"
 
         android:layout_alignTop="@+id/txtTitle"
         android:layout_alignParentRight="true"
@@ -77,11 +77,11 @@
         android:layout_height="50dp"
         android:text="100"
         android:textSize="12dp"
-        android:id="@+id/button2"
+        android:id="@+id/activeButton"
         android:background="@drawable/roundshapebutonblue"
-        android:layout_alignTop="@+id/button"
-        android:layout_toLeftOf="@+id/button"
-        android:layout_toStartOf="@+id/button"
+        android:layout_alignTop="@+id/disabledButton"
+        android:layout_toLeftOf="@+id/disabledButton"
+        android:layout_toStartOf="@+id/disabledButton"
         android:textColor="#ffffff"
         android:layout_marginRight="5dp" />
 

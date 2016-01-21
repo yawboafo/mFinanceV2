@@ -18,7 +18,10 @@ import android.widget.Toast;
 
 import com.nfortics.mfinanceV2.Application.Application;
 import com.nfortics.mfinanceV2.R;
+import com.nfortics.mfinanceV2.Utilities.Base64;
+import com.nfortics.mfinanceV2.Utilities.Utils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,6 +30,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
 
 public class SignaturePad extends Activity {
 
@@ -71,25 +76,37 @@ public class SignaturePad extends Activity {
             @Override
             public void onClick(View view) {
 
-//private static List<Map<String,Bitmap>> galleryImageList=new ArrayList<>();
+
                 Bitmap signatureBitmap = mSignaturePad.getSignatureBitmap();
-                List<Map<String,Bitmap>> ImageList=new ArrayList<>();
-                Map<String,Bitmap> imageMap=new HashMap<String, Bitmap>();
-                imageMap.put("Sign",signatureBitmap);
-                ImageList.add(imageMap);
-                Application.setGalleryImageList(ImageList);
+
+
+
+                 if(Application.activeSignatureLabel==null){
+
+                     Application.getGalleryImages().put("Signature", signatureBitmap);
+                     Application. basse64Images.put(Application.activeSignatureLabel, getBase64Bytes(signatureBitmap));
+                     Application.listOfKeysChecked.add(Application.activeSignatureLabel);
+
+
+                 }else{
+
+
+                     Application.getGalleryImages().put(Application.activeSignatureLabel, signatureBitmap);
+                     Application. basse64Images.put(Application.activeSignatureLabel, getBase64Bytes(signatureBitmap));
+                     Application.listOfKeysChecked.add(Application.activeSignatureLabel);
+
+                 }
+
+
+
+
+
 
                 setResult(RESULT_OK, intent);
                 finish();
 
 
-              /**  if (addSignatureToGallery(signatureBitmap)) {
-                    Toast.makeText(SignaturePad.this, "Signature saved into the Gallery", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SignaturePad.this, "Unable to store the signature", Toast.LENGTH_SHORT).show();
-                }
 
-                ***/
 
 
 
@@ -99,7 +116,16 @@ public class SignaturePad extends Activity {
     }
 
 
+    private String getBase64Bytes(Bitmap bitmap) {
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
 
+        bitmap = Bitmap.createScaledBitmap(bitmap, 350, 350, true);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, bao);
+
+        byte[] ba = bao.toByteArray();
+
+        return Base64.encodeBytes(ba);
+    }
     public File getAlbumStorageDir(String albumName) {
         // Get the directory for the user's public pictures directory.
         File file = new File(Environment.getExternalStoragePublicDirectory(

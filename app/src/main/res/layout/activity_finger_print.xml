@@ -22,15 +22,20 @@
             android:layout_width="200dp"
             android:layout_height="220dp"
             android:id="@+id/imageView"
-            android:background="@android:color/black"
+            android:background="@drawable/black_transparent_border"
+            android:padding="1dp"
+            android:src="@android:color/transparent"
             android:layout_below="@+id/rhLabel"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignRight="@+id/L_thumbFinger"
+            android:layout_alignEnd="@+id/L_thumbFinger"
+            android:layout_alignLeft="@+id/R_thumbFinger"
+            android:layout_alignStart="@+id/R_thumbFinger" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="."
+            android:text=""
             android:id="@+id/rhLabel"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -41,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="L_Thumb"
             android:id="@+id/R_thumbFinger"
             android:layout_below="@+id/imageView"
@@ -55,7 +60,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="L_Index Finger"
             android:id="@+id/R_indexfingerLabel"
             android:layout_margin="5dp"
@@ -67,7 +72,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="L_Middle Finger"
             android:id="@+id/R_middlefingerLabel"
             android:layout_margin="5dp"
@@ -79,7 +84,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="L_Ring Finger"
             android:id="@+id/R_ringfingerLabel"
             android:layout_margin="5dp"
@@ -91,7 +96,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="L_Baby Finger"
             android:id="@+id/R_babyfingerLabel"
             android:layout_alignParentStart="true"
@@ -104,7 +109,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="R_Thumb"
             android:id="@+id/L_thumbFinger"
             android:gravity="right"
@@ -116,7 +121,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="R_Index Finger"
             android:id="@+id/L_indexfinger"
             android:gravity="right"
@@ -128,7 +133,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="R_Middle Finger"
             android:id="@+id/L_middlefinger"
             android:gravity="right"
@@ -140,7 +145,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="R_Baby Finger"
             android:id="@+id/L_babyfinger"
             android:gravity="right"
@@ -152,7 +157,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="R_Ring Finger"
             android:id="@+id/L_ringfinger"
             android:gravity="right"
@@ -165,6 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Okay"
+            style="@style/btnSummary"
             android:id="@+id/finishButton"
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/R_babyfingerLabel"
@@ -175,6 +181,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/btnSummary"
             android:text="Cancel"
             android:id="@+id/butCancel"
             android:layout_alignParentBottom="true"

@@ -4,15 +4,25 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Application;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -61,11 +71,12 @@ public abstract class
         ActionBarActivity
         implements
         NavigationDrawerFragment.
-                getNavigationDrawerClicks,BalanceDialogInteractionListener{
+                getNavigationDrawerClicks,
+        BalanceDialogInteractionListener{
     View view;
     ListView listMenu;
     RelativeLayout relativeLayout;
-
+     public static int count=0;
     ViewPager mPager;
     SlidingTabLayout mTabs;
     private Toolbar toolbar;
@@ -80,7 +91,7 @@ public abstract class
     Button button;
     private ViewFlipper viewFlipper;
     private float lastX;
-
+    Menu Alphamenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,9 +138,80 @@ public abstract class
 
     }
 
+       // BroadCastReciever();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        Alphamenu=menu;
+        MenuItem menuItem = menu.findItem(R.id.testAction);
+        menuItem.setIcon(buildCounterDrawable(count, R.drawable.emailback));
+
+
+        if(count<=0)
+        {
+            menuItem.setVisible(false);
+
+        }else{
+            menuItem.setVisible(true);
+        }
+        return true;
     }
 
 
+    void NotifyMenuItem(){
+
+        MenuItem menuItem = Alphamenu.findItem(R.id.testAction);
+        menuItem.setIcon(buildCounterDrawable(count, R.drawable.emailback));
+
+
+        if(count<=0)
+        {
+            menuItem.setVisible(false);
+
+        }else{
+            menuItem.setVisible(true);
+        }
+    }
+
+    private Drawable buildCounterDrawable(int count, int backgroundImageId) {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.counter_menuitem_layout, null);
+        view.setBackgroundResource(backgroundImageId);
+
+        if (count == 0) {
+            View counterTextPanel = view.findViewById(R.id.counterValuePanel);
+            counterTextPanel.setVisibility(View.GONE);
+        } else {
+            TextView textView = (TextView) view.findViewById(R.id.count);
+            textView.setText("" + count);
+        }
+
+        view.measure(
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+
+        view.setDrawingCacheEnabled(true);
+        view.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false);
+
+        return new BitmapDrawable(getResources(), bitmap);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.testAction) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     void setActiveMerchant(String merchant){
 
      try{
@@ -219,6 +301,26 @@ public abstract class
     }
 
    // 233207711598
+
+
+
+
+    void BroadCastReciever(){
+
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                //String someValue = intent.getStringExtra("value");
+                count++;
+               invalidateOptionsMenu();
+               /// new LoadRecycleView(view).execute();
+                // ... do something ...
+            }
+        };
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(receiver, new IntentFilter("myBroadcastIntent"));
+    }
+
 
     private ListView createlistMenu(){
         getSupportActionBar().setTitle(" ");

@@ -2,11 +2,15 @@ package com.nfortics.mfinanceV2.FormWidgetGenerator;
 
 import android.content.Context;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.nfortics.mfinanceV2.R;
+import com.nfortics.mfinanceV2.Typefacer;
 
 import java.util.List;
 
@@ -18,28 +22,31 @@ public class FormMultiCheckBox extends FormWidget    {
 
     protected int 			_priority;
     protected CheckBox		_checkbox,_checkbox1;
+    LayoutInflater inflator;
+    protected LinearLayout linearLayout;
+    Typefacer typefacer;
+
+
 
     public FormMultiCheckBox(Context context, String property,String tag,int size,List<String> stringList) {
         super( context, property ,tag);
+        typefacer=new Typefacer();
         _label = new TextView( context );
         _label.setText(getDisplayText());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        RelativeLayout.LayoutParams newParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        _label.setTypeface(typefacer.squareLight());
+
+        inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        linearLayout=(LinearLayout)inflator.inflate(R.layout.linear_layout_style, null);
 
 
-        params.gravity = Gravity.START;
 
         LinearLayout buttonLayout=new LinearLayout(context);
         buttonLayout.setBackgroundColor(0x00000000);
         buttonLayout.setOrientation(LinearLayout.VERTICAL);
-        // LinearLayout buttonLayoutR=new LinearLayout(this);
-        newParams.addRule(RelativeLayout.RIGHT_OF, 1);
-        newParams.setMargins(2, 3, 2, 2);
 
-        buttonLayout.setLayoutParams(params);
+
+
         for (int i=0;i<size;i++){
 
 
@@ -51,8 +58,10 @@ public class FormMultiCheckBox extends FormWidget    {
         }
         buttonLayout.setTag(tag);
 
-        _layout.addView(_label);
-        _layout.addView(buttonLayout);
+        linearLayout.addView(_label);
+        linearLayout.addView(buttonLayout);
+        _layout.addView(linearLayout);
+
     }
 
     @Override

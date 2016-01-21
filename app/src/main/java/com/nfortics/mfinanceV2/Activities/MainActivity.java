@@ -277,7 +277,7 @@ public class MainActivity
                 title="CASH-OUT";
                 break;
             case 5:
-                title="NEW CUSTOMERS";
+                title="CUSTOMERS";
                 break;
         }
 

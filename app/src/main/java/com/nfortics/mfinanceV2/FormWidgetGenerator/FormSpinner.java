@@ -33,8 +33,7 @@ public class FormSpinner extends FormWidget{
     LayoutInflater inflator;
     protected LinearLayout linearLayout;
     Typefacer typefacer=new Typefacer();
-    public FormSpinner( Context context, String property, JSONObject options,String tag )
-    {
+    public FormSpinner( Context context, String property, JSONObject options,String tag ) {
         super( context, property,tag );
         inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         linearLayout=(LinearLayout)inflator.inflate(R.layout.linear_layout_style, null);
@@ -59,6 +58,7 @@ public class FormSpinner extends FormWidget{
         _spinner.setAdapter(_adapter);
         _spinner.setSelection(0);
         _spinner.setTag(tag);
+        linearLayout.setTag("hld"+tag);
 
         try{
             for( int i = 0; i < options.length(); i++ )

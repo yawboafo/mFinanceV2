@@ -1,113 +1,231 @@
+
 {
-  "General Information":{
 
-    "Mothers Name": {
-      "type": "string",
-      "default": "",
-      "priority": "3",
-      "hint": "Enter your mamas name",
-      "tag": "edt_munName"
+  "Default OnBoarding": {
 
-    },
-    "First Name": {
-      "type": "string",
-      "default": "",
-      "hint": "Enter First Name",
-      "priority": "0",
-      "tag": "edt_fname"
-    },
-    "Date of Birth": {
-      "type": "date",
-      "default": "",
-      "priority": "2",
-      "tag": "dte_dob"
+    "Step1":{
+      "Select Title": {
+        "type": "dropdown",
+        "priority": "0",
+        "tag": "title",
+        "required":"false",
+        "options": {
 
-    },
-    "Street Address": {
-      "type": "string",
-      "default": "",
-      "hint": "Enter Street Address",
-      "tag": "edt_address",
-      "priority": "1"
-    }
+          "1": "Mr",
+          "2": "Miss",
+          "3": "Ms",
+          "4": "Mrs",
+          "5": "Dr",
+          "6": "Sir"
+        }
+      },
+      "First Name": {
+        "type": "string",
+        "default": "",
+        "priority": "1",
+        "required":"true",
+        "hint": "First Name",
+        "tag": "first_name"
 
+      },
+      "Last Name": {
+        "type": "string",
+        "default": "",
+        "required":"false",
+        "hint": " Last Name",
+        "priority": "2",
+        "tag": "last_name"
+      },
 
-  },
+      "Other Names": {
+        "type": "string",
+        "default": "",
+        "required":"false",
+        "hint": " Other Names",
+        "priority": "3",
+        "tag": "other_names"
+      },
+      "Gender": {
+        "type": "dropdown",
+        "priority": "4",
+        "tag": "gender",
+        "required":"true",
+        "options": {
 
-  "Personal Info":{
-    "Profile Pics": {
-      "type": "image",
-      "default": "",
-      "priority": "2",
-      "tag": "img_profile_image"
+          "1": "Male",
+          "2": "Female"
+        }
+      }
+    , "Mobile Number": {
+        "type": "phone",
+      "required":"true",
+        "default": "",
+        "priority": "5",
+      "hint": "Mobile Number",
+        "tag": "phone_number"
 
-    },
-    "Date of Birth": {
-      "type": "date",
-      "default": "",
-      "priority": "0",
-      "tag": "dte_dobe"
+      }
 
-    },
-    "Sign": {
-      "type": "signature",
-      "default": "",
-      "priority": "1",
-      "tag": "sgn_signature"
-
-    },
-    "Gender": {
-      "type": "gender",
-      "default": "",
-      "priority": "3",
-      "tag": "gen_gender"
-
-    },
-    "FingerPrint": {
-      "type": "fingerPrint",
-      "default": "",
-      "priority": "4",
-      "tag": "fpt_fingerPrint"
 
     },
-    "formats": {
-      "type": "dropdown",
-      "priority": "5",
-      "tag": "spn_formats",
-      "options": {
-        "0": "None",
-        "1": "Compact Disk",
-        "2": "Record/Vinyl",
-        "3": "MP3/Download",
-        "4": "Cassette",
-        "5": "8-Track",
-        "6": "Wax Cylinder",
-        "7": "Laser Disc",
-        "8": "Mini-Disk"
+    "Step2":{
+      "Date of Birth": {
+        "type": "date",
+        "required":"true",
+        "default": "",
+        "priority": "0",
+        "required":"true",
+        "tag": "dob"
+
+      },
+      "House Number": {
+        "type": "number",
+        "default": "",
+        "required":"false",
+        "priority": "1",
+        "hint": "House Number",
+        "tag": "address1"
+
+      },
+      "Postal Address": {
+        "type": "string",
+        "required":"false",
+        "default": "",
+        "hint": "Postal Address",
+        "priority": "2",
+        "tag": "address2"
+      },
+
+      "Town or City": {
+        "type": "string",
+        "required":"false",
+        "default": "",
+        "hint": " Town or City",
+        "priority": "3",
+        "tag": "address3"
+      }
+    , "Bill or Zip Code": {
+        "type": "string",
+        "required":"false",
+        "default": "",
+        "priority": "5",
+        "hint": "Bill or Zip Code",
+        "tag": "bill_post_or_zip_code"
+
+      }
+
+
+    },
+    "Step3":{
+      "IdentificationType Type": {
+        "required":"true",
+        "type": "dropdown",
+        "priority": "0",
+        "tag": "id_type",
+        "options": {
+
+          "1": "PassPort",
+          "2": "Voters ID Card",
+          "3": "Drivers License",
+          "4": "National ID Card",
+          "5": "National Health Insurance"
+
+        }
+      },
+      "Identification Number": {
+        "required":"true",
+        "type": "string",
+        "default": "",
+        "priority": "1",
+        "hint": "Identification Number",
+        "tag": "id_value"
+
+      },
+
+
+
+
+      "Other Information ": {
+        "required":"true",
+        "type": "string",
+        "default": "",
+        "priority": "2",
+        "hint": "Other Information ",
+        "tag": "other_information"
+
+      }
+
+    },
+    "Step4":{
+
+      "Assign Customer a Branch": {
+        "type": "dropdown",
+        "required":"true",
+        "priority": "0",
+        "tag": "branch",
+        "options": {
+          "1": "DZORWULU-UNION",
+          "2": "NKRUMAH CIRCLR",
+          "3": "DANKWAH",
+          "4": "TOGO BACK",
+          "5": "KASOA MAIN",
+          "6": "PITERBURG"
+        }
+      },
+      "Assign Product Type": {
+        "type": "dropdown",
+        "required":"true",
+        "priority": "1",
+        "tag": "product_code",
+        "options": {
+          "1": "SAVINGS ACCOUNT",
+          "2": "CURRENT ACCOUNT",
+          "3": "SAVINGS"
+        }
+      },
+      "Whats your Favorite BJ position..?": {
+        "type": "multioptions",
+        "default": "",
+        "required":"false",
+        "priority": "2",
+        "tag": "questions",
+        "options": {
+
+          "1": "None",
+          "2": "straight",
+          "3": "outsidedown",
+          "4": "insideOut",
+          "5": "Casaddy",
+          "6": "belowCap",
+          "7": "Popolap",
+          "8": "Laser Disc",
+          "9": "Mini-style"
+        }
       }
     },
-    "Savings Account": {
-      "type": "mul",
-      "default": "",
-      "priority": "6",
-      "tag": "mul_savings_Account",
-      "toggles": {
-        "1":["Ghs"],
-        "2":["Usd"],
-        "3":["Euro"]
+    "Step5":{
+
+      "Pictures": {
+        "required":"false",
+        "type": "masterPics",
+        "default": "",
+        "priority": "0",
+        "tag": "masterPics",
+        "Pictures": {
+          "Passport Pics": {"label":"ppt_pic","tag":"ppt_pic"},
+          "Bio details": {"label":"bio_details","tag":"bio_details"}
+
+        },
+        "FingerPrint": {
+          "label": "Capture Finger",
+          "tag":"fingerPrint"
+        },
+        "Signature": {
+          "signature": {"label":"signature","tag":"signature"}
+        }
       }
-    }
-
-
-  },
-  "Image Data":{
-    "Images": {
-      "type": "pictures",
-      "default": "",
-      "priority": "0",
-      "tag": "pic_pictures"
 
     }
-
   }
+
 }

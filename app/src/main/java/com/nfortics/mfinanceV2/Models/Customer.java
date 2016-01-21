@@ -1,5 +1,6 @@
 package com.nfortics.mfinanceV2.Models;
 
+import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
@@ -16,8 +17,14 @@ import java.util.List;
 @Table(name = "Customer")
 public class Customer extends Model {
 
+    @Column(name = "local_id")
+    private String local_id;
+
     @Column(name = "title")
     private String title ;
+
+    @Column(name = "fullname")
+    private String fullname ;
 
     @Column(name = "first_name")
     private String first_name ;
@@ -98,7 +105,12 @@ public class Customer extends Model {
     private String mobile_number_new ;
 
 
-
+    @Column(name = "sync_status")
+    private String sync_status ;
+//sync_status :
+// partial=letters synced/images not synces
+// full=everything synced
+// first=letters Only;
 
 
     public  static   List<ThirdPartyIntegration> getThirdPartyIntegrations(String customer_id){
@@ -150,9 +162,21 @@ public class Customer extends Model {
 
     }
 
+    public String getSync_status() {
+        return sync_status;
+    }
 
+    public void setSync_status(String sync_status) {
+        this.sync_status = sync_status;
+    }
 
+    public String getFullname() {
+        return fullname;
+    }
 
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
     public String getTitle() {
         return title;
@@ -347,8 +371,13 @@ public class Customer extends Model {
     }
 
 
+    public String getLocal_id() {
+        return local_id;
+    }
 
-
+    public void setLocal_id(String local_id) {
+        this.local_id = local_id;
+    }
 
     public static List<Customer> getAllCustomers(){
 
@@ -359,8 +388,21 @@ public class Customer extends Model {
     }
 
 
+    public static List<Customer> getAllCustomers(String syncStat){
 
 
+        return new Select().from(Customer.class).where("sync_status =?", syncStat).execute();
+
+
+    }
+
+    public static Customer getCustomerByFullname(String name){
+
+
+        return new Select().from(Customer.class).where("fullname = ?", name).executeSingle();
+
+
+    }
     public static Customer getCustomer(String customer_id){
 
 
@@ -368,7 +410,6 @@ public class Customer extends Model {
 
 
     }
-
     public static Customer getCustomerByMsisdn(String msisdn){
 
 
@@ -376,7 +417,6 @@ public class Customer extends Model {
 
 
     }
-
     public static List<Customer> getAllCustomersByName(String name){
 
 
@@ -384,8 +424,6 @@ public class Customer extends Model {
 
 
     }
-
-
     public static List<Customer> getCustomersByAccount(String name){
 
 
@@ -393,9 +431,68 @@ public class Customer extends Model {
 
 
     }
+    public static void CreateCustomer(String cusID,Customer customer,String sts){
 
 
 
+        String first_name="";
+        String last_name="";
+        String other_names="";
+        String gender="";
+        String title="";
+        String id_type="";
+        String id_value="";
+        String dob="";
+        String address1="";
+        String address2="";
+        String address3="";
+        String phone_number="";
+
+
+
+
+
+        try{
+
+
+            customer.setCustomer_id(cusID);
+
+
+            customer.setFullname(customer.getFullname());
+            customer.setFirst_name(customer.getFirst_name());
+            customer.setSurname(customer.getSurname());
+            customer.setOther_names(customer.getOther_names());
+            customer.setGender(customer.getGender());
+            customer.setTitle(customer.getTitle());
+            customer.setIdentificationType(customer.getIdentificationType());
+            customer.setIdentificationNumber(customer.getIdentificationNumber());
+            customer.setDob(customer.getDob());
+            customer.setHouseNumber(customer.getHouseNumber());
+            customer.setStreetName(customer.getStreetName());
+            customer.setCity(customer.getCity());
+            customer.setMobile_number(customer.getMobile_number());
+            customer.setSync_status(sts);
+        }catch (Exception e){}
+
+
+        //   customer.setSync_status(synsts);
+
+
+        ActiveAndroid.beginTransaction();
+        try{
+
+
+            Long ID=  customer.save();
+
+            android.util.Log.d("oxinbo", "Inserted into DB = " + ID + " with cusID " + cusID);
+            ActiveAndroid.setTransactionSuccessful();
+        }finally {
+            ActiveAndroid.endTransaction();
+        }
+
+
+
+    }
 
 
 

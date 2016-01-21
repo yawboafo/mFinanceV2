@@ -15,10 +15,14 @@
       <module fileurl="file://$PROJECT_DIR$/google-play-services/google-play-services.iml" filepath="$PROJECT_DIR$/google-play-services/google-play-services.iml" />
       <module fileurl="file://$PROJECT_DIR$/guice-2.0-no_aop/guice-2.0-no_aop.iml" filepath="$PROJECT_DIR$/guice-2.0-no_aop/guice-2.0-no_aop.iml" />
       <module fileurl="file://$PROJECT_DIR$/httpclient-4.5.1/httpclient-4.5.1.iml" filepath="$PROJECT_DIR$/httpclient-4.5.1/httpclient-4.5.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/httpclientandroidlib-1.2.1/httpclientandroidlib-1.2.1.iml" filepath="$PROJECT_DIR$/httpclientandroidlib-1.2.1/httpclientandroidlib-1.2.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/httpcore-4.0-alpha5/httpcore-4.0-alpha5.iml" filepath="$PROJECT_DIR$/httpcore-4.0-alpha5/httpcore-4.0-alpha5.iml" />
       <module fileurl="file://$PROJECT_DIR$/m2iapi/m2iapi.iml" filepath="$PROJECT_DIR$/m2iapi/m2iapi.iml" />
       <module fileurl="file://$PROJECT_DIR$/m2iapip/m2iapip.iml" filepath="$PROJECT_DIR$/m2iapip/m2iapip.iml" />
       <module fileurl="file://$PROJECT_DIR$/mail/mail.iml" filepath="$PROJECT_DIR$/mail/mail.iml" />
       <module fileurl="file://$PROJECT_DIR$/microlog4android-1.0.0/microlog4android-1.0.0.iml" filepath="$PROJECT_DIR$/microlog4android-1.0.0/microlog4android-1.0.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org-apache-commons-lang/org-apache-commons-lang.iml" filepath="$PROJECT_DIR$/org-apache-commons-lang/org-apache-commons-lang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pushy-1.0.7/pushy-1.0.7.iml" filepath="$PROJECT_DIR$/pushy-1.0.7/pushy-1.0.7.iml" />
       <module fileurl="file://$PROJECT_DIR$/roboguice-1.0/roboguice-1.0.iml" filepath="$PROJECT_DIR$/roboguice-1.0/roboguice-1.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/sourceafis/sourceafis.iml" filepath="$PROJECT_DIR$/sourceafis/sourceafis.iml" />
       <module fileurl="file://$PROJECT_DIR$/universal-image-loader-1.9.3/universal-image-loader-1.9.3.iml" filepath="$PROJECT_DIR$/universal-image-loader-1.9.3/universal-image-loader-1.9.3.iml" />

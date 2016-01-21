@@ -9,6 +9,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class FingerPrintTemplateRequest implements Request {
 
@@ -17,9 +18,9 @@ public class FingerPrintTemplateRequest implements Request {
 
 	private static String url;
 
-	public FingerPrintTemplateRequest(FingerPrintInfo fpi) {
+	public FingerPrintTemplateRequest(String string,String s) {
 		nameValuePairs = new ArrayList<NameValuePair>();
-		buildURL(fpi);
+		buildURL(string);
 
 	}
 
@@ -28,7 +29,7 @@ public class FingerPrintTemplateRequest implements Request {
 		return url;
 	}
 
-	private void buildURL(FingerPrintInfo fpi) {
+	private void buildURL(String fpi) {
 		StringBuilder urlBuffer = new StringBuilder(BASE_URL);
 		buildNameValuePairs(fpi);
 
@@ -39,10 +40,10 @@ public class FingerPrintTemplateRequest implements Request {
 		return nameValuePairs;
 	}
 
-	private void buildNameValuePairs(FingerPrintInfo fpi) {
+	private void buildNameValuePairs(String fpi) {
 		// nameValuePairs.add(new BasicNameValuePair("fingerprint",
 		// fpi.getImageData()));
-		nameValuePairs.add(new BasicNameValuePair("fingerprint", Utils.getBase64Bytes(fpi.getBitmap())));
+		nameValuePairs.add(new BasicNameValuePair("fingerprint", fpi));
 	}
 
 }

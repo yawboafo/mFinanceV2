@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Environment;
 import android.os.Message;
 import android.util.Log;
 import android.view.Window;
@@ -20,6 +21,7 @@ import com.nfortics.mfinanceV2.DataBase.DaoAccess;
 import com.nfortics.mfinanceV2.Handlers.BlobHandler;
 import com.nfortics.mfinanceV2.Models.Collection;
 import com.nfortics.mfinanceV2.Models.Merchant;
+import com.nfortics.mfinanceV2.Models.OnBoardModel;
 import com.nfortics.mfinanceV2.Request.BlobRequest;
 import com.nfortics.mfinanceV2.Services.BlobService;
 import com.nfortics.mfinanceV2.Settings.GeneralSettings;
@@ -30,13 +32,23 @@ import org.mobile2i.api.Printer;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import slam.ajni.AJniMethod;
 
@@ -514,17 +526,16 @@ public class Utils {
                 // userInfoSettings.setCurrentMerchant(userInfoSettings.getMerchants().get(which));
 
                 // String selectedItem= ((AlertDialog)dialog).getListView().getSelectedItem().toString();
-               // Log.d("oxinbo","selected merchant "+items[which]);
+                // Log.d("oxinbo","selected merchant "+items[which]);
 
-                try{
+                try {
 
 
-                    String selectedMerchant=items[which].toString();
+                    String selectedMerchant = items[which].toString();
 
                     DaoAccess.setActiveMerchant(selectedMerchant);
 
-                }catch(Exception e){
-
+                } catch (Exception e) {
 
 
                 }
@@ -652,6 +663,200 @@ public class Utils {
         }
     }
 
+
+
+    public static void RetryDialog(String message,Activity activity){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("ERROR !!");
+        builder.setMessage("Message :\n"+message);
+
+
+
+        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+                //runTask();
+            }
+        });
+        builder.setNegativeButton("Sync Later", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    public static void saveHashToFile(Map<String,Map<String,String>> unscyncedMap) throws IOException {
+        String fpath = "/sdcard/Unsycnedfile.txt";
+        File file=null;
+        FileOutputStream f=null;
+        ObjectOutputStream s=null;
+        try{
+            Log.d("oxinbo", "save file stated") ;
+          //  String filePath = Application.getAppContext().getFilesDir().getPath().toString() + "/your.properties";
+            // File file = new File(filePath);
+            file =new File(Application.getAppContext().getExternalFilesDir(null), "maps.txt");
+            // If file does not exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+             f = new FileOutputStream(file);
+             s = new ObjectOutputStream(f);
+            s.writeObject(unscyncedMap);
+
+
+
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            if(s!=null){
+
+                s.flush();
+                s.close();
+            }
+        }
+        // File file = new File(fpath);
+
+
+
+    }
+    public static void insertIn2MapDb(OnBoardModel onBoardModel) throws IOException {
+
+        File file=null;
+        FileOutputStream f=null;
+        ObjectOutputStream s=null;
+        try{
+            Log.d("oxinbo", "OnBoard save file stated") ;
+            //  String filePath = Application.getAppContext().getFilesDir().getPath().toString() + "/your.properties";
+            // File file = new File(filePath);
+            file =new File(Application.getAppContext().getExternalFilesDir(null), "mapsDb.txt");
+            // If file does not exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            f = new FileOutputStream(file);
+            s = new ObjectOutputStream(f);
+            s.writeObject(onBoardModel);
+
+            Log.d("oxinbo", "OnBoard Data saved to file") ;
+
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            if(s!=null){
+
+                s.flush();
+                s.close();
+            }
+        }
+        // File file = new File(fpath);
+
+
+
+    }
+
+
+    public static String getFullName(Map<String,String> entry){
+
+
+        String firstName=entry.get("first_name");
+
+        String lastname=entry.get("last_name");
+
+
+
+        if(firstName!=null && lastname!=null)
+            return firstName+"  "+lastname;
+        else
+            return "";
+
+    }
+    public static Map<String,Map<String,String>> unscyncedMapFromFile() throws OptionalDataException, ClassNotFoundException, IOException,EOFException{
+
+        FileInputStream f=null;
+        File file =null;
+        ObjectInputStream s=null;
+        Map<String,Map<String,String>>  hashFromFile=new TreeMap<>();
+        String fpath = "/sdcard/Unsycnedfile.txt";
+
+        try{
+            file =new File(Application.getAppContext().getExternalFilesDir(null), "maps.txt");
+            f = new FileInputStream(file);
+
+            s = new ObjectInputStream(f);
+
+            hashFromFile=( Map<String,Map<String,String>>) s.readObject();
+
+            // Log.e("hashfromfileLOCAL", "" + hashFromFile);
+
+        }catch (Exception e){
+
+
+
+        }finally {
+            if(s!=null){
+                s.close();
+
+            }
+        }
+
+
+        return hashFromFile;
+    }
+    public static OnBoardModel MapsDb( )
+            throws
+
+            OptionalDataException,
+            ClassNotFoundException,
+            IOException,
+            EOFException{
+
+        FileInputStream f=null;
+        File file =null;
+        ObjectInputStream s=null;
+        OnBoardModel onBoardModels  =new OnBoardModel();
+
+
+        try{
+            file =new File(Application.getAppContext().getExternalFilesDir(null), "mapsDb.txt");
+            f = new FileInputStream(file);
+
+            s = new ObjectInputStream(f);
+
+            onBoardModels=(OnBoardModel) s.readObject();
+
+
+        }catch (Exception e){
+
+            Utils.log("error occured while reading map ");
+     e.printStackTrace();
+
+        }finally {
+            if(s!=null){
+                s.close();
+
+            }
+        }
+
+
+        return onBoardModels;
+    }
     public static List<String> getAllTransactionsAccounts() {
         List<String> accounts = new ArrayList<String>();
 
@@ -709,7 +914,19 @@ public class Utils {
 
         return accounts;
     }
+    public File getAlbumStorageDir(String albumName) {
+        // Get the directory for the user's public pictures directory.
+        File file = new File(Application.getAppContext().getExternalFilesDir(null), albumName);
+        if (!file.mkdirs()) {
+            Log.e("oxinbo", "Directory not created");
+        }
+        return file;
+    }
 
+    public  static void log(String log){
+
+        Log.d("oxinbo",log);
+    }
     public static List<String> getBalanceStatementAccounts() {
         List<String> accounts = new ArrayList<String>();
 

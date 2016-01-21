@@ -63,6 +63,7 @@ import com.nfortics.mfinanceV2.Models.Customer;
 import com.nfortics.mfinanceV2.Models.Merchant;
 import com.nfortics.mfinanceV2.Models.Msisdn;
 import com.nfortics.mfinanceV2.Models.ThirdPartyIntegration;
+import com.nfortics.mfinanceV2.Models.User;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Request.CollectionLimitResetRequest;
 import com.nfortics.mfinanceV2.Request.CustomerSearchRequest;
@@ -1118,7 +1119,7 @@ public class FieldCollectionActivity
         collection.setType(getSelectedCollectionType());
         collection.setNumber(collectionNumber.getText().toString());
         collection.setAmount(collectionAmount.getText().toString());
-        collection.setAgent_msisdn(Application.getActiveAgent().getMsisdn());
+        collection.setAgent_msisdn(User.User().getMsisdn());
         collection.setAccount_code(merchant.getCode());
         collection.setMerchant_name(merchant.getName());
         collection.setTransaction_type(collectionTypeSpinner.getSelectedItem().toString());

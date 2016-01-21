@@ -1,53 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/viewRecycle"
-        android:layout_width="match_parent"
-        android:background="@android:color/holo_blue_light"
-        android:layout_height="500dp"
-        android:layout_above="@+id/relativeLayout14">
-
-
-    </android.support.v7.widget.RecyclerView>
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/tools">
 
     <RelativeLayout
-        android:orientation="vertical"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:padding="4dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout14">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Finger Print"
-            android:id="@+id/buttonFinger" />
+        android:id="@+id/relativeLay"
+        android:layout_height="match_parent">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Image"
-            android:id="@+id/buttonImage"
-            android:layout_gravity="right"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/viewRecycle"
+            android:layout_width="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_height="500dp"
+            >
+        </android.support.v7.widget.RecyclerView>
 
-        <Button
-            android:layout_width="wrap_content"
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Signature"
-            android:id="@+id/buttonSugnature"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:gravity="center_vertical|center|center_horizontal"
+            android:layout_alignBottom="@+id/viewRecycle"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false">
+
+
+            <com.github.clans.fab.FloatingActionButton
+
+                android:id="@+id/fab2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_camera"
+                app:fab_elevationCompat="4dp"
+
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/fab3"
+                android:layout_toStartOf="@+id/fab3"
+                android:layout_margin="2dp" />
+
+            <com.github.clans.fab.FloatingActionButton
+
+                android:id="@+id/fab3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/finger"
+                app:fab_elevationCompat="4dp"
+
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/fab1"
+                android:layout_toStartOf="@+id/fab1"
+                android:layout_margin="2dp" />
+
+            <com.github.clans.fab.FloatingActionButton
+
+                android:id="@+id/fab1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sign"
+                app:fab_elevationCompat="4dp"
+
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="2dp" />
+
+
+        </RelativeLayout>
+
+
+
     </RelativeLayout>
 
 
+
+
+
+
+
+
 </RelativeLayout>
+
+

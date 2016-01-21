@@ -17,7 +17,35 @@ public class Typefacer {
     public Typeface squareRegular() {
         return Typeface.createFromAsset(Application.getAppContext().getAssets(), "fonts/sqmarket-regular.ttf");
     }
+    public Typeface Raleway(String mode) {
 
+      Typeface typefacer=null;
+        switch (mode){
+
+            case "black":
+
+                typefacer= Typeface.createFromAsset(Application.getAppContext().getAssets(), "fonts/Raleway-Black.ttf");
+   break;
+            case "thin":
+                typefacer= Typeface.createFromAsset(Application.getAppContext().getAssets(), "fonts/Raleway-Thin.ttf");
+break;
+            case "light":
+                typefacer= Typeface.createFromAsset(Application.getAppContext().getAssets(), "fonts/Raleway-Light.ttf");
+                break;
+            case "medium":
+                typefacer= Typeface.createFromAsset(Application.getAppContext().getAssets(), "fonts/Raleway-Medium.ttf");
+                break;
+            case "extrabold":
+                typefacer= Typeface.createFromAsset(Application.getAppContext().getAssets(), "fonts/Raleway-ExtraBold.ttf");
+                break;
+        }
+
+        return  typefacer;
+
+    }
+    public Typeface digitalNormal() {
+        return Typeface.createFromAsset(Application.getAppContext().getAssets(), "fonts/digitalnormal.ttf");
+    }
     public Typeface squareLight() {
         return Typeface.createFromAsset(Application.getAppContext().getAssets(), "fonts/sqmarket-light.ttf");
     }

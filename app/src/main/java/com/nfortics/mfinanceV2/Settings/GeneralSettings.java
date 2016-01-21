@@ -134,8 +134,7 @@ public class GeneralSettings  extends Settings {
                 try {
                     instance = (GeneralSettings) new ObjectInputStream(
                             inputStream).readObject();
-                    Log.i(GeneralSettings.class.getName(),
-                            ">>>>>>>>>GeneralSettings initialized.<<<<<<<<");
+                    Log.i(GeneralSettings.class.getName(), ">>>>>>>>>GeneralSettings initialized.<<<<<<<<");
                 } catch (Exception e) {
                     instance = new GeneralSettings();
                     Log.i(GeneralSettings.class.getName(),

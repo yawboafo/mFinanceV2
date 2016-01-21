@@ -26,7 +26,7 @@
 
         <Button
             style="@style/keypadButton"
-            android:id="@+id/button2"
+            android:id="@+id/activeButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".25"

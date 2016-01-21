@@ -1,0 +1,198 @@
+{
+  "Step1":{
+    "Select Title": {
+      "type": "dropdown",
+      "priority": "0",
+      "tag": "title",
+      "options": {
+        "0": "Mr",
+        "1": "Miss",
+        "2": "Ms",
+        "3": "Mrs",
+        "4": "Dr",
+        "5": "Sir"
+      }
+    },
+    "First Name": {
+      "type": "string",
+      "default": "",
+      "priority": "1",
+      "hint": "First Name",
+      "tag": "first_name"
+
+    },
+    "Last Name": {
+      "type": "string",
+      "default": "",
+      "hint": " Last Name",
+      "priority": "2",
+      "tag": "last_name"
+    },
+
+    "Other Names": {
+      "type": "string",
+      "default": "",
+      "hint": " Other Names",
+      "priority": "3",
+      "tag": "other_names"
+    },
+    "Gender": {
+      "type": "dropdown",
+      "priority": "4",
+      "tag": "gender",
+      "options": {
+        "0": "Male",
+        "1": "Female"
+      }
+    }
+    , "Mobile Number": {
+      "type": "phone",
+      "default": "",
+      "priority": "5",
+      "hint": "Mobile Number",
+      "tag": "phone_number"
+
+    }
+
+
+  },
+  "Step2":{
+    "Date of Birth": {
+      "type": "date",
+      "default": "",
+      "priority": "0",
+      "tag": "dob"
+
+    },
+    "House Number": {
+      "type": "number",
+      "default": "",
+      "priority": "1",
+      "hint": "House Number",
+      "tag": "address1"
+
+    },
+    "Postal Address": {
+      "type": "string",
+      "default": "",
+      "hint": "Postal Address",
+      "priority": "2",
+      "tag": "address2"
+    },
+
+    "Town or City": {
+      "type": "string",
+      "default": "",
+      "hint": " Town or City",
+      "priority": "3",
+      "tag": "address3"
+    }
+  , "Bill or Zip Code": {
+      "type": "string",
+      "default": "",
+      "priority": "5",
+      "hint": "Bill or Zip Code",
+      "tag": "bill_post_or_zip_code"
+
+    }
+
+
+  },
+  "Step3":{
+    "IdentificationType Type": {
+      "type": "dropdown",
+      "priority": "0",
+      "tag": "id_type",
+      "options": {
+        "0": "PassPort",
+        "1": "Voters ID Card",
+        "2": "Drivers License",
+        "3": "National ID Card",
+        "4": "National Health Insurance"
+
+      }
+    },
+    "Identification Number": {
+      "type": "string",
+      "default": "",
+      "priority": "1",
+      "hint": "Identification Number",
+      "tag": "id_value"
+
+    },
+    "Other Information ": {
+      "type": "string",
+      "default": "",
+      "priority": "2",
+      "hint": "Other Information ",
+      "tag": "other_information"
+
+    }
+
+  },
+  "Step4":{
+
+    "Assign Customer a Branch": {
+      "type": "dropdown",
+      "priority": "0",
+      "tag": "branch",
+      "options": {
+        "0": "DZORWULU-UNION",
+        "1": "NKRUMAH CIRCLR",
+        "2": "DANKWAH",
+        "3": "TOGO BACK",
+        "4": "KASOA MAIN",
+        "5": "PITERBURG"
+      }
+    },
+    "Assign Product Type": {
+      "type": "dropdown",
+      "priority": "1",
+      "tag": "product_code",
+      "options": {
+        "0": "SAVINGS ACCOUNT",
+        "1": "CURRENT ACCOUNT",
+        "2": "SAVINGS"
+      }
+    },
+    "Whats your Favorite BJ position..?": {
+      "type": "multioptions",
+      "default": "",
+      "priority": "2",
+      "tag": "questions",
+      "options": {
+        "0": "None",
+        "1": "straight",
+        "2": "outsidedown",
+        "3": "insideOut",
+        "4": "Casaddy",
+        "5": "belowCap",
+        "6": "Popolap",
+        "7": "Laser Disc",
+        "8": "Mini-style"
+      }
+    }
+  },
+  "Step5":{
+
+    "Pictures": {
+      "type": "masterPics",
+      "default": "",
+      "priority": "0",
+      "tag": "masterPics",
+      "Pictures": {
+        "Passport Pics": {"label":"ppt_pic","tag":"ppt_pic"},
+        "Bio details": {"label":"bio_details","tag":"bio_details"}
+
+      },
+      "FingerPrint": {
+        "label": "Capture Finger",
+        "tag":"fingerPrint"
+      },
+      "Signature": {
+        "signature": {"label":"signature","tag":"signature"}
+      }
+    }
+
+  }
+}

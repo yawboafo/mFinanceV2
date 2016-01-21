@@ -2,6 +2,7 @@ package com.nfortics.mfinanceV2.FormWidgetGenerator;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -27,31 +28,35 @@ public abstract class FormWidget  {
     protected String    _step;
     protected String 		_displayText;
     protected int 	 		_priority;
+
+    protected boolean 	 		_required;
+
     protected LinearLayout _layout;
     LayoutInflater inflator;
     protected HashMap<String, ArrayList<String>> _toggles;
     protected OnBoardCustomerActivity.ImageClickListener imageClickHandler;
+
+
+    protected OnBoardCustomerActivity.TextWatcherO textwatcher;
     protected OnBoardCustomerActivity.PicturesImageClickListener PicimageClickHandler;
     protected OnBoardCustomerActivity.GenderCheckBoxClicklistener GenderCheckBoxHandler;
     protected  OnBoardCustomerActivity.DatePicker DateListener;
     protected  OnBoardCustomerActivity.SignatureClickListen SignatureClick;
+    protected  OnBoardCustomerActivity.floatingButton floatingbutton;
     protected  OnBoardCustomerActivity.FingerPrintRequestClickListener fingerClick;
-
     protected OnBoardCustomerActivity.PictruesSignatureClickListen PicsSignatureClick;
-
+//protected OnBoardCustomerActivity. supportFragmentManager;
     public static final LinearLayout.LayoutParams defaultLayoutParams =
             new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
     // -- data
     protected Map<String, FormWidget> _map;
-
-
-
+    private FragmentManager supportFragmentManager;
 
 
     public FormWidget( Context context,
                        String name,
                        String tag )
-    {
+        {
 
         inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         _layout=(LinearLayout)inflator.inflate(R.layout.relative_layout_style, null);
@@ -148,6 +153,21 @@ public abstract class FormWidget  {
         // -- override
     }
 
+
+
+    public void setRequired(boolean value){
+
+        _required=value;
+    }
+
+
+    public boolean Required(){
+
+
+        return _required;
+    }
+
+
 // -----------------------------------------------
     //
     // view
@@ -198,6 +218,12 @@ public abstract class FormWidget  {
 
 
     }
+
+    public void setTextWatcher(OnBoardCustomerActivity.ImageClickListener handler){
+
+        imageClickHandler=handler;
+    }
+
     public void setImageClickListener(OnBoardCustomerActivity.ImageClickListener handler){
 
         imageClickHandler=handler;
@@ -228,9 +254,16 @@ public abstract class FormWidget  {
         PicimageClickHandler=handler;
     }
 
+    public void setTextWather(OnBoardCustomerActivity.floatingButton hadler){
 
+    floatingbutton=hadler;
+}
     public void setPicsSignatureClickListener(OnBoardCustomerActivity.PictruesSignatureClickListen handler){
 
         PicsSignatureClick=handler;
     }
+
+    //public FragmentManager getSupportFragmentManager() {
+       // return supportFragmentManager;
+   // }
 }

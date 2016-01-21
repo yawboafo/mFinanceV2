@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
 
-
-
-    <EditText  xmlns:android="http://schemas.android.com/apk/res/android"
-
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="5dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        android:padding="10dp" />
+<MaterialEditText
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:textSize="16sp"
+app:met_typeface="font/Roboto-Regular.ttf"
+app:met_floatingLabel="highlight"
+app:met_floatingLabelText=""
+app:met_primaryColor="?colorAccent"
+app:met_singleLineEllipsis="true"
+    />

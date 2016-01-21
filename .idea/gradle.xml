@@ -21,10 +21,14 @@
             <option value="$PROJECT_DIR$/google-play-services" />
             <option value="$PROJECT_DIR$/guice-2.0-no_aop" />
             <option value="$PROJECT_DIR$/httpclient-4.5.1" />
+            <option value="$PROJECT_DIR$/httpclientandroidlib-1.2.1" />
+            <option value="$PROJECT_DIR$/httpcore-4.0-alpha5" />
             <option value="$PROJECT_DIR$/m2iapi" />
             <option value="$PROJECT_DIR$/m2iapip" />
             <option value="$PROJECT_DIR$/mail" />
             <option value="$PROJECT_DIR$/microlog4android-1.0.0" />
+            <option value="$PROJECT_DIR$/org-apache-commons-lang" />
+            <option value="$PROJECT_DIR$/pushy-1.0.7" />
             <option value="$PROJECT_DIR$/roboguice-1.0" />
             <option value="$PROJECT_DIR$/sourceafis" />
             <option value="$PROJECT_DIR$/universal-image-loader-1.9.3" />

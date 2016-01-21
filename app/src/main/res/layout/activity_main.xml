@@ -25,19 +25,12 @@
 
             <RelativeLayout
                 android:id="@+id/compound"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-                <com.nfortics.mfinanceV2.ViewWidgets.SlidingTabLayout
-                    android:id="@+id/tabs"
 
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:visibility="gone">
-
-
-                </com.nfortics.mfinanceV2.ViewWidgets.SlidingTabLayout>
                 <android.support.v4.view.ViewPager
                      android:background="@color/whitesmoker"
                     android:id="@+id/pager"

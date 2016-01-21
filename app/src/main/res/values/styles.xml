@@ -23,6 +23,19 @@
     </style>
 
 
+    <style name="btnGray" parent="@android:style/Widget.Button">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ee0a0a0a</item>
+        <item name="android:gravity">center</item>
+
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.5</item>
+        <item name="android:background">@drawable/graybutton</item>
+        <item name="android:padding">8dip</item>
+    </style>
+
     <style name="btnSummary" parent="@android:style/Widget.Button">
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
@@ -34,6 +47,18 @@
         <item name="android:shadowRadius">0.5</item>
         <item name="android:background">@drawable/summarybutton</item>
         <item name="android:padding">8dip</item>
+    </style>
+
+
+
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        //hint color And Label Color in False State
+      //<item name="android:textColorHint">@color/accent</item>
+
+        //Label color in True State And Bar Color False And True State
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorControlNormal">@color/primary</item>
+        <item name="colorControlActivated">@color/primary</item>
     </style>
 
     <style name="btnLogin" parent="@android:style/Widget.Button">
@@ -102,5 +127,13 @@
         <item name="android:background">@drawable/login_keypad_button</item>
         <item name="android:padding">8dip</item>
     </style>
+
+
+
+        <style name="DialogAnimationOutUpInUp">
+            <item name="android:windowEnterAnimation">@anim/slide_in_up</item>
+            <item name="android:windowExitAnimation">@anim/slide_out_up</item>
+        </style>
+
 
 </resources>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.nfortics.mfinanceV2.Models.Customer;
 import com.nfortics.mfinanceV2.R;
+import com.nfortics.mfinanceV2.Typefacer;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class GalleryImagesAdapter extends RecyclerView.Adapter<GalleryImagesView
     private Context context;
     private LayoutInflater inflater;
     public List<Map<String,Bitmap>> data= Collections.emptyList();
-
+  Typefacer typefacer;
 
 
 
@@ -50,11 +51,11 @@ public class GalleryImagesAdapter extends RecyclerView.Adapter<GalleryImagesView
 
     @Override
     public void onBindViewHolder(GalleryImagesViewHolder holder, int position) {
-
-      Map<String,Bitmap>  da =data.get(position);
+        typefacer=new Typefacer();
+         Map<String,Bitmap>  da =data.get(position);
 
          for(Map.Entry<String, Bitmap> entry : da.entrySet()){
-
+             holder.textView.setTypeface(typefacer.squareLight());
              holder.textView.setText(entry.getKey());
              holder.imageView.setImageBitmap(entry.getValue());
          }

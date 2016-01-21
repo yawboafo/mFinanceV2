@@ -2,8 +2,12 @@ package com.nfortics.mfinanceV2.Activities;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,6 +24,7 @@ import com.grabba.GrabbaFingerprintUserRecord;
 import com.grabba.GrabbaFunctionNotSupportedException;
 import com.grabba.GrabbaNoExclusiveAccessException;
 import com.grabba.GrabbaNotConnectedException;
+import com.nfortics.mfinanceV2.Application.Application;
 import com.nfortics.mfinanceV2.Models.FingerPrintInfo;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Settings.GeneralSettings;
@@ -29,15 +34,23 @@ import com.nfortics.mfinanceV2.Utilities.Utils;
 
 import org.mobile2i.api.Fingerprint;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class FingerPrintCaptureActivity extends Activity {
 private ImageView imageview;
     private Button finishButton,cancelButton;
     private   TextView   LT,LIF,LMF,LRF,LBF,RT,RIF,RMF,RRF,RBF;
-
+    private static TextView memoryTextView;
     GeneralSettings generalSettings;
+
+   public static String selectedFinger;
+
+    Map<String,Bitmap> fingerGallery=new HashMap<>();
 
     private List<FingerPrintInfo> fingerPrints = new ArrayList<FingerPrintInfo>(10);
     private Fingerprint mFingerprint;
@@ -60,48 +73,164 @@ private ImageView imageview;
 
         FingerClickLabels();
         EventListeners();
+       try{
+
+    //   KeySets();
+       preInitializeFingerLabels();
+      }catch (Exception e){
+
+
+}
+
+    }
+
+
+    private void preInitializeFingerLabels(){
+
+        for (String x :Application.listOfKeysChecked) {
+
+            strikeLabels(x);
+        }
+
+    }
+
+
+
+    void strikeLabels(String x){
+
+
+        switch (x){
+
+            case "left_thumb":
+
+
+                LT.setPaintFlags(LT.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                LT.setTextColor(Color.parseColor("#000000"));
+                LT.setEnabled(false);
+                break;
+            case "left_index":
+
+
+                LIF.setPaintFlags(LIF.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                LIF.setTextColor(Color.parseColor("#000000"));
+                LIF.setEnabled(false);
+                break;
+            case "left_middle":
+
+
+                LMF.setPaintFlags(LMF.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                LMF.setTextColor(Color.parseColor("#000000"));
+                LMF.setEnabled(false);
+                break;
+            case "left_ring":
+
+
+                LRF.setPaintFlags(LRF.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                LRF.setTextColor(Color.parseColor("#000000"));
+                LRF.setEnabled(false);
+                break;
+
+            case "left_little":
+
+
+                LBF.setPaintFlags(LBF.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                LBF.setTextColor(Color.parseColor("#000000"));
+                LBF.setEnabled(false);
+                break;
+
+            case "right_thumb":
+
+
+                RT.setPaintFlags(RT.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                RT.setTextColor(Color.parseColor("#000000"));
+                RT.setEnabled(false);
+                break;
+            case "right_index":
+
+
+                RIF.setPaintFlags(RIF.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                RIF.setTextColor(Color.parseColor("#000000"));
+                RIF.setEnabled(false);
+                break;
+            case "right_middle":
+
+
+                RMF.setPaintFlags(RMF.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                RMF.setTextColor(Color.parseColor("#000000"));
+                RMF.setEnabled(false);
+                break;
+            case "right_ring":
+
+
+                RRF.setPaintFlags(RRF.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                RRF.setTextColor(Color.parseColor("#000000"));
+                RRF.setEnabled(false);
+                break;
+
+            case "right_little":
+
+
+                RBF.setPaintFlags(RBF.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                RBF.setTextColor(Color.parseColor("#000000"));
+                RBF.setEnabled(false);
+                break;
+        }
+    }
+
+
+
+    List<String> mapKeys=new ArrayList<>();
+    private void KeySets(){
+
+        for ( String key :  Application.basse64Images.keySet() ) {
+
+            mapKeys.add(key);
+         Log.d("oxinbo","key = >"+key);
+        }
     }
 
     private void SetLabels(){
 
         LT=(TextView)findViewById(R.id.R_thumbFinger);
-        LT.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+       // LT.setPaintFlags(LT.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        LT.setTypeface(typefacer.squareRegular());
 
 
         LIF=(TextView)findViewById(R.id.R_indexfingerLabel);
-        LIF.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+        LIF.setTypeface(typefacer.squareRegular());
 
         LMF=(TextView)findViewById(R.id.R_middlefingerLabel);
-        LMF.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+        LMF.setTypeface(typefacer.squareRegular());
 
         LRF=(TextView)findViewById(R.id.R_ringfingerLabel);
-        LRF.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+        LRF.setTypeface(typefacer.squareRegular());
 
 
         LBF=(TextView)findViewById(R.id.R_babyfingerLabel);
-        LBF.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+        LBF.setTypeface(typefacer.squareRegular());
 
 
         RT=(TextView)findViewById(R.id.L_thumbFinger);
-        RT.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+        RT.setTypeface(typefacer.squareRegular());
 
         RIF=(TextView)findViewById(R.id.L_indexfinger);
-        RIF.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+        RIF.setTypeface(typefacer.squareRegular());
 
         RMF=(TextView)findViewById(R.id.L_middlefinger);
-        RMF.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+        RMF.setTypeface(typefacer.squareRegular());
 
         RRF=(TextView)findViewById(R.id.L_ringfinger);
-        RRF.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+        RRF.setTypeface(typefacer.squareRegular());
 
         RBF=(TextView)findViewById(R.id.L_babyfinger);
-        RBF.setTypeface(typefacer.getRoboCondensedRegular(getAssets()));
+        RBF.setTypeface(typefacer.squareRegular());
 
 
         imageview=(ImageView)findViewById(R.id.imageView);
         finishButton=(Button)findViewById(R.id.finishButton);
-
+        finishButton.setTypeface(typefacer.squareLight());
         cancelButton=(Button)findViewById(R.id.butCancel);
+        cancelButton.setTypeface(typefacer.squareLight());
     }
     private void EventListeners(){
         finishButtonClickListener();
@@ -113,7 +242,7 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                generalSettings.setFingerPrints(fingerPrints);
+              //  Application.getGalleryImageList().add(fingerGallery);
                 setResult(RESULT_OK);
                 finish();
 
@@ -135,31 +264,22 @@ private ImageView imageview;
             }
         });
     }
+    Bitmap bitmap;
     private void LT_clicked(){
 
         LT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(0);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
+                memoryTextView=LT;
+                LT.setTextColor(Color.parseColor("#FC0F0F"));
+                selectedFinger="left_thumb";
+                restartGrabbaFingerPrintService();
 
-                }else {
-                    restartFingerPrintService();
-                }
 
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
 
-                    FingerPrintInfo fgi = new FingerPrintInfo(0, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(0, fgi);
 
-                }
-                LT.setTextColor(0xff000000);
 
 
             }
@@ -171,25 +291,11 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(1);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
-
-                } else {
-                    restartFingerPrintService();
-                }
-
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
-
-                    FingerPrintInfo fgi = new FingerPrintInfo(1, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(1, fgi);
-
-                }
-              LIF.setTextColor(0xff000000);
+                memoryTextView=LIF;
+                LIF.setTextColor(Color.parseColor("#FC0F0F"));
+                selectedFinger="left_index";
+                restartGrabbaFingerPrintService();
 
 
             }
@@ -201,25 +307,11 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(2);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
-
-                }else {
-                    restartFingerPrintService();
-                }
-
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
-
-                    FingerPrintInfo fgi = new FingerPrintInfo(2, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(2, fgi);
-
-                }
-                LMF.setTextColor(0xff000000);
+                memoryTextView=LMF;
+                LMF.setTextColor(Color.parseColor("#FC0F0F"));
+                selectedFinger="left_middle";
+                restartGrabbaFingerPrintService();
 
 
             }
@@ -231,26 +323,11 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(3);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
-
-                } else {
-                    restartFingerPrintService();
-                }
-
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
-
-                    FingerPrintInfo fgi = new FingerPrintInfo(3, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(3, fgi);
-
-                }
-               LRF.setTextColor(0xff000000);
-
+                memoryTextView=LRF;
+                LRF.setTextColor(Color.parseColor("#FC0F0F"));
+                selectedFinger="left_ring";
+                restartGrabbaFingerPrintService();
 
             }
         });
@@ -261,25 +338,11 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(4);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
-
-                }else {
-                    restartFingerPrintService();
-                }
-
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
-
-                    FingerPrintInfo fgi = new FingerPrintInfo(4, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(4, fgi);
-
-                }
-                LBF.setTextColor(0xff000000);
+                memoryTextView=LBF;
+                LBF.setTextColor(Color.parseColor("#FC0F0F"));
+                selectedFinger="left_little";
+                restartGrabbaFingerPrintService();
 
 
             }
@@ -292,26 +355,11 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(5);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
+                memoryTextView=RT;
+                RT.setTextColor(Color.parseColor("#FC0F0F"));
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
-
-                }else {
-                    restartFingerPrintService();
-                }
-
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
-
-                    FingerPrintInfo fgi = new FingerPrintInfo(5, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(5, fgi);
-
-                }
-                RT.setTextColor(0xff000000);
-
+                selectedFinger="right_thumb";
+                restartGrabbaFingerPrintService();
 
             }
         });
@@ -322,25 +370,11 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(6);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
-
-                }else {
-                    restartFingerPrintService();
-                }
-
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
-
-                    FingerPrintInfo fgi = new FingerPrintInfo(6, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(6, fgi);
-
-                }
-                RIF.setTextColor(0xff000000);
+                memoryTextView=RIF;
+                RIF.setTextColor(Color.parseColor("#FC0F0F"));
+                selectedFinger="right_index";
+                restartGrabbaFingerPrintService();
 
 
             }
@@ -352,26 +386,12 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(7);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
+                memoryTextView=RMF;
+                RMF.setTextColor(Color.parseColor("#FC0F0F"));
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
 
-                }else {
-                    restartFingerPrintService();
-                }
-
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
-
-                    FingerPrintInfo fgi = new FingerPrintInfo(7, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(7, fgi);
-
-                }
-                //LMF.setTextColor(android.R.color.black);
-                RMF.setTextColor(0xff000000);
+                selectedFinger="right_middle";
+                restartGrabbaFingerPrintService();
 
             }
         });
@@ -382,25 +402,12 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(8);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
+                memoryTextView=RRF;
+                RRF.setTextColor(Color.parseColor("#FC0F0F"));
 
-                }else {
-                    restartFingerPrintService();
-                }
-
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
-
-                    FingerPrintInfo fgi = new FingerPrintInfo(8, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(8, fgi);
-
-                }
-                RRF.setTextColor(0xff000000);
+                selectedFinger="right_ring";
+                restartGrabbaFingerPrintService();
 
 
             }
@@ -412,26 +419,11 @@ private ImageView imageview;
             @Override
             public void onClick(View v) {
 
-                FingerPrintInfo f = getFingerPrintInfoByIndex(9);
-                if (f.getImageData().trim().length() > 0) {
-                    imageview.setImageBitmap(f.getBitmap());
+                memoryTextView=RBF;
+                RBF.setTextColor(Color.parseColor("#FC0F0F"));
 
-                    generalSettings.setFingerPrintImageData(f.getImageData());
-                    generalSettings.setFingerPrintBitmap(f.getBitmap());
-                    restartFingerPrintService();
-
-                }else {
-                    restartFingerPrintService();
-                }
-
-                if (generalSettings.getFingerPrintImageData().length() > 1) {
-
-                    FingerPrintInfo fgi = new FingerPrintInfo(9, generalSettings.getFingerPrintImageData(), generalSettings.getFingerPrintBitmap());
-                    addFingerPrintInfoByIndex(9, fgi);
-
-                }
-                RBF.setTextColor(0xff000000);
-
+                selectedFinger="right_little";
+                restartGrabbaFingerPrintService();
 
             }
         });
@@ -551,18 +543,20 @@ private ImageView imageview;
             }
             if (imageType == GrabbaFingerprint.ImageType.IMG_PREVIEW) {
                 final Bitmap drawBitmap = GrabbaFingerprint.getBlackAndWhiteBitmapFromData(numColumns, numRows, data);
-                generalSettings.setFingerPrintBitmap(drawBitmap);
+
                 setFingerPrintImage(drawBitmap);
             } else if (imageType == GrabbaFingerprint.ImageType.IMG_NO_COMPRESSION) {
                 final Bitmap drawBitmap = GrabbaFingerprint.getGreyscaleBitmapFromData(numColumns, numRows, data);
-                generalSettings.setFingerPrintBitmap(drawBitmap);
-                setFingerPrintImage(drawBitmap);
+                setFingerPrintImage2(drawBitmap);
+
             } else if (imageType == GrabbaFingerprint.ImageType.IMG_WSQ_COMPRESSION) {
                 Bitmap decodedWSQ;
                 try {
                     decodedWSQ = GrabbaFingerprint.getInstance().decodeWSQFile(data);
-                    generalSettings.setFingerPrintBitmap(decodedWSQ);
+
                     setFingerPrintImage(decodedWSQ);
+
+
                 } catch (Exception e) {
                 }
             }
@@ -593,16 +587,169 @@ private ImageView imageview;
         new initFingerPrinter().execute();
 
     }
+
+    List<String>stringList=new ArrayList<>();
     private void setFingerPrintImage(final Bitmap bm) {
         imageview.post(new Runnable() {
 
             @Override
             public void run() {
-                imageview.setImageBitmap(bm);
+
+
+                if (selectedFinger != null && bm != null) {
+                    imageview.setImageBitmap(bm);
+                }
 
             }
         });
     }
+    private void setFingerPrintImage2(final Bitmap bm) {
+        imageview.post(new Runnable() {
+
+            @Override
+            public void run() {
+
+
+                if (selectedFinger != null && bm != null) {
+                    imageview.setImageBitmap(bm);
+                   // fingerGallery.put(selectedFinger, bm);
+
+
+                  // Application.getFingerPrintImages().put(selectedFinger,getBase64Bytes(bm));
+                    Application.getGalleryImages().put(selectedFinger, bm);
+                    Application. basse64Images.put(selectedFinger, getBase64Bytes(bm));
+                    String afisID=selectedFinger+"_id";
+                    Application.afistemplateList.put(afisID, "nothing or now");
+                    Application.listOfKeysChecked.add(selectedFinger);
+
+
+
+
+                    if(memoryTextView!=null){
+                        memoryTextView.setPaintFlags(memoryTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        memoryTextView.setTextColor(Color.parseColor("#000000"));
+                        memoryTextView.setEnabled(false);
+
+                    }
+
+
+
+                }
+
+            }
+        });
+    }
+    private String getBase64Bytes(Bitmap bitmap) {
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+
+        //  bitmap = Bitmap.createScaledBitmap(bitmap, 350, 350, true);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+
+        byte[] ba = bao.toByteArray();
+
+        return com.nfortics.mfinanceV2.Utilities.Base64.encodeBytes(ba);
+    }
+
+    public static void printMap(HashMap<String, Bitmap> map,String selectedFinger){
+
+        Set<String> keys = map.keySet();
+        for(String p:keys){
+
+            if(map.get(p).equals(selectedFinger)){
+
+
+            }
+
+        }
+
+
+
+
+
+    }
+
+
+
+    void addFingerPrintToListGallery( Map<String,Bitmap> fGallery){
+
+
+
+
+                Application.getGalleryImageList().add(fingerGallery);
+                  fingerGallery=new HashMap<String, Bitmap>();
+
+
+
+
+
+
+
+
+
+
+    }
+    private void toastOnUiThread(final String msg) {
+        FingerPrintCaptureActivity.this.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                Toast.makeText(FingerPrintCaptureActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    boolean addFingerPrint2ListOfMap( String entryKey){
+
+        for( Map<String,Bitmap> map:Application.getGalleryImageList()){
+
+           for(Map.Entry<String,Bitmap> entry:map.entrySet()){
+
+               String key=entry.getKey();
+               toastOnUiThread(key);
+               if(key.equalsIgnoreCase(entryKey)) {return true;
+
+               }else{  return false;}
+           }
+
+
+
+        }
+
+        return false;
+    }
+
+
+    void FingerPrint2ListOfMap( String entryKey,final  Bitmap bm) {
+
+        for (Map<String, Bitmap> map : Application.getGalleryImageList()) {
+
+
+            for(Map.Entry<String,Bitmap> entry   :map.entrySet()){
+
+                String key=entry.getKey();
+
+
+                if(key.equalsIgnoreCase(entryKey)){
+
+
+                }
+            }
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     private class initFingerPrinter extends AsyncTask<Void, String, Void> {
 
         @Override
@@ -625,8 +772,6 @@ private ImageView imageview;
         }
     }
     /***************************All Grabba Ends here**************/
-
-
 
     @Override
     protected void onResume() {

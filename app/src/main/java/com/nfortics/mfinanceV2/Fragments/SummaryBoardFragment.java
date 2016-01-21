@@ -1,18 +1,23 @@
 package com.nfortics.mfinanceV2.Fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.nfortics.mfinanceV2.Activities.CustomerActivity;
 import com.nfortics.mfinanceV2.Models.Collection;
+import com.nfortics.mfinanceV2.Models.Customer;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Typefacer;
+import com.nfortics.mfinanceV2.Utilities.Utils;
 
 
 public class SummaryBoardFragment extends Fragment {
@@ -20,7 +25,8 @@ public class SummaryBoardFragment extends Fragment {
 
     private TextView  txtTitle,txtDiscription,txtCashLabel,txtCashAmount;
     private Button buttViewActivities,butPrintActivity;
-
+    Button disabledButton;
+    Button      activeButton;
     Typefacer typefacer;
 
 
@@ -57,6 +63,7 @@ public class SummaryBoardFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
         typefacer=new Typefacer();
     }
@@ -66,10 +73,28 @@ public class SummaryBoardFragment extends Fragment {
 
         switch (value){
 
-            case "Deposits" :
+            case "CUSTOMERS" :
 
+                txtDiscription.setText(""+Customer.getAllCustomers().size()+" customers.");
+                        activeButton.setVisibility(View.INVISIBLE);
+              //  disabledButton.setText("");
+                txtCashLabel.setVisibility(View.INVISIBLE);
+                txtCashAmount.setVisibility(View.INVISIBLE);
+                int partial= Customer.getAllCustomers("partial").size();
+                int none=Customer.getAllCustomers("none").size();
+                int failed=Customer.getAllCustomers("failed").size();
+                int unsyncedCustomers=partial+none+failed;
+                Utils.log("unsynced customers = "+unsyncedCustomers);
+                if(unsyncedCustomers<1)disabledButton.setVisibility(View.INVISIBLE);
+                disabledButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(getActivity(),CustomerActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                   disabledButton.setText("" + unsyncedCustomers);
 
-               // Collection.
 
                 break;
         }
@@ -92,7 +117,6 @@ public class SummaryBoardFragment extends Fragment {
     }
 
 
-
     private void setLabels(View view){
 
         txtTitle=(TextView)view.findViewById(R.id.txtTitle);
@@ -104,8 +128,11 @@ public class SummaryBoardFragment extends Fragment {
         txtCashLabel.setTypeface(typefacer.squareRegular());
         txtCashAmount=(TextView)view.findViewById(R.id.txtCashAmount);
         txtCashAmount.setTypeface(typefacer.squareLight());
+        disabledButton =(Button)view.findViewById(R.id.disabledButton);
+        activeButton=(Button)view.findViewById(R.id.activeButton);
         txtTitle.setText(mParam1);
 
+        SetViewsBasedOn(mParam1);
 
      /**  buttViewActivities=(Button)view.findViewById(R.id.buttViewActivities);
         buttViewActivities.setTypeface(typefacer.squareLight());

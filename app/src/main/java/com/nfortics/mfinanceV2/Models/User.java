@@ -155,6 +155,14 @@ public class User extends Model {
 
 
     }
+
+    public static User User(){
+
+
+        return User.load(User.class,1);
+
+
+    }
     public static User aUser(String msisdn){
 
 

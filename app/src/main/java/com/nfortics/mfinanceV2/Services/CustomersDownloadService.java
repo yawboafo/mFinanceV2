@@ -174,7 +174,7 @@ public class CustomersDownloadService extends Service {
         }
 
 
-        customer.setFirst_name(customerObject.getString("name"));
+        customer.setFullname(customerObject.getString("name"));
         //  customerSegal.setFirst_name(customerObject.getString("name"));
 
         customer.setCustomer_id(customerObject.getString("uid"));

@@ -39,8 +39,8 @@
         android:layout_marginLeft="2dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
-        android:textSize="13dp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,11 +48,11 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Primary Phone No."
         android:id="@+id/txtCustomerPhonelabel"
-        android:textStyle="bold"
         android:layout_below="@+id/txtCutomerName"
         android:layout_alignLeft="@+id/txtCutomerName"
         android:layout_alignStart="@+id/txtCutomerName"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="3dp"
+        android:textSize="13dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,9 +60,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="233240088705"
         android:id="@+id/txtCustomerPhonevalue"
-        android:layout_alignTop="@+id/txtCustomerPhonelabel"
-        android:layout_toRightOf="@+id/txtCustomerPhonelabel"
-        android:layout_toEndOf="@+id/txtCustomerPhonelabel" />
+        android:layout_above="@+id/txtCustomerPhonelabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <RelativeLayout
         android:layout_width="100dp"

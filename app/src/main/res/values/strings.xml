@@ -169,6 +169,7 @@
     <string name="buttonTangent">tan</string>
     <string name="title_activity_activity_setting">ActivitySetting</string>
     <string name="title_activity_signature_pad">SignaturePad</string>
+    <string name="title_activity_customer_details">CustomerDetails</string>
 
 
 </resources>

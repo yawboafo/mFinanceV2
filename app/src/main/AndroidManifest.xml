@@ -24,8 +24,56 @@
     <uses-feature android:glEsVersion="0x00020000" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission
+    android:name="android.permission.INTERNET"/>
+    <uses-permission
+        android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission
+        android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission
+        android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+
+    <!-- Pushy Declarations -->
+
+
+    <!-- Pushy Notification Receiver -->
+    <!-- Incoming pushes will be redirected to the following BroadcastReceiver class -->
+    <receiver android:name=".PushReceiver" >
+        <intent-filter>
+
+            <!-- Do not modify this -->
+            <action android:name="pushy.me" />
+        </intent-filter>
+    </receiver>
+
+    <!-- Pushy Update Receiver -->
+    <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
+    <receiver android:name="me.pushy.sdk.receivers.PushyUpdateReceiver" >
+        <intent-filter>
+            <action android:name="android.intent.action.PACKAGE_REPLACED" />
+
+            <data android:scheme="package" />
+        </intent-filter>
+    </receiver>
+
+    <!-- Pushy Boot Receiver -->
+    <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
+    <receiver android:name="me.pushy.sdk.receivers.PushyBootReceiver" >
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
+    <!-- Pushy Socket Service -->
+    <!-- Do not modify - internal socket background service -->
+    <service android:name="me.pushy.sdk.services.PushySocketService" />
+
+    <!-- End Pushy Declarations -->
 
     <application
+        android:largeHeap="true"
         android:name=".Application.Application"
         android:allowBackup="true"
         android:icon="@drawable/nfortics_logo"
@@ -131,9 +179,54 @@
         </activity>
         <activity
             android:name=".Signature.SignaturePad"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_signature_pad" >
+            android:label="@string/title_activity_signature_pad"
+            android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".Activities.CustomerDetails"
+            android:label="@string/title_activity_customer_details"
+            android:parentActivityName=".Activities.CustomerActivity"
+            >
+
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.CustomerActivity" />
+        </activity>
+
+
+        <service android:name=".Services.VolleyServices"
+            android:exported="false">
+
+        </service>
+
+
+
+
+        <service android:name=".Services.OnBoardDataService"
+            android:enabled="true"
+            />
+
+
+
+
+        <service
+            android:name=".Services.SyncDataService"
+            android:exported="true"
+            android:process=":sync">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+
+        <provider
+            android:name=".Services.StubProvider"
+            android:authorities="com.nfortics.mfinanceV2.provider"
+            android:exported="false"
+            android:syncable="true"/>
     </application>
 
 </manifest>
