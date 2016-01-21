@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="130dp"
+    android:minWidth="130dp"
+     android:padding="10dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_card"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:text="ALL ACTIVITIES"
+        android:textSize="14sp"
+        android:id="@+id/txtAllactive"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:textAlignment="gravity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 "
+        android:textSize="12sp"
+        android:id="@+id/txtCustomerAmt"
+        android:textStyle="bold"
+        android:layout_below="@+id/txtAllactive"
+        android:layout_alignLeft="@+id/txtAllactive"
+        android:layout_alignStart="@+id/txtAllactive"
+        android:layout_marginTop="6dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GHs 0.00"
+        android:id="@+id/txtAmount"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/txtcustomerLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="6dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="#87959595"
+        android:id="@+id/linearLayout9"
+        android:layout_marginTop="59dp"
+        android:layout_below="@+id/txtAmount"
+        android:layout_alignLeft="@+id/txtAmount"></LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Customers"
+        android:textSize="12sp"
+        android:id="@+id/txtcustomerLabel"
+        android:layout_below="@+id/txtCustomerAmt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cash at Hand"
+        android:textSize="12sp"
+        android:id="@+id/txtCashHand"
+        android:layout_below="@+id/txtAmount"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

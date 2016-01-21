@@ -31,14 +31,14 @@
 
 
 
-                <android.support.v4.view.ViewPager
+                <android.support.v7.widget.RecyclerView
                      android:background="@color/whitesmoker"
-                    android:id="@+id/pager"
+                    android:id="@+id/recyle"
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
+                    android:layout_height="160dp"
                     android:layout_below="@+id/tabs">
 
-                </android.support.v4.view.ViewPager>
+                </android.support.v7.widget.RecyclerView>
                 <LinearLayout
 
                     android:orientation="horizontal"
@@ -46,7 +46,7 @@
                     android:layout_height="41dp"
                     android:id="@+id/buttonsLayout"
                     android:weightSum="1"
-                    android:layout_below="@+id/pager"
+                    android:layout_below="@+id/recyle"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:background="@color/primary"
@@ -106,7 +106,8 @@
                     fab:menu_animationDelayPerItem="0"
                     fab:menu_labels_ellipsize="end"
                     fab:menu_labels_singleLine="true"
-                    fab:menu_fab_label="">
+                    fab:menu_fab_label=""
+                    android:layout_below="@+id/pager">
 
                     <com.github.clans.fab.FloatingActionButton
                         android:id="@+id/fab1"

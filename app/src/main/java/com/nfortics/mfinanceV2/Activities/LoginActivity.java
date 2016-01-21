@@ -2,6 +2,7 @@ package com.nfortics.mfinanceV2.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -348,12 +349,9 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
 
                     if(newUser==null){
 
-                        Snackbar snackbar = Snackbar
-                                .make(coordinatorLayout, "Pin Does Not Match "+user.getMsisdn()+"' s Pin ", Snackbar.LENGTH_LONG);
 
-                        snackbar.show();
 
-                     //   utils.ErrorAlertDialog(LoginActivity.this,"Pin Does Not Match "+user.getMsisdn()+"' s Pin ","Login Failed ").show();
+                    utils.ErrorAlertDialog(LoginActivity.this,"Pin Does Not Match "+user.getMsisdn()+"' s Pin ","Login Failed ").show();
                     } else {
 
                         Application.setActiveAgent(newUser);
@@ -1026,8 +1024,15 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
                 if(newUser==null){
 
                     edtPin.setText("");
-                    ToastUtil.showMessageToast("Pin Does Not Match " + user.getMsisdn() + "' s Pin ", false);
+                  //  ToastUtil.showMessageToast("Pin Does Not Match " + user.getMsisdn() + "' s Pin ", false);
+                    Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Pin Does Not Match "+user.getMsisdn()+"' s Pin ", Snackbar.LENGTH_SHORT);
 
+                    // Changing action button text color
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    snackbar.show();
                    // utils.ErrorAlertDialog(LoginActivity.this,"Pin Does Not Match "+user.getMsisdn()+"' s Pin ","Login Failed ").show();
                 } else {
 

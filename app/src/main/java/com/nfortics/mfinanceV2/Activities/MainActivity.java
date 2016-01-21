@@ -13,6 +13,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -42,6 +45,7 @@ import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Typefacer;
 import com.nfortics.mfinanceV2.Utilities.ToastUtil;
 import com.nfortics.mfinanceV2.ViewAdapters.ActivityMenusAdapter;
+import com.nfortics.mfinanceV2.ViewAdapters.SummaryRecycleAdapter;
 import com.nfortics.mfinanceV2.ViewWidgets.SlidingTabLayout;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
@@ -74,9 +78,11 @@ public class MainActivity
 
     ViewPager mPager;
     SlidingTabLayout mTabs;
+    RecyclerView recyle;
     private Toolbar toolbar;
     private NavigationDrawerFragment drawerFragment;
 
+    SummaryRecycleAdapter summaryRecycleAdapter;
 
 
     Button button;
@@ -187,8 +193,8 @@ public class MainActivity
     }
     ///Methods Regarding View///
     private void InitializeViews(Bundle savedInstanceState){
-
-        setPagers();
+        setRecycleView();
+        //setPagers();
         createFloatinButton();
        // floatingbutton();
       //  view=generateActivityView();
@@ -247,7 +253,23 @@ public class MainActivity
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
 
     }
+    private void setRecycleView(){
 
+        recyle=(RecyclerView)findViewById(R.id.recyle);
+        //recyle.setHasFixedSize(true);
+
+        List<String> values=new ArrayList<>();
+        values.add("All ACTIVITIES");
+        values.add("DEPOSITS");
+        values.add("WITHDRAWALS");
+        values.add("CASH-IN");
+        values.add("CASH-OUT");
+        values.add("CUSTOMERS");
+        summaryRecycleAdapter=new SummaryRecycleAdapter(MainActivity.this,values);
+        RecyclerView.LayoutManager mlayout=new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false);
+        recyle.setLayoutManager(mlayout);
+        recyle.setAdapter(summaryRecycleAdapter);
+    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {

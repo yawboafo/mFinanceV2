@@ -75,7 +75,7 @@ public class SummaryBoardFragment extends Fragment {
 
             case "CUSTOMERS" :
 
-                txtDiscription.setText(""+Customer.getAllCustomers().size()+" customers.");
+                txtDiscription.setText(""+Customer.getAllCustomers().size()+" customers");
                         activeButton.setVisibility(View.INVISIBLE);
               //  disabledButton.setText("");
                 txtCashLabel.setVisibility(View.INVISIBLE);
