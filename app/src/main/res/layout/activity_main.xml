@@ -107,7 +107,7 @@
                     fab:menu_labels_ellipsize="end"
                     fab:menu_labels_singleLine="true"
                     fab:menu_fab_label=""
-                    android:layout_below="@+id/pager">
+                    android:layout_below="@+id/recyle">
 
                     <com.github.clans.fab.FloatingActionButton
                         android:id="@+id/fab1"
@@ -143,6 +143,8 @@
                         fab:fab_label="View Activities" />
 
                 </com.github.clans.fab.FloatingActionMenu>
+
+
 
             </RelativeLayout>
 

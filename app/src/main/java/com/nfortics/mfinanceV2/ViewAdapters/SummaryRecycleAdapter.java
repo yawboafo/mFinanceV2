@@ -77,22 +77,20 @@ public class SummaryRecycleAdapter extends RecyclerView.Adapter<SummaryRecycleVi
                 int unsyncedCustomers=partial+none+failed;
                 Utils.log("unsynced customers = " + unsyncedCustomers);
                 holder. txtCashHand.setVisibility(View.INVISIBLE);
-            /**  if(unsyncedCustomers<1)holder.disabledButton.setVisibility(View.INVISIBLE);
-                holder.disabledButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent=new Intent(Application.getAppContext(),CustomerActivity.class);
-                        Application.getAppContext().startActivity(intent);
-                    }
-                });
-                holder.disabledButton.setText("" + unsyncedCustomers);
-             ***/
+                holder.butSynced.setVisibility(View.GONE);
+             if(unsyncedCustomers<1)
+                 holder.butUnsynced.setVisibility(View.INVISIBLE);
+
+                holder.butUnsynced.setText("" + unsyncedCustomers);
+
 
 
                 break;
 
             default:
                 holder.txtAllactive.setText(value);
+                holder.butSynced.setVisibility(View.INVISIBLE);
+                holder.butUnsynced.setVisibility(View.INVISIBLE);
         }
 
 
@@ -105,8 +103,8 @@ public class SummaryRecycleAdapter extends RecyclerView.Adapter<SummaryRecycleVi
 
 class SummaryRecycleViewHolder extends RecyclerView.ViewHolder{
     //ImageView productIcon;
-    Button disabledButton;
-    Button   activeButton;
+    Button butUnsynced;
+    Button   butSynced;
     TextView txtAllactive,txtCustomerAmt,txtAmount,txtcustomerLabel,txtCashHand;
     CircleImageView profilepics;RelativeLayout mini_parent_layout;
     Typefacer typeface= new Typefacer();
@@ -123,7 +121,9 @@ class SummaryRecycleViewHolder extends RecyclerView.ViewHolder{
 
         txtCashHand=(TextView)itemView.findViewById(R.id.txtCashHand);
         txtCashHand.setTypeface(typeface.squareMedium());
-       // disabledButton =(Button)itemView.findViewById(R.id.disabledButton);
-       // activeButton=(Button)itemView.findViewById(R.id.activeButton);
+         butSynced =(Button)itemView.findViewById(R.id.butSynced);
+        butSynced.setTypeface(typeface.squareLight());
+        butUnsynced=(Button)itemView.findViewById(R.id.butUnsynced);
+        butUnsynced.setTypeface(typeface.squareLight());
     }
 }

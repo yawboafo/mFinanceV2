@@ -249,7 +249,7 @@ public class MainActivity
     }
 
     private void setPagers(){
-        mPager = (ViewPager) findViewById(R.id.pager);
+     //   mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
 
