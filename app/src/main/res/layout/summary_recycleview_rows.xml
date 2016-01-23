@@ -7,7 +7,7 @@
 
     android:background="@drawable/bg_card"
     android:layout_height="match_parent"
-    android:gravity="bottom">
+    android:gravity="top">
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,7 +54,8 @@
         android:layout_height="0.5dp"
         android:background="#87959595"
         android:id="@+id/linearLayout9"
-        android:layout_below="@+id/txtCashHand"></LinearLayout>
+        android:layout_below="@+id/txtCashHand"
+        android:visibility="invisible"></LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,7 +65,8 @@
         android:id="@+id/txtcustomerLabel"
         android:layout_below="@+id/txtCustomerAmt"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="4dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,32 +76,42 @@
         android:id="@+id/txtCashHand"
         android:layout_below="@+id/txtAmount"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="4dp" />
 
-    <Button
-        android:background="@drawable/roundshapebtn"
-
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:text="0"
-        android:id="@+id/butUnsynced"
-        android:textSize="8sp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:id="@+id/unsyncedlayout"
+        android:gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/butSynced"
-        android:layout_marginLeft="6dp"
-        android:layout_marginBottom="3dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="2dp">
 
-    <Button
 
-        android:background="@drawable/roundshapebutonblue"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:text="0"
-        android:textSize="8sp"
-        android:id="@+id/butSynced"
-        android:layout_alignTop="@+id/butUnsynced"
+        <TextView
+            android:textSize="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text=" 90"
+            android:id="@+id/unsyncedItems"
+            android:textColor="#ff0004"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/unsyncedIcon"
+            android:layout_toEndOf="@+id/unsyncedIcon"
+            android:layout_marginLeft="5dp" />
 
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="3dp" />
+        <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:id="@+id/unsyncedIcon"
+            android:layout_alignBottom="@+id/unsyncedItems"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
 </RelativeLayout>

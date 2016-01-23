@@ -67,7 +67,28 @@ public class SummaryRecycleAdapter extends RecyclerView.Adapter<SummaryRecycleVi
         switch (value){
 
             case "CUSTOMERS" :
+
                 holder.txtAllactive.setText(value);
+                holder.txtCustomerAmt.setText(""+Customer.getAllCustomers().size()+"");
+                holder.txtcustomerLabel.setText("Customers");
+
+                holder.txtAmount.setText("");
+                holder.txtCashHand.setText("");
+
+
+                int partial= Customer.getAllCustomers("partial").size();
+                int none=Customer.getAllCustomers("none").size();
+                int failed=Customer.getAllCustomers("failed").size();
+                int unsyncedCustomers=partial+none+failed;
+                Utils.log("unsynced customers = " + unsyncedCustomers);
+
+                if(unsyncedCustomers>0) {
+                    holder.unsyncedlayout.setVisibility(View.VISIBLE);
+                    holder.unsyncedItems.setText("" + unsyncedCustomers);
+                }  else{
+                    holder.unsyncedlayout.setVisibility(View.INVISIBLE);}
+
+             /***   holder.txtAllactive.setText(value);
                 holder.txtCustomerAmt.setText(""+Customer.getAllCustomers().size()+"");
                 holder.txtAmount.setText("");
 
@@ -75,22 +96,107 @@ public class SummaryRecycleAdapter extends RecyclerView.Adapter<SummaryRecycleVi
                 int none=Customer.getAllCustomers("none").size();
                 int failed=Customer.getAllCustomers("failed").size();
                 int unsyncedCustomers=partial+none+failed;
-                Utils.log("unsynced customers = " + unsyncedCustomers);
-                holder. txtCashHand.setVisibility(View.INVISIBLE);
-                holder.butSynced.setVisibility(View.GONE);
-             if(unsyncedCustomers<1)
-                 holder.butUnsynced.setVisibility(View.INVISIBLE);
+                Utils.log("unsynced customers = " + unsyncedCustomers);***/
 
-                holder.butUnsynced.setText("" + unsyncedCustomers);
+              //  holder. txtCashHand.setVisibility(View.INVISIBLE);
+              //  holder.butSynced.setVisibility(View.GONE);
+           //  if(unsyncedCustomers<1)
+            //     holder.butUnsynced.setVisibility(View.INVISIBLE);
 
+              //  holder.butUnsynced.setText("" + unsyncedCustomers);
+//
 
 
                 break;
 
-            default:
+            case "MOBILE MONEY" :
                 holder.txtAllactive.setText(value);
-                holder.butSynced.setVisibility(View.INVISIBLE);
-                holder.butUnsynced.setVisibility(View.INVISIBLE);
+                holder.txtCustomerAmt.setText("GHs 9,000");
+                holder.txtcustomerLabel.setText("Cash-In");
+
+                holder.txtAmount.setText("GHs 129,081.0");
+                holder.txtCashHand.setText("Cash-Out");
+
+                holder.unsyncedItems.setText("");
+                holder.unsyncedlayout.setVisibility(View.INVISIBLE);
+                break;
+
+            case "AIRTIME" :
+                holder.txtAllactive.setText(value);
+                holder.txtCustomerAmt.setText("0");
+                holder.txtcustomerLabel.setText("Customers");
+
+                holder.txtAmount.setText("GHs 100,000");
+                holder.txtCashHand.setText("Airtime Sales");
+
+                holder.unsyncedItems.setText("");
+
+                holder.unsyncedlayout.setVisibility(View.INVISIBLE);
+
+                break;
+
+
+
+            case "BILL PAY" :
+                holder.txtAllactive.setText(value);
+                holder.txtCustomerAmt.setText("0");
+                holder.txtcustomerLabel.setText("Customers");
+
+                holder.txtAmount.setText("GHs 100,000");
+                holder.txtCashHand.setText("Payments");
+
+                holder.unsyncedItems.setText("");
+
+                holder.unsyncedlayout.setVisibility(View.INVISIBLE);
+                break;
+
+
+            case "WITHDRAWALS" :
+                holder.txtAllactive.setText(value);
+                holder.txtCustomerAmt.setText("0");
+                holder.txtcustomerLabel.setText("Customers");
+
+                holder.txtAmount.setText("GHs 100,000");
+                holder.txtCashHand.setText("Withdrawals");
+
+                holder.unsyncedItems.setText("");
+
+                holder.unsyncedlayout.setVisibility(View.INVISIBLE);
+
+                break;
+
+
+
+            case "DEPOSITS" :
+                holder.txtAllactive.setText(value);
+                holder.txtCustomerAmt.setText("0");
+                holder.txtcustomerLabel.setText("Customers");
+
+                holder.txtAmount.setText("GHs 0.0");
+                holder.txtCashHand.setText("Deposits");
+
+
+                holder.unsyncedItems.setText("");
+
+                holder.unsyncedlayout.setVisibility(View.INVISIBLE);
+
+                break;
+
+            case "All ACTIVITIES" :
+                holder.txtAllactive.setText(value);
+                holder.txtCustomerAmt.setText("0");
+                holder.txtcustomerLabel.setText("Customers");
+
+                holder.txtAmount.setText("GHs 0.0");
+                holder.txtCashHand.setText("Cash at Hand");
+
+                holder.unsyncedItems.setText("");
+
+                holder.unsyncedlayout.setVisibility(View.INVISIBLE);
+
+                break;
+
+
         }
 
 
@@ -101,12 +207,13 @@ public class SummaryRecycleAdapter extends RecyclerView.Adapter<SummaryRecycleVi
 
 
 
-class SummaryRecycleViewHolder extends RecyclerView.ViewHolder{
+   class SummaryRecycleViewHolder extends RecyclerView.ViewHolder{
     //ImageView productIcon;
     Button butUnsynced;
     Button   butSynced;
-    TextView txtAllactive,txtCustomerAmt,txtAmount,txtcustomerLabel,txtCashHand;
+    TextView txtAllactive,txtCustomerAmt,txtAmount,txtcustomerLabel,txtCashHand,unsyncedItems;
     CircleImageView profilepics;RelativeLayout mini_parent_layout;
+       RelativeLayout unsyncedlayout;
     Typefacer typeface= new Typefacer();
     public SummaryRecycleViewHolder(View itemView) {
         super(itemView);
@@ -115,15 +222,17 @@ class SummaryRecycleViewHolder extends RecyclerView.ViewHolder{
         txtCustomerAmt =(TextView)itemView.findViewById(R.id.txtCustomerAmt);
         txtCustomerAmt.setTypeface(typeface.squareLight());
         txtAmount =(TextView)itemView.findViewById(R.id.txtAmount);
-        txtAmount .setTypeface(typeface.squareLight());
+        txtAmount.setTypeface(typeface.squareLight());
         txtcustomerLabel =(TextView)itemView.findViewById(R.id.txtcustomerLabel);
         txtcustomerLabel.setTypeface(typeface.squareMedium());
 
         txtCashHand=(TextView)itemView.findViewById(R.id.txtCashHand);
         txtCashHand.setTypeface(typeface.squareMedium());
-         butSynced =(Button)itemView.findViewById(R.id.butSynced);
-        butSynced.setTypeface(typeface.squareLight());
-        butUnsynced=(Button)itemView.findViewById(R.id.butUnsynced);
-        butUnsynced.setTypeface(typeface.squareLight());
+
+        unsyncedItems=(TextView)itemView.findViewById(R.id.unsyncedItems);
+        unsyncedItems.setTypeface(typeface.squareLight());
+
+        unsyncedlayout=(RelativeLayout)itemView.findViewById(R.id.unsyncedlayout);
+
     }
 }
