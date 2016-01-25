@@ -94,6 +94,24 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
     private TextView txtAgentName;
     @InjectView(R.id.edt_password)
     private EditText password;
+
+
+    @InjectView(R.id.pos1)
+    private Button pos1;
+
+    @InjectView(R.id.pos2)
+    private Button pos2;
+
+    @InjectView(R.id.pos3)
+    private Button pos3;
+
+    @InjectView(R.id.pos4)
+    private Button pos4;
+
+
+
+
+
     Utils utils=new Utils();
     Typefacer typefacer=new Typefacer();
     private VolleySingleton volleySingleton;
@@ -266,12 +284,31 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
 
     void deleteLastCharacter(){
 
-
+int lent=0;
         String s = edtPin.getText().toString();
         if(!s.isEmpty()){
             s = s.substring(0, s.length() - 1);
             edtPin.setText(s);
 
+            lent=s.length();
+
+            switch (lent){
+
+                case 0:
+                    pos1.setBackgroundResource(R.drawable.roundwhite);
+                    break;
+                case 1:
+                    pos2.setBackgroundResource(R.drawable.roundwhite);
+                    break;
+                case 2:
+                    pos3.setBackgroundResource(R.drawable.roundwhite);
+                    break;
+                case 3:
+                    pos4.setBackgroundResource(R.drawable.roundwhite);
+                    break;
+            }
+
+       Utils.log("Original Length = "+s.length()+" s = "+s);
         }
 
 
@@ -1013,6 +1050,17 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
 
 
 
+    void clearBackGroundResource(){
+
+
+
+            pos1.setBackgroundResource(R.drawable.roundwhite);
+            pos2.setBackgroundResource(R.drawable.roundwhite);
+            pos3.setBackgroundResource(R.drawable.roundwhite);
+            pos4.setBackgroundResource(R.drawable.roundwhite);
+
+    }
+
     private final TextWatcher mTextEditorWatcher = new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
@@ -1021,12 +1069,22 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
             //This sets a textview to the current length
             int i=s.length();
 
-            if(i==4){
 
+            if(i==1)
+                pos1.setBackgroundResource(R.drawable.roundbluebutton);
+            if(i==2)
+                pos2.setBackgroundResource(R.drawable.roundbluebutton);
+            if(i==3)
+                pos3.setBackgroundResource(R.drawable.roundbluebutton);
+
+
+
+            if(i==4){
+                pos4.setBackgroundResource(R.drawable.roundbluebutton);
                 User newUser=User.aUser(user.getMsisdn(),s.toString());
 
                 if(newUser==null){
-
+                    clearBackGroundResource();
                     edtPin.setText("");
                   //  ToastUtil.showMessageToast("Pin Does Not Match " + user.getMsisdn() + "' s Pin ", false);
                     Snackbar snackbar = Snackbar
