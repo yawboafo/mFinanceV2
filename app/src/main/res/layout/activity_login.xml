@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:id="@+id/cordinateLayout"
+    android:id="@+id/cordinateLayout"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@android:color/transparent"
@@ -16,7 +16,6 @@ android:id="@+id/cordinateLayout"
             android:layout_width="match_parent"
             android:id="@+id/viewflipper"
             android:layout_height="match_parent">
-
 
 
 
@@ -98,7 +97,8 @@ android:id="@+id/cordinateLayout"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_weight="0.5"
-                        android:visibility="invisible" />
+                        android:visibility="invisible"
+                        android:layout_gravity="bottom" />
 
                     <Button
                         style="@style/btnLogin"
@@ -108,13 +108,13 @@ android:id="@+id/cordinateLayout"
                         android:id="@+id/buttonSignIn"
                         android:layout_weight="0.5"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true" />
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="bottom" />
 
                 </LinearLayout>
 
 
             </RelativeLayout>
-
             <RelativeLayout
 
                 android:layout_margin="10dp"
@@ -193,22 +193,39 @@ android:id="@+id/cordinateLayout"
                 android:layout_height="match_parent">
 
                 <RelativeLayout
-                    android:background="#194E9A"
                     android:layout_width="match_parent"
                     android:id="@+id/logoHolder"
-                    android:layout_height="150dp">
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/pinSignButton"
+                    android:layout_toEndOf="@+id/pinSignButton"
+                    android:background="#194e9a">
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/profile_image2"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="40dp"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:src="@drawable/nfortics_logo"
+                        android:src="@drawable/profile_avator"
                         app:civ_border_width="2dp"
                         app:civ_border_color="@android:color/transparent"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yaw Boafo"
+                        android:id="@+id/txtAgentName"
+                        android:layout_below="@+id/profile_image2"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:textColor="#eeffffff" />
                 </RelativeLayout>
 
                 <EditText
@@ -255,6 +272,7 @@ android:id="@+id/cordinateLayout"
                 </RelativeLayout>
 
             </RelativeLayout>
+
 
 
 

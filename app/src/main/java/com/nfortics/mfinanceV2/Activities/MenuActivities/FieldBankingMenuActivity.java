@@ -199,10 +199,5 @@ public class FieldBankingMenuActivity  extends BaseActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent setIntent = new Intent(FieldBankingMenuActivity.this, MainActivity.class);
-        startActivity(setIntent);
-        finish();
-    }
+
 }

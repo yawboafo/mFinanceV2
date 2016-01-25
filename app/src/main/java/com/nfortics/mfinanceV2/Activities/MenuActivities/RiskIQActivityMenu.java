@@ -184,10 +184,5 @@ public class RiskIQActivityMenu extends BaseActivity{
 
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent setIntent = new Intent(RiskIQActivityMenu.this, MainActivity.class);
-        startActivity(setIntent);
-        finish();
-    }
+
 }

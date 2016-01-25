@@ -175,10 +175,5 @@ public class FieldCollectionMenuActivity   extends BaseActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent setIntent = new Intent(FieldCollectionMenuActivity.this, MainActivity.class);
-        startActivity(setIntent);
-        finish();
-    }
+
 }

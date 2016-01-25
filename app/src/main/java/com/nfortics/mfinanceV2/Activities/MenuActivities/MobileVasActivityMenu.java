@@ -173,12 +173,7 @@ public class MobileVasActivityMenu extends BaseActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent setIntent = new Intent(MobileVasActivityMenu.this, MainActivity.class);
-        startActivity(setIntent);
-        finish();
-    }
+
 
 
 

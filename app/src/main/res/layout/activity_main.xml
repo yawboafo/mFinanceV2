@@ -87,62 +87,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_below="@+id/buttonsLayout" />
 
-                <com.github.clans.fab.FloatingActionMenu
-                    android:id="@+id/menu1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    fab:menu_fab_size="normal"
-                    fab:menu_colorNormal="#1565C0"
-                    fab:menu_backgroundColor="#ccffffff"
-                    fab:menu_colorPressed="#2272CD"
-                    fab:menu_colorRipple="#62B2FF"
-                    android:layout_alignParentBottom="true"
 
-                    android:layout_alignParentRight="true"
-                    fab:menu_icon="@drawable/ic_menu"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    fab:menu_animationDelayPerItem="0"
-                    fab:menu_labels_ellipsize="end"
-                    fab:menu_labels_singleLine="true"
-                    fab:menu_fab_label=""
-                    android:layout_below="@+id/recyle">
-
-                    <com.github.clans.fab.FloatingActionButton
-                        android:id="@+id/fab1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_printing"
-                        fab:fab_size="mini"
-                        fab:fab_colorNormal="#ff7f0b"
-                        fab:fab_colorPressed="#ff7f0b"
-                        fab:fab_colorRipple="#ffae12"
-                        fab:fab_label="Print Activities" />
-
-                    <com.github.clans.fab.FloatingActionButton
-                        android:id="@+id/fab2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        fab:fab_colorNormal="#ff7f0b"
-                        fab:fab_colorPressed="#ff7f0b"
-                        fab:fab_colorRipple="#ffae12"
-                        android:src="@drawable/ic_commission"
-                        fab:fab_size="mini"
-                        fab:fab_label="View Commission" />
-
-                    <com.github.clans.fab.FloatingActionButton
-                        android:id="@+id/fab3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_activities"
-                        fab:fab_colorNormal="#ff7f0b"
-                        fab:fab_colorPressed="#ff7f0b"
-                        fab:fab_colorRipple="#ffae12"
-                        fab:fab_size="mini"
-                        fab:fab_label="View Activities" />
-
-                </com.github.clans.fab.FloatingActionMenu>
 
 
 

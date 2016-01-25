@@ -90,6 +90,8 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
     @InjectView(R.id.txtSetPinTitle)
     private TextView txtSetPinTitle;
 
+    @InjectView(R.id.txtAgentName)
+    private TextView txtAgentName;
     @InjectView(R.id.edt_password)
     private EditText password;
     Utils utils=new Utils();
@@ -235,7 +237,8 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
             );
 
             //disable whatever
-
+            txtAgentName.setText(""+user.getFirstName());
+            txtAgentName.setTypeface(typefacer.squareLight());
             edtPin.setTypeface(typefacer.squareLight());
             edtPin.addTextChangedListener(mTextEditorWatcher);
             edtPin.setShowSoftInputOnFocus(false);
@@ -358,7 +361,7 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
 
                         Intent myIntent=new Intent(LoginActivity.this,MainActivity.class);
                         myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
+                        myIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(myIntent);
 
                         finish();
@@ -610,6 +613,7 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
 
                                     Intent myIntent=new Intent(LoginActivity.this,MainActivity.class);
                                     myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                    myIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                                     startActivity(myIntent);
                                     Application.setActiveAgent(User.aUser(username));
                                      Application.setActiveAgentMsisdn(username);
@@ -1040,7 +1044,7 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
 
                     Intent myIntent=new Intent(LoginActivity.this,MainActivity.class);
                     myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
+                    myIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(myIntent);
 
                     finish();

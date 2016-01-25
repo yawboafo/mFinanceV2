@@ -196,14 +196,14 @@ public class MainActivity
     private void InitializeViews(Bundle savedInstanceState){
         setRecycleView();
         //setPagers();
-        createFloatinButton();
+       // createFloatinButton();
        // floatingbutton();
       //  view=generateActivityView();
       //  createlistMenu(view);
        // relativeLayout.addView(view);
 
     }
-
+/***
     private void createFloatinButton() {
        // final com.github.clans.fab.FloatingActionMenu menu3 = (com.github.clans.fab.FloatingActionMenu) findViewById(R.id.menu3);
         final com.github.clans.fab.FloatingActionMenu menu1 = (com.github.clans.fab.FloatingActionMenu) findViewById(R.id.menu1);
@@ -247,7 +247,7 @@ public class MainActivity
 
         menu1.setIconToggleAnimatorSet(set);
     }
-
+***/
     private void setPagers(){
      //   mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));

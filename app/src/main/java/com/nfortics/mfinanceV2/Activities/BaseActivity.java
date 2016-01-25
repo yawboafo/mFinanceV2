@@ -479,8 +479,8 @@ public abstract class
 
                 com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("CustomerActivity");
                 intent = new Intent(this, CustomerActivity.class);
-                finish();
 
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent,bndlanimation);
 
 
@@ -489,7 +489,7 @@ public abstract class
                 com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("FieldCollectionMenuActivity");
                 intent = new Intent(this, FieldCollectionMenuActivity.class);
 
-                finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent,bndlanimation);
                 // finish();
 
@@ -501,7 +501,7 @@ public abstract class
                 com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("FieldBankingMenuActivity");
                 intent = new Intent(this, FieldBankingMenuActivity.class);
 
-                finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent,bndlanimation);
               //  finish();
                 break;
@@ -509,7 +509,7 @@ public abstract class
                 com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("MobileVasActivityMenu");
                 intent = new Intent(this, MobileVasActivityMenu.class);
 
-                finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent,bndlanimation);
                 //  finish();
                 break;
@@ -517,7 +517,7 @@ public abstract class
                 com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("RiskIQActivityMenu");
                 intent = new Intent(this, RiskIQActivityMenu.class);
 
-                finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent,bndlanimation);
                 //  finish();
                 break;
@@ -526,7 +526,7 @@ public abstract class
                 com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("ActivitySetting");
                 intent = new Intent(this, ActivitySetting.class);
 
-                finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent,bndlanimation);
                 //  finish();
                 break;

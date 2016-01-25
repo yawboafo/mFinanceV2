@@ -936,11 +936,7 @@ public class FieldCollectionActivity
         dialog.show(manager, "");
 
     }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
+
 
     private void readCard() {
         if (Utils.deviceIsM50()) {

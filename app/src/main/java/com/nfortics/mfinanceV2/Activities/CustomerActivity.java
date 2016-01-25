@@ -1180,12 +1180,7 @@ public class CustomerActivity extends
 
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent setIntent = new Intent(CustomerActivity.this, MainActivity.class);
-        startActivity(setIntent);
-        finish();
-    }
+
 
     @Override
     public void CustomerDetailDialogInteraction() {
