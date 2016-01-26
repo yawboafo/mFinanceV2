@@ -2,6 +2,8 @@ package com.nfortics.mfinanceV2.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -31,6 +33,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.nfortics.mfinanceV2.Application.Application;
+import com.nfortics.mfinanceV2.Models.Agent;
 import com.nfortics.mfinanceV2.Models.Branch;
 import com.nfortics.mfinanceV2.Models.Merchant;
 import com.nfortics.mfinanceV2.Models.Product;
@@ -50,9 +53,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import roboguice.activity.GuiceActivity;
 import roboguice.inject.InjectView;
 
@@ -108,7 +113,8 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
     @InjectView(R.id.pos4)
     private Button pos4;
 
-
+   @InjectView(R.id.profile_image2)
+    CircleImageView profile_image2;
 
 
 
@@ -264,6 +270,30 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
             edtPin.setFocusableInTouchMode(false);
             edtPin.setFocusable(false);
 
+            profile_image2.post(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        Agent agent=Utils.AgentData();
+
+                        if(agent.getProfile_pics()!=null){
+
+
+                            final Bitmap bitmap = BitmapFactory.decodeByteArray(agent.getProfile_pics(), 0,
+                                    agent.getProfile_pics().length);
+
+                            profile_image2.setImageBitmap(bitmap);
+                        }
+
+
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
             viewflipper.setDisplayedChild(2);
            // View view = this.getCurrentFocus();
 

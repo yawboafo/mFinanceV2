@@ -3,8 +3,12 @@ package com.nfortics.mfinanceV2.Fragments.SettingsPages;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +19,15 @@ import android.widget.TextView;
 
 import com.nfortics.mfinanceV2.Application.Application;
 import com.nfortics.mfinanceV2.DataBase.DaoAccess;
+import com.nfortics.mfinanceV2.Models.Agent;
 import com.nfortics.mfinanceV2.Models.Branch;
 import com.nfortics.mfinanceV2.Models.Merchant;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Typefacer;
 import com.nfortics.mfinanceV2.Utilities.Utils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -62,7 +69,7 @@ public class ProfileSettingsFrag extends Fragment {
 
 
     Merchant merchant;
-
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
     Typefacer typefacer;
 
     public static ProfileSettingsFrag newInstance(String param1, String param2) {
@@ -158,30 +165,30 @@ public class ProfileSettingsFrag extends Fragment {
                 branchesValue=(TextView)view.findViewById(R.id.branchesValue);
                 branchesValue.setTypeface(typefacer.squareLight());
                 branchesValue.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                  public void onClick(View v) {
-                showBrachesDialog();
-                }
-                 });
+                    @Override
+                    public void onClick(View v) {
+                        showBrachesDialog();
+                    }
+                });
 
                 merchantTitle=(TextView)view.findViewById(R.id.merchantTitle);
                 merchantTitle.setTypeface(typefacer.squareLight());
                 merchantTitle.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View v) {
+                    @Override
+                    public void onClick(View v) {
 
-                    showMerchantsDialog();
-               }
-                   });
+                        showMerchantsDialog();
+                    }
+                });
 
                 merchantValue=(TextView)view.findViewById(R.id.merchantValue);
                 merchantValue.setTypeface(typefacer.squareLight());
                  merchantValue.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                public void onClick(View v) {
+                     @Override
+                     public void onClick(View v) {
 
-                     showMerchantsDialog();
-                 }
+                         showMerchantsDialog();
+                     }
                  });
 
 
@@ -196,6 +203,45 @@ public class ProfileSettingsFrag extends Fragment {
 
                 resetPinButton=(Button)view.findViewById(R.id.resetPinButton);
                 resetPinButton .setTypeface(typefacer.squareLight());
+
+                profile_image=(CircleImageView)view.findViewById(R.id.profile_image);
+
+        profile_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent,
+                        CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+            }
+        });
+
+
+
+        profile_image.post(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Agent agent = Utils.AgentData();
+
+                    if (agent.getProfile_pics() != null) {
+
+
+                        final Bitmap bitmap = BitmapFactory.decodeByteArray(agent.getProfile_pics(), 0,
+                                agent.getProfile_pics().length);
+
+                        profile_image.setImageBitmap(bitmap);
+                    }
+
+
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
                 //checkUpdateButton=(Button)view.findViewById(R.id.checkUpdateButton);
                // checkUpdateButton .setTypeface(typefacer.squareLight());
@@ -325,7 +371,46 @@ public class ProfileSettingsFrag extends Fragment {
 
 
     }
-    public interface ProfileSettingsFragInteractionListener {
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                Bitmap bmp = (Bitmap) data.getExtras().get("data");
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+
+                Agent agent = new Agent();
+                agent.setProfile_pics(byteArray);
+
+                try {
+                    Utils.insertAgentData(agent);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                // convert byte array to Bitmap
+
+                final Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
+                        byteArray.length);
+
+
+                profile_image.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        profile_image.setImageBitmap(bitmap);
+
+                    }
+                });
+
+            }
+        }
+    }
+        public interface ProfileSettingsFragInteractionListener {
         // TODO: Update argument type and name
         public void ProfileSettingsFragInteraction(Uri uri);
     }
