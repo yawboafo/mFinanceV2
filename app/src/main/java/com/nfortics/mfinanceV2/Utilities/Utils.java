@@ -20,6 +20,7 @@ import com.nfortics.mfinanceV2.Application.Application;
 import com.nfortics.mfinanceV2.DataBase.DaoAccess;
 import com.nfortics.mfinanceV2.Handlers.BlobHandler;
 import com.nfortics.mfinanceV2.Models.Agent;
+import com.nfortics.mfinanceV2.Models.AppInstanceSettings;
 import com.nfortics.mfinanceV2.Models.Collection;
 import com.nfortics.mfinanceV2.Models.Merchant;
 import com.nfortics.mfinanceV2.Models.OnBoardModel;
@@ -858,12 +859,7 @@ public class Utils {
 
         return hashFromFile;
     }
-    public static OnBoardModel MapsDb( )
-            throws
-
-            OptionalDataException,
-            ClassNotFoundException,
-            IOException,
+    public static OnBoardModel MapsDb( ) throws OptionalDataException, ClassNotFoundException, IOException,
             EOFException{
 
         FileInputStream f=null;
@@ -900,7 +896,6 @@ public class Utils {
 
     public static Agent AgentData( )
             throws
-
             OptionalDataException,
             ClassNotFoundException,
             IOException,
@@ -935,6 +930,83 @@ public class Utils {
 
 
         return agent;
+    }
+
+
+    public static AppInstanceSettings ApplicationSettings()  throws
+            OptionalDataException,
+            ClassNotFoundException,
+            IOException,
+            EOFException{
+
+        FileInputStream f=null;
+        File file =null;
+        ObjectInputStream s=null;
+        AppInstanceSettings appInstanceSettings  =new AppInstanceSettings();
+
+
+        try{
+            file =new File(Application.getAppContext().getExternalFilesDir(null), "ApplicationSettings.txt");
+            f = new FileInputStream(file);
+
+            s = new ObjectInputStream(f);
+
+            appInstanceSettings=(AppInstanceSettings) s.readObject();
+
+
+        }catch (Exception e){
+
+            Utils.log("error occured while reading map ");
+            e.printStackTrace();
+
+        }finally {
+            if(s!=null){
+                s.close();
+
+            }
+        }
+
+
+        return appInstanceSettings;
+    }
+    public static void insertAppInstanceSettings(AppInstanceSettings appInstanceSettings) throws IOException {
+
+        File file=null;
+        FileOutputStream f=null;
+        ObjectOutputStream s=null;
+        try{
+            Log.d("oxinbo", "Agent save file stated") ;
+            //  String filePath = Application.getAppContext().getFilesDir().getPath().toString() + "/your.properties";
+            // File file = new File(filePath);
+            file =new File(Application.getAppContext().getExternalFilesDir(null), "ApplicationSettings.txt");
+            // If file does not exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            f = new FileOutputStream(file);
+            s = new ObjectOutputStream(f);
+            s.writeObject(appInstanceSettings);
+
+            Log.d("oxinbo", "Agent Data saved to file") ;
+
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            if(s!=null){
+
+                s.flush();
+                s.close();
+            }
+        }
+        // File file = new File(fpath);
+
+
+
     }
     public static List<String> getAllTransactionsAccounts() {
         List<String> accounts = new ArrayList<String>();

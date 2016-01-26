@@ -151,6 +151,11 @@
     <string name="title_activity_activity_setting">ActivitySetting</string>
     <string name="title_activity_signature_pad">SignaturePad</string>
     <string name="title_activity_customer_details">CustomerDetails</string>
+    <string name="title_activity_root_settings">RootSettings</string>
+    <string name="radio_production">Production</string>
+    <string name="radio_staging">Staging</string>
+    <string name="radio_demo">Demo</string>
+    <string name="selectServer">Select Server</string>
 
 
 </resources>

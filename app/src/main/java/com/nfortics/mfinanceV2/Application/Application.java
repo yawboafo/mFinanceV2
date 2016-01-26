@@ -30,6 +30,7 @@ import com.grabba.GrabbaDriverNotInstalledException;
 import com.nfortics.mfinanceV2.Activities.ConnectActivity;
 import com.nfortics.mfinanceV2.AsyncTask.AsynPrinter;
 import com.nfortics.mfinanceV2.Models.Account;
+import com.nfortics.mfinanceV2.Models.AppInstanceSettings;
 import com.nfortics.mfinanceV2.Models.Branch;
 import com.nfortics.mfinanceV2.Models.C_Branch;
 import com.nfortics.mfinanceV2.Models.C_FingerPrintInfo;
@@ -240,7 +241,17 @@ public class Application  extends GuiceApplication {
         super.onCreate();
         context = getApplicationContext();
         deviceType = "phone";
-        ServerUrlPredictor("Production");
+
+        try{
+
+            ServerUrlPredictor();
+
+        }catch (Exception e){
+
+
+
+        }
+
         initializeDB();
         InitializeSettings();
         initializeDB();
@@ -286,16 +297,27 @@ public class Application  extends GuiceApplication {
         ActiveAndroid.initialize(configurationBuilder.create());
     }
 
-    private void ServerUrlPredictor(String val){
+    private void ServerUrlPredictor(){
+        AppInstanceSettings appInstanceSettings =null;
 
+
+        try {
+            try {
+                appInstanceSettings=  Utils.ApplicationSettings();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         String serverUrl;
-        Log.d("oxinbo", "from server processor " + val);
+        Log.d("oxinbo", "from server processor " + appInstanceSettings.getServerMode());
 
-        serverUrl= val==null ?"Production":val;
+        serverUrl=  appInstanceSettings.getServerMode()==null ?"Production": appInstanceSettings.getServerMode();
         String modeSelected;
         if(serverUrl==null){
-            val="Production";
+            serverUrl="Production";
 
         }else{
             //GetAppMode

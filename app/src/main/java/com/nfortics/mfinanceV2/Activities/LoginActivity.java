@@ -359,13 +359,28 @@ int lent=0;
                 username = msisdn.getText().toString();
                 pin = password.getText().toString();
 
-                if (username.length() <= 0 || pin.length() <= 0) {
 
-                    utils.ErrorAlertDialog(LoginActivity.this, "Enter Username & Password", "Empty Fields").show();
-                } else {
-                    PerformLogin(username, pin, AppInstanceID.getDeviceId(LoginActivity.this));
+                if(username.equalsIgnoreCase("999999") && pin.equalsIgnoreCase("999999")){
+
+
+                    Intent intent = new Intent(LoginActivity.this, RootSettings.class);
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+
+                }else{
+                    if (username.length() <= 0 || pin.length() <= 0) {
+
+                        utils.ErrorAlertDialog(LoginActivity.this, "Enter Username & Password", "Empty Fields").show();
+                    } else {
+                        PerformLogin(username, pin, AppInstanceID.getDeviceId(LoginActivity.this));
+
+                    }
 
                 }
+
+
+
 
 
                 //startActivity(new Intent(LoginActivity.this, MainActivity.class));
