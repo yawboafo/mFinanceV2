@@ -156,6 +156,12 @@
     <string name="radio_staging">Staging</string>
     <string name="radio_demo">Demo</string>
     <string name="selectServer">Select Server</string>
+    <string name="balanceEnq">Balance Enquiry</string>
+    <string name="chkBalance">Check Balance Using</string>
+    <string name="enterAcc">Enter Account Number</string>
+    <string name="printBalance">Print Balance</string>
+    <string name="sendOvrSms">Send Over SMS</string>
+    <string name="searchCustomer">Search for a customer</string>
 
 
 </resources>

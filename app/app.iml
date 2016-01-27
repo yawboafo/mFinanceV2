@@ -122,8 +122,8 @@
     <orderEntry type="module" module-name="roboguice-1.0" exported="" />
     <orderEntry type="module" module-name="activeandroid-3.1.0" exported="" />
     <orderEntry type="module" module-name="google-play-services" exported="" />
-    <orderEntry type="module" module-name="activation" exported="" />
     <orderEntry type="module" module-name="m2iapi" exported="" />
+    <orderEntry type="module" module-name="activation" exported="" />
     <orderEntry type="module" module-name="Grabba driver for android v1.68" exported="" />
     <orderEntry type="module" module-name="m2iapip" exported="" />
     <orderEntry type="module" module-name="sourceafis" exported="" />

@@ -71,7 +71,7 @@
             android:layout_height="45dp"
             android:padding="10dp"
             android:id="@+id/edtSearch"
-            android:hint="Search for a customer"
+            android:hint="@string/searchCustomer"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/filterButton"
             android:layout_marginLeft="2dp"
