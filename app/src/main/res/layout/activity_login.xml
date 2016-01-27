@@ -46,8 +46,9 @@
 
 
                 <EditText
-                    android:background="@drawable/edittextstyle"
+
                     android:layout_width="wrap_content"
+
                     android:layout_height="50dp"
                     android:inputType="phone"
                     android:ems="10"
@@ -62,7 +63,7 @@
                     android:padding="10dp" />
 
                 <EditText
-                    android:background="@drawable/edittextstyle"
+
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:inputType="numberPassword"
