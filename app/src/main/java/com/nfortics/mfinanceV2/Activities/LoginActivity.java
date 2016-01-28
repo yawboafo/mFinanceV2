@@ -142,6 +142,10 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
         setContentView(R.layout.activity_login);
         generalSettings=GeneralSettings.getInstance();
 
+
+
+
+
         setLabels();
         InitializeApp();
         EventListeners();

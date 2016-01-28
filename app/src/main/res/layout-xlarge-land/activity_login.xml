@@ -1,0 +1,355 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cordinateLayout"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    tools:context=".Login">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ViewFlipper
+            android:layout_width="match_parent"
+            android:id="@+id/viewflipper"
+            android:layout_height="wrap_content">
+
+
+
+            <RelativeLayout
+
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/loginEditTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/nfortics_logo"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@android:color/transparent"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+
+
+                <EditText
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:id="@+id/edt_username"
+                    android:hint="Registered Phone Number"
+                    android:padding="10dp"
+                    android:textSize="20sp"
+                    android:layout_below="@+id/profile_image"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:inputType="numberPassword"
+                    android:ems="10"
+                    android:id="@+id/edt_password"
+                    android:hint="Enter Pin Code"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/edt_username"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="1"
+
+                    android:layout_marginTop="135dp"
+                    android:padding="5dp"
+                    android:layout_below="@+id/edt_password"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                </LinearLayout>
+
+                <Button
+                    style="@style/btnLoginBiometric"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:textSize="20sp"
+                    android:text="@string/button_biometric"
+                    android:id="@+id/butBiometric"
+                    android:layout_weight="0.5"
+                    android:layout_below="@+id/edt_password"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/profile_image"
+                    android:layout_toStartOf="@+id/profile_image"
+                    android:layout_marginTop="20dp" />
+
+                <Button
+                    style="@style/btnLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:text="@string/button_signIn"
+                    android:id="@+id/buttonSignIn"
+                    android:textSize="20sp"
+                    android:layout_weight="0.5"
+                    android:layout_alignTop="@+id/butBiometric"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toRightOf="@+id/profile_image"
+                    android:layout_toEndOf="@+id/profile_image" />
+
+
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/resetPinLayout"
+                >
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image1"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/nfortics_logo"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@android:color/transparent"
+                    android:layout_marginTop="96dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Set You Pin"
+                    android:id="@+id/txtSetPinTitle"
+                    android:gravity="center"
+                    android:layout_below="@+id/profile_image1"
+                    android:layout_alignRight="@+id/redtSetPin"
+                    android:layout_alignEnd="@+id/redtSetPin" />
+
+                <EditText
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:padding="10dp"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/redtSetPin"
+                    android:hint="Enter Pin "
+                    android:layout_below="@+id/txtSetPinTitle"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignRight="@+id/rbutSubmit"
+                    android:layout_alignEnd="@+id/rbutSubmit" />
+
+                <Button
+                    style="@style/btnLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:text="Cancel"
+                    android:id="@+id/rbutCancel"
+                    android:layout_marginTop="65dp"
+                    android:layout_below="@+id/redtSetPin"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/profile_image1"
+                    android:layout_toStartOf="@+id/profile_image1" />
+
+                <Button
+                    style="@style/btnLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:text="Submit"
+                    android:id="@+id/rbutSubmit"
+                    android:layout_alignTop="@+id/rbutCancel"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toRightOf="@+id/profile_image1"
+                    android:layout_toEndOf="@+id/profile_image1"
+                    android:layout_margin="5dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/pinLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/logoHolder"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/pinSignButton"
+                    android:layout_toEndOf="@+id/pinSignButton"
+                    android:background="#194e9a">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image2"
+                        android:layout_marginTop="40dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/profile_avator"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@android:color/transparent"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:text="Yaw Boafo"
+                        android:id="@+id/txtAgentName"
+                        android:layout_below="@+id/profile_image2"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:textColor="#eeffffff" />
+                </RelativeLayout>
+
+                <EditText
+                    android:background="@drawable/invinsible_edittext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:inputType="numberPassword"
+                    android:textColor="#194E9A"
+                    android:ems="10"
+                    android:editable="false"
+                    android:cursorVisible="false"
+                    android:maxLength="4"
+                    android:id="@+id/edtPin"
+                    android:hint="Please enter your password"
+                    android:layout_below="@+id/logoHolder"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="gone" />
+
+                <Button
+                    style="@style/btnLogin"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sign In"
+                    android:id="@+id/pinSignButton"
+                    android:layout_below="@+id/edtPin"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="113dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/logoHolder"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true">
+                    <include layout="@layout/calculatorlayout"
+                        android:layout_height="400dp"
+                        android:layout_width="700dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/logoHolder"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center">
+
+                    <Button
+                        android:background="@drawable/roundwhite"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/pos1"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="8dp" />
+
+                    <Button
+                        android:background="@drawable/roundwhite"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/pos2"
+                        android:layout_alignBottom="@+id/pos1"
+                        android:layout_toRightOf="@+id/pos1"
+                        android:layout_toEndOf="@+id/pos1"
+                        android:layout_marginLeft="8dp" />
+
+                    <Button
+                        android:background="@drawable/roundwhite"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/pos3"
+                        android:layout_alignTop="@+id/pos2"
+                        android:layout_toRightOf="@+id/pos2"
+                        android:layout_toEndOf="@+id/pos2"
+                        android:layout_marginLeft="8dp" />
+
+                    <Button
+                        android:background="@drawable/roundwhite"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/pos4"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/pos3"
+                        android:layout_toEndOf="@+id/pos3"
+                        android:layout_marginLeft="8dp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+
+
+        </ViewFlipper>
+
+
+    </ScrollView>
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -144,14 +144,13 @@ public class NavigationDrawerFragment   extends Fragment {
     public void SignOut()
     {
 
-        getActivity().finish();
-
 
 
         Intent intent = new Intent(getActivity(), LoginActivity.class);
-
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        //intent.putExtra("finish", true);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // To clean up all activities
         startActivity(intent);
+        getActivity().finish();
 
 
     }
