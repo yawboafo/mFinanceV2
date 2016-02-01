@@ -49,6 +49,7 @@ import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Services.SyncDataService;
 import com.nfortics.mfinanceV2.Services.VolleyServices;
 import com.nfortics.mfinanceV2.Settings.GeneralSettings;
+import com.nfortics.mfinanceV2.Utilities.GPSTracker;
 import com.nfortics.mfinanceV2.Utilities.ToastUtil;
 import com.nfortics.mfinanceV2.Utilities.Utils;
 import com.nfortics.mfinanceV2.Volley.VolleySingleton;
@@ -145,96 +146,25 @@ public class Application  extends GuiceApplication {
     public static Map<String,String> basse64Images= new TreeMap<>();
 
     public static Map<String,String> FingerPrintbase64Images= new TreeMap<>();
-
+    public static String ServerMode;
     UnsyncedData unsyncedData;
 
     public static VolleySingleton volleySingleton;
     public static RequestQueue requestQueue;
 
+    GPSTracker gpsTracker;
 
-
-    public static List<Map<String, Bitmap>> getPicturesImageMap() {
-        return PicturesImageMap;
-    }
-
-
-    public static Map<String, String> getFingerPrintImages() {
-        return fingerPrintImages;
-    }
-
-    public static void setFingerPrintImages(Map<String, String> fingerPrintImages) {
-        Application.fingerPrintImages = fingerPrintImages;
-    }
-
-
-    public static Map<String, String> getCollectionItems() {
-        return CollectionItems;
-    }
-
-    public static void setCollectionItems(Map<String, String> collectionItems) {
-        CollectionItems = collectionItems;
-    }
-
-    public static void setPicturesImageMap(List<Map<String, Bitmap>> picturesImageMap) {
-        PicturesImageMap = picturesImageMap;
-    }
-    //private final Logger logger = LoggerFactory.getLogger();
-
-
-    public static List<Map<String, Bitmap>> getFingerPrintList() {
-        return fingerPrintList;
-    }
-
-    public static void setFingerPrintList(List<Map<String, Bitmap>> fingerPrintList) {
-        Application.fingerPrintList = fingerPrintList;
-    }
-
-    public static List<Map<String, Bitmap>> getSignatureMap() {
-        return SignatureMap;
-    }
-
-    public static void setSignatureMap(List<Map<String, Bitmap>> signatureMap) {
-        SignatureMap = signatureMap;
-    }
-
-    public static List<Map<String, Bitmap>> getGalleryImageList() {
-        return galleryImageList;
-    }
-
-    public static void setGalleryImageList(List<Map<String, Bitmap>> galleryImage) {
-       galleryImageList = galleryImage;
-    }
-
-
-
-
-    public static   Map<String, Bitmap> getGalleryImages() {
-        return galleryImages;
-    }
-
-    public static  void setGalleryImages(Map<String, Bitmap> galleryImag) {
-       galleryImages = galleryImag;
-    }
-
-    private void InitializeSettings() {
-        GeneralSettings.initialize(openFile(GeneralSettings.class.getName()));
-        UnsyncedData.initialize(openFile(UnsyncedData.class.getName()));
-    }
-
-    private InputStream openFile(String fileName) {
-        try {
-            return openFileInput(fileName);
-        } catch (FileNotFoundException e) {
-            Log.i(getClass().getName(), fileName + " file not found.");
-        }
-        return null;
-    }
 
    public  static  User ActiveAgent;
 
     public static Context getAppContext() {
         return context;
     }
+
+
+
+
+
 
     @Override
     public void onCreate() {
@@ -260,20 +190,16 @@ public class Application  extends GuiceApplication {
             runGrabbaProcesses();
         }
 
-
-
-
-
         volleySingleton= VolleySingleton.getsInstance();
         requestQueue=VolleySingleton.getRequestQueue();
 
 
         Application.setCurrentActivityState("Application");
 
-
         Log.d("oxinbo", "current Activity " + com.nfortics.mfinanceV2.Application.Application.getCurrentActivityState());
 
     }
+
     protected void initializeDB() {
         Configuration.Builder configurationBuilder = new Configuration.Builder(this);
 
@@ -322,7 +248,7 @@ public class Application  extends GuiceApplication {
         }else{
             //GetAppMode
             if(serverUrl.equals("Demo")){
-                modeSelected="Demo";
+                ServerMode="Demo";
                 //ProductionServerUrl1
                 serverURL = getString(R.string.DemoServerUrl1);
                 serverURL2 = getString(R.string.DemoServerUrl2);
@@ -332,7 +258,7 @@ public class Application  extends GuiceApplication {
                 //  nfspURL =  getString(R.string.nfspUrl);
             }else if(serverUrl.equals("Staging")){
 
-                modeSelected="Staging";
+                ServerMode="Staging";
 
                 serverURL = getString(R.string.StagingServerUrl1);
                 serverURL2 =  getString(R.string.StagingServerUrl2);
@@ -343,7 +269,7 @@ public class Application  extends GuiceApplication {
 
             } else if (serverUrl.equals("Production")){
 
-                // modeSelected="Production";
+                ServerMode="Production";
 
                 serverURL = getString(R.string.ProductionServerUrl1);
                 serverURL2 =  getString(R.string.ProductionServerUrl2);
@@ -406,6 +332,82 @@ public class Application  extends GuiceApplication {
    * mBluetoothChatService; }
    */
 
+    public static List<Map<String, Bitmap>> getPicturesImageMap() {
+        return PicturesImageMap;
+    }
+
+
+    public static Map<String, String> getFingerPrintImages() {
+        return fingerPrintImages;
+    }
+
+    public static void setFingerPrintImages(Map<String, String> fingerPrintImages) {
+        Application.fingerPrintImages = fingerPrintImages;
+    }
+
+
+    public static Map<String, String> getCollectionItems() {
+        return CollectionItems;
+    }
+
+    public static void setCollectionItems(Map<String, String> collectionItems) {
+        CollectionItems = collectionItems;
+    }
+
+    public static void setPicturesImageMap(List<Map<String, Bitmap>> picturesImageMap) {
+        PicturesImageMap = picturesImageMap;
+    }
+    //private final Logger logger = LoggerFactory.getLogger();
+
+
+    public static List<Map<String, Bitmap>> getFingerPrintList() {
+        return fingerPrintList;
+    }
+
+    public static void setFingerPrintList(List<Map<String, Bitmap>> fingerPrintList) {
+        Application.fingerPrintList = fingerPrintList;
+    }
+
+    public static List<Map<String, Bitmap>> getSignatureMap() {
+        return SignatureMap;
+    }
+
+    public static void setSignatureMap(List<Map<String, Bitmap>> signatureMap) {
+        SignatureMap = signatureMap;
+    }
+
+    public static List<Map<String, Bitmap>> getGalleryImageList() {
+        return galleryImageList;
+    }
+
+    public static void setGalleryImageList(List<Map<String, Bitmap>> galleryImage) {
+        galleryImageList = galleryImage;
+    }
+
+
+
+
+    public static   Map<String, Bitmap> getGalleryImages() {
+        return galleryImages;
+    }
+
+    public static  void setGalleryImages(Map<String, Bitmap> galleryImag) {
+        galleryImages = galleryImag;
+    }
+
+    private void InitializeSettings() {
+        GeneralSettings.initialize(openFile(GeneralSettings.class.getName()));
+        UnsyncedData.initialize(openFile(UnsyncedData.class.getName()));
+    }
+
+    private InputStream openFile(String fileName) {
+        try {
+            return openFileInput(fileName);
+        } catch (FileNotFoundException e) {
+            Log.i(getClass().getName(), fileName + " file not found.");
+        }
+        return null;
+    }
 
     public static String getCurrentActivityState() {
         return currentActivityState;

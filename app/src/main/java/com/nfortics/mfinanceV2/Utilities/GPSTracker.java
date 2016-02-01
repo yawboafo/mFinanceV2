@@ -13,6 +13,8 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.nfortics.mfinanceV2.Activities.LoginActivity;
+
 /**
  * Created by bigfire on 9/23/2015.
  */
@@ -60,7 +62,7 @@ public class GPSTracker extends Service implements LocationListener {
             isNetworkEnabled = locationManager
                     .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-            if (!isGPSEnabled && !isNetworkEnabled) {
+            if (!isGPSEnabled ) {
                 // No network provider is enabled
             } else {
                 this.canGetLocation = true;
@@ -176,13 +178,16 @@ public class GPSTracker extends Service implements LocationListener {
         // On pressing the cancel button
         alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+
                 dialog.cancel();
+             //   SignOut();
             }
         });
 
-        // Showing Alert Message
-        alertDialog.show();
-    }
+    // Showing Alert Message
+    alertDialog.show();
+}
+
 
 
     @Override

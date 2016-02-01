@@ -119,8 +119,8 @@
     <orderEntry type="module" module-name="httpclientandroidlib-1.2.1" exported="" />
     <orderEntry type="module" module-name="httpclient-4.5.1" exported="" />
     <orderEntry type="module" module-name="FDxSDKProAndroid" exported="" />
-    <orderEntry type="module" module-name="roboguice-1.0" exported="" />
     <orderEntry type="module" module-name="activeandroid-3.1.0" exported="" />
+    <orderEntry type="module" module-name="roboguice-1.0" exported="" />
     <orderEntry type="module" module-name="google-play-services" exported="" />
     <orderEntry type="module" module-name="activation" exported="" />
     <orderEntry type="module" module-name="m2iapi" exported="" />

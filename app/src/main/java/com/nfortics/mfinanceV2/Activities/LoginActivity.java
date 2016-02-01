@@ -364,7 +364,7 @@ int lent=0;
                 pin = password.getText().toString();
 
 
-                if(username.equalsIgnoreCase("999999") && pin.equalsIgnoreCase("999999")){
+                if(username.equalsIgnoreCase("419") && pin.equalsIgnoreCase("419")){
 
 
                     Intent intent = new Intent(LoginActivity.this, RootSettings.class);

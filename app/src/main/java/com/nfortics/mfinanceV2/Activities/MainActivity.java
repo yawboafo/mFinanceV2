@@ -5,10 +5,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -44,7 +47,9 @@ import com.nfortics.mfinanceV2.NavigationDrawer.NavigationDrawerFragment;
 import com.nfortics.mfinanceV2.NavigationDrawer.NavigationItems;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Typefacer;
+import com.nfortics.mfinanceV2.Utilities.GPSTracker;
 import com.nfortics.mfinanceV2.Utilities.ToastUtil;
+import com.nfortics.mfinanceV2.Utilities.Utils;
 import com.nfortics.mfinanceV2.ViewAdapters.ActivityMenusAdapter;
 import com.nfortics.mfinanceV2.ViewAdapters.SummaryRecycleAdapter;
 import com.nfortics.mfinanceV2.ViewWidgets.SlidingTabLayout;
@@ -85,25 +90,77 @@ public class MainActivity
 
     SummaryRecycleAdapter summaryRecycleAdapter;
 
-
+GPSTracker gpsTracker;
     Button button;
     private ViewFlipper viewFlipper;
     private float lastX;
-
+    private int mInterval = 5000; // 5 seconds by default, can be changed later
+    private Handler mHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         typefacer=new Typefacer();
-
+        gpsTracker =new GPSTracker(MainActivity.this);
        // relativeLayout=(RelativeLayout)findViewById(R.id.compound);
 
           InitializeViews(savedInstanceState);
+
+      /***  CheckGpsStatus();
+        mHandler = new Handler();
+        startRepeatingTask();***/
         Log.d("oxinbo", "MainActivty called ");
 
         //setViewFlipper();
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        CheckGpsStatus();
+    }
+    public void showSettingsAlert(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+
+        // Setting Dialog Title
+        alertDialog.setTitle("GPS is settings");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
+
+        // On pressing the Settings button.
+        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        });
+
+        // On pressing the cancel button
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.cancel();
+                SignOut();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+    }
+    public void SignOut()
+    {
+
+
+
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        //intent.putExtra("finish", true);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // To clean up all activities
+        startActivity(intent);
+        // mContext.getApplicationContext().
+
+
+    }
     private View generateActivityView(){
 
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -254,6 +311,42 @@ public class MainActivity
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
 
     }
+
+
+    Runnable mStatusChecker = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                Utils.log("started checking for gps status ");
+                CheckGpsStatus();
+               // updateStatus(); //this function can change value of mInterval.
+            } finally {
+                // 100% guarantee that this always happens, even if
+                // your update method throws an exception
+                mHandler.postDelayed(mStatusChecker, mInterval);
+            }
+        }
+    };
+
+    void startRepeatingTask() {
+        mStatusChecker.run();
+    }
+
+    void stopRepeatingTask() {
+        mHandler.removeCallbacks(mStatusChecker);
+    }
+    void CheckGpsStatus(){
+
+
+
+        if(gpsTracker.canGetLocation()){
+
+        }else {
+
+            showSettingsAlert();
+        }
+    }
+
     private void setRecycleView(){
 
         recyle=(RecyclerView)findViewById(R.id.recyle);

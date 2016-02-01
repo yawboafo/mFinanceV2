@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.nfortics.mfinanceV2.Application.Application;
 import com.nfortics.mfinanceV2.Models.AppInstanceSettings;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Typefacer;
@@ -28,21 +29,47 @@ public class RootSettings extends AppCompatActivity {
     Toolbar toolbar;
     TextView toolbarTitle;
     Typefacer typefacer;
-
+    AppInstanceSettings appInstanceSettings ;
 
     TextView selectserver;
-
+    RadioButton staging,production,demo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_settings);
         typefacer=new Typefacer();
+        appInstanceSettings  =new AppInstanceSettings();
         selectserver=(TextView)findViewById(R.id.selectServer);
         selectserver.setTypeface(typefacer.squareMedium());
-        selectserver.setText("Select Server :     Current Server = ");
+        selectserver.setText("Select Server : ");
+        SetRadioButtons();
         setToolBar();
     }
 
+
+    void SetRadioButtons(){
+
+                staging=(RadioButton)findViewById(R.id.radio_staging);
+                 production=(RadioButton)findViewById(R.id.radio_production);
+                demo=(RadioButton)findViewById(R.id.radio_demo);
+
+        String serverMode= Application.ServerMode;
+
+  Utils.log("server mod " + serverMode);
+        if(serverMode!=null){
+
+            if (serverMode.equalsIgnoreCase("Production"))
+                production.setChecked(true);
+            if (serverMode.equalsIgnoreCase("Staging"))
+                staging.setChecked(true);
+            if (serverMode.equalsIgnoreCase("Demo"))
+                demo.setChecked(true);
+
+        }
+
+
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -70,7 +97,7 @@ public class RootSettings extends AppCompatActivity {
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        AppInstanceSettings appInstanceSettings  =new AppInstanceSettings();
+
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_production:
@@ -105,7 +132,19 @@ public class RootSettings extends AppCompatActivity {
             System.exit(0);
         }
     }
+    public void SignOut()
+    {
 
+
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        //intent.putExtra("finish", true);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // To clean up all activities
+        startActivity(intent);
+        finish();
+
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
