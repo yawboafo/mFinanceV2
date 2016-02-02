@@ -126,6 +126,7 @@ public class PageOne extends Fragment {
 
     public void alertSingleChoiceDevice(){
         final String[] mTestArray;
+
         mTestArray = getResources().getStringArray(R.array.deviceChoices);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -150,33 +151,37 @@ public class PageOne extends Fragment {
                            public void onClick(DialogInterface dialog, int id) {
                                // user clicked OK, so save the mSelectedItems results somewhere
                                // or return them to the component that opened the dialog
-
-                               int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                               Utils.log("" + mTestArray[selectedPosition]);
-
-
-                               try {
-                                   appInstanceSettings = Utils.ApplicationSettings();
-                               } catch (ClassNotFoundException e) {
-                                   e.printStackTrace();
-                               } catch (IOException e) {
-                                   e.printStackTrace();
-                               }
-                               appInstanceSettings.setDeviceType(mTestArray[selectedPosition]);
-
                                try {
 
-                                   Utils.insertAppInstanceSettings(appInstanceSettings);
+                                   int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                                   Utils.log("" + mTestArray[selectedPosition]);
+
+
+                                   try {
+                                       appInstanceSettings = Utils.ApplicationSettings();
+                                   } catch (ClassNotFoundException e) {
+                                       e.printStackTrace();
+                                   } catch (IOException e) {
+                                       e.printStackTrace();
+                                   }
+                                   appInstanceSettings.setDeviceType(mTestArray[selectedPosition]);
+
+                                   try {
+
+                                       Utils.insertAppInstanceSettings(appInstanceSettings);
+
+                                   } catch (Exception e) {
+                                       e.printStackTrace();
+
+                                   } finally {
+                                       Application.deviceType = mTestArray[selectedPosition];
+                                       deviceType.setText(Application.deviceType);
+                                   }
 
                                } catch (Exception e) {
-                                  e.printStackTrace();
 
-                               } finally {
-                                   Application.deviceType= mTestArray[selectedPosition];
-                                   deviceType.setText(Application.deviceType);
+
                                }
-
-
                                // ToastUtil.snackbar(coordinatorLayout, "" + selectedPosition);
 
                            }
