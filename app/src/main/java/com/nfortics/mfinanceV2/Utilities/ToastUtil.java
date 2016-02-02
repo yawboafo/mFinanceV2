@@ -1,6 +1,8 @@
 package com.nfortics.mfinanceV2.Utilities;
 
 import android.content.Context;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,4 +100,13 @@ public class ToastUtil {
 		customtoast.show();
 	}
 	**/
+
+
+	public static void snackbar(CoordinatorLayout coordinatorLayout,String value){
+
+		Snackbar snackbar = Snackbar
+				.make(coordinatorLayout, value, Snackbar.LENGTH_SHORT);
+	}
+
+
 }

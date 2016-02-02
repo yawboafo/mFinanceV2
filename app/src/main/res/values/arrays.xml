@@ -6,4 +6,21 @@
         <item>Phone Number</item>
 
     </string-array>
+    <string-array name="ServerChoices">
+
+        <item>Production</item>
+        <item>Staging</item>
+        <item>Demo</item>
+
+
+    </string-array>
+
+    <string-array name="deviceChoices">
+
+        <item>Phone</item>
+        <item>Secugen</item>
+        <item>Grabba</item>
+
+
+    </string-array>
 </resources>

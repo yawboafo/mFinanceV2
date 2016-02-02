@@ -9,6 +9,7 @@ public class AppInstanceSettings implements Serializable {
     private static final long serialVersionUID = 197969997898L;
 
     private String ServerMode;
+    private  String deviceType;
 
 
     public String getServerMode() {
@@ -17,5 +18,14 @@ public class AppInstanceSettings implements Serializable {
 
     public void setServerMode(String serverMode) {
         ServerMode = serverMode;
+    }
+
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
     }
 }

@@ -1599,19 +1599,29 @@ public class FieldCollectionActivity
     @Override
     protected void onResume() {
         super.onResume();
-        if (Utils.deviceIsGrabba()) {
-            Grabba.getInstance().addConnectionListener(grabbaConnectionListner);
-            Grabba.getInstance().acquireGrabba();
-        }
+
+
+
+        try{
+
+            if (Utils.deviceIsGrabba()) {
+                Grabba.getInstance().addConnectionListener(grabbaConnectionListner);
+                Grabba.getInstance().acquireGrabba();
+            }
+        }catch (Exception e){}
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (Utils.deviceIsGrabba()) {
-            Grabba.getInstance().addConnectionListener(grabbaConnectionListner);
-            Grabba.getInstance().acquireGrabba();
-        }
+        try{
+
+            if (Utils.deviceIsGrabba()) {
+                Grabba.getInstance().addConnectionListener(grabbaConnectionListner);
+                Grabba.getInstance().acquireGrabba();
+            }
+        }catch (Exception e){}
     }
 
     @Override

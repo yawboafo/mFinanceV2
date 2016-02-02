@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="2dp"
+    android:paddingLeft="2dp"
+    tools:context="com.nfortics.mfinanceV2.Fragments.RootSettingsPages.PageOne">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:padding="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_card"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/severlayout"
+        android:layout_margin="2dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:text="Production"
+            android:id="@+id/serverName"
+            android:textSize="16sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_below="@+id/selectedServer"
+            android:layout_alignRight="@+id/selectedServer"
+            android:layout_alignEnd="@+id/selectedServer" />
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Server"
+            android:padding="6dp"
+            android:textColor="#a8a8a8"
+            android:id="@+id/selectedServer"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+    <RelativeLayout
+         android:layout_below="@+id/severlayout"
+        android:layout_width="match_parent"
+        android:background="@drawable/bg_card"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/devicelayout"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:padding="6dp">
+
+
+        <TextView
+            android:textColor="#a8a8a8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Device"
+            android:id="@+id/deviceTxt"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:padding="6dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:id="@+id/deviceType"
+            android:textSize="16sp"
+            android:layout_below="@+id/deviceTxt"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:padding="6dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

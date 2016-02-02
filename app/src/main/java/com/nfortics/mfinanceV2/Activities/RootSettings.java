@@ -3,7 +3,15 @@ package com.nfortics.mfinanceV2.Activities;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,10 +22,19 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.nfortics.mfinanceV2.Application.Application;
+import com.nfortics.mfinanceV2.Fragments.RootSettingsPages.PageOne;
+import com.nfortics.mfinanceV2.Fragments.RootSettingsPages.PageOne.PageOneInteractionListener;
+import com.nfortics.mfinanceV2.Fragments.RootSettingsPages.PageTwo;
+import com.nfortics.mfinanceV2.Fragments.RootSettingsPages.PageTwo.PageTwoInteractionListener;
+import com.nfortics.mfinanceV2.Fragments.SettingsPages.ApplicationSettingsFrag;
+import com.nfortics.mfinanceV2.Fragments.SettingsPages.GeneralSettingsFrag;
+import com.nfortics.mfinanceV2.Fragments.SettingsPages.ProfileSettingsFrag;
 import com.nfortics.mfinanceV2.Models.AppInstanceSettings;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Typefacer;
+import com.nfortics.mfinanceV2.Utilities.ToastUtil;
 import com.nfortics.mfinanceV2.Utilities.Utils;
+import com.nfortics.mfinanceV2.ViewWidgets.SlidingTabLayout;
 
 import java.io.IOException;
 
@@ -25,7 +42,7 @@ import roboguice.inject.InjectView;
 
 
 
-public class RootSettings extends AppCompatActivity {
+public class RootSettings extends AppCompatActivity implements PageOneInteractionListener,PageTwoInteractionListener {
     Toolbar toolbar;
     TextView toolbarTitle;
     Typefacer typefacer;
@@ -33,20 +50,27 @@ public class RootSettings extends AppCompatActivity {
 
     TextView selectserver;
     RadioButton staging,production,demo;
+    private CoordinatorLayout coordinatorLayout;
+
+    ViewPager mPager;
+    SlidingTabLayout mTabs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_settings);
         typefacer=new Typefacer();
+        //coordinatorLayout = (CoordinatorLayout) findViewById(R.id.cordinate);
         appInstanceSettings  =new AppInstanceSettings();
-        selectserver=(TextView)findViewById(R.id.selectServer);
-        selectserver.setTypeface(typefacer.squareMedium());
-        selectserver.setText("Select Server : ");
-        SetRadioButtons();
+      //  selectserver=(TextView)findViewById(R.id.selectServer);
+      //  selectserver.setTypeface(typefacer.squareMedium());
+       // selectserver.setText("Select Server : ");
+       // SetRadioButtons();
         setToolBar();
+        setPagers();
+
     }
 
-
+/***
     void SetRadioButtons(){
 
                 staging=(RadioButton)findViewById(R.id.radio_staging);
@@ -70,12 +94,20 @@ public class RootSettings extends AppCompatActivity {
 
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_root_settings, menu);
-        return true;
-    }
+    ***/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void setToolBar(){
         toolbar=(Toolbar)findViewById(R.id.app_bar);
@@ -93,7 +125,7 @@ public class RootSettings extends AppCompatActivity {
 
     }
 
-
+/***
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -132,6 +164,8 @@ public class RootSettings extends AppCompatActivity {
             System.exit(0);
         }
     }
+
+    ***/
     public void SignOut()
     {
 
@@ -145,18 +179,109 @@ public class RootSettings extends AppCompatActivity {
 
 
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
+    private void setPagers(){
+        mPager = (ViewPager)findViewById(R.id.Viewpager);
+        mTabs = (SlidingTabLayout)findViewById(R.id.tabs);
+
+        mPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+        mTabs.setViewPager(mPager);
+    }
+
+
+
+    public void alertSingleChoiceItems(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(RootSettings.this);
+
+        // Set the dialog title
+        builder.setTitle("Choose One")
+
+                // specify the list array, the items to be selected by default (null for none),
+                // and the listener through which to receive call backs when items are selected
+                // again, R.array.choices were set in the resources res/values/strings.xml
+                .setSingleChoiceItems(R.array.ServerChoices, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        ToastUtil.snackbar(coordinatorLayout,""+arg1 );
+
+                    }
+
+                })
+
+                        // Set the action buttons
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // user clicked OK, so save the mSelectedItems results somewhere
+                        // or return them to the component that opened the dialog
+
+                        int selectedPosition = ((AlertDialog)dialog).getListView().getCheckedItemPosition();
+                        ToastUtil.snackbar(coordinatorLayout, "" + selectedPosition);
+
+                    }
+                })
+
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // removes the dialog from the screen
+
+                    }
+                })
+
+                .show();
+
+    }
+
+    @Override
+    public void PageOneInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void PageTwoInteraction(Uri uri) {
+
+    }
+
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+
+        Fragment fragment=null;
+        String tabs[];
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+            tabs = getResources().getStringArray(R.array.rootSettings);
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public Fragment getItem(int i) {
+
+            if(i==0)
+            {
+
+                // actionButton.setVisibility(View.GONE);
+                fragment=new PageOne();
+
+            }     if(i==1)
+            {
+                // actionButton.setVisibility(View.VISIBLE);
+                fragment=new PageTwo();
+
+            }
+
+            return fragment;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabs[position];
+        }
     }
 }

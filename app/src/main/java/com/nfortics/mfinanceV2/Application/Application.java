@@ -170,7 +170,7 @@ public class Application  extends GuiceApplication {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        deviceType = "phone";
+        DevicePredictor();
 
         try{
 
@@ -197,6 +197,30 @@ public class Application  extends GuiceApplication {
         Application.setCurrentActivityState("Application");
 
         Log.d("oxinbo", "current Activity " + com.nfortics.mfinanceV2.Application.Application.getCurrentActivityState());
+
+    }
+
+
+    private void DevicePredictor(){
+
+        AppInstanceSettings appInstanceSettings =null;
+
+
+        try {
+            try {
+                appInstanceSettings=  Utils.ApplicationSettings();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+
+
+
+        }finally {
+            deviceType=appInstanceSettings.getDeviceType()==null?"phone":appInstanceSettings.getDeviceType();
+        }
+
 
     }
 

@@ -32,7 +32,12 @@
 
     </string-array>
 
+    <string-array name="rootSettings">
+        <item>General</item>
+        <item>Root</item>
+        <item>Application</item>
 
+    </string-array>
 
 
 
