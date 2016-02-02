@@ -1,0 +1,131 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    tools:context="com.nfortics.mfinanceV2.Activities.CustomerActivity">
+
+
+    <RelativeLayout
+        android:padding="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout"
+        android:layout_below="@+id/relativeLayout5">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/customrDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:padding="2dp">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/fab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            fab:menu_fab_size="normal"
+            fab:menu_colorNormal="#1565C0"
+            fab:menu_backgroundColor="#ccffffff"
+            fab:menu_colorPressed="#2272CD"
+            fab:menu_colorRipple="#62B2FF"
+
+            fab:menu_icon="@drawable/plus"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            fab:menu_animationDelayPerItem="0"
+            fab:menu_labels_ellipsize="end"
+            fab:menu_labels_singleLine="true"
+            fab:menu_fab_label=""
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1"
+
+        android:layout_margin="0dp"
+        android:id="@+id/relativeLayout5">
+
+        <EditText
+            android:background="@drawable/edittextstyleone"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:id="@+id/edtSearch"
+            android:hint="@string/searchCustomer"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/filterButton"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_toLeftOf="@+id/searchButton"
+            android:layout_toStartOf="@+id/searchButton" />
+
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:id="@+id/filterTypespinner"
+            android:entries="@array/spinnerItems"
+            android:layout_alignTop="@+id/edtSearch"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:spinnerMode="dialog"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:src="@drawable/search"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:id="@+id/searchButton"
+            android:scaleType="centerCrop"
+            android:layout_alignTop="@+id/edtSearch"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="9dp" />
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:src="@drawable/filter"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:id="@+id/filterButton"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/filterTypespinner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@+id/edtSearch"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/linearLayout2"
+            android:background="#194e9a"></LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@drawable/recycle_row_selector_row"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:id="@+id/relativeLayout4">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:color/transparent"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@android:color/transparent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="9dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="John Don"
+        android:id="@+id/txtCutomerName"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/profile_image"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Primary Phone No."
+        android:id="@+id/txtCustomerPhonelabel"
+        android:layout_below="@+id/txtCutomerName"
+        android:layout_alignLeft="@+id/txtCutomerName"
+        android:layout_alignStart="@+id/txtCutomerName"
+        android:layout_marginTop="3dp"
+        android:textSize="13dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="233240088705"
+        android:id="@+id/txtCustomerPhonevalue"
+        android:layout_above="@+id/txtCustomerPhonelabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/txtCutomerName"
+        android:layout_toEndOf="@+id/txtCustomerPhonevalue"
+        android:layout_toRightOf="@+id/txtCustomerPhonevalue"
+        android:id="@+id/popmenu"
+        android:visibility="gone"
+        android:layout_alignBottom="@+id/profile_image">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imgpopupmenu"
+            android:src="@drawable/popupmenu"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/txtcustomerid"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/popmenu"
+        android:layout_toStartOf="@+id/popmenu"
+        android:visibility="gone" />
+
+</RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="600dp"
+        android:layout_height="0.2dp"
+        android:background="#87959595"
+        android:layout_alignLeft="@+id/relativeLayout4"
+        android:layout_alignStart="@+id/relativeLayout4"
+        android:layout_marginLeft="56dp"
+        android:layout_marginStart="56dp"
+        android:layout_below="@+id/relativeLayout4"
+        android:layout_alignRight="@+id/relativeLayout4"
+        android:layout_alignEnd="@+id/relativeLayout4"></LinearLayout>
+</RelativeLayout>
