@@ -524,7 +524,7 @@ public abstract class
 
             case 6:
                 com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("ActivitySetting");
-                intent = new Intent(this, ActivitySetting.class);
+                intent = new Intent(this, AppSettings.class);
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent,bndlanimation);

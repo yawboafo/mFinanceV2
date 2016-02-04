@@ -66,6 +66,12 @@
     <!-- Do not modify - internal socket background service -->
     <service android:name="me.pushy.sdk.services.PushySocketService" />
 
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
     <!-- End Pushy Declarations -->
     <application
         android:name=".Application.Application"
@@ -215,20 +221,16 @@
         <activity
             android:name=".Activities.RootSettings"
             android:label="@string/title_activity_root_settings"
-
             android:parentActivityName=".Activities.LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.LoginActivity" />
-
             >
+        </activity>
+        <activity
+            android:name=".Activities.AppSettings"
+            android:label="@string/title_activity_app_settings" >
         </activity>
     </application>
 
-
-    <supports-screens android:smallScreens="true"
-        android:normalScreens="true"
-        android:largeScreens="true"
-        android:xlargeScreens="true"
-        android:anyDensity="true" />
 </manifest>

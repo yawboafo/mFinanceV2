@@ -167,6 +167,7 @@
     <string name="printBalance">Print Balance</string>
     <string name="sendOvrSms">Send Over SMS</string>
     <string name="searchCustomer">Search for a customer</string>
+    <string name="title_activity_app_settings">AppSettings</string>
 
 
 </resources>
