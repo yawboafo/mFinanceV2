@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="AppTheme.Base">
         <!-- Customize your theme here. -->
     </style>
+
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
@@ -50,10 +51,10 @@
     </style>
 
 
-
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         //hint color And Label Color in False State
-      //<item name="android:textColorHint">@color/accent</item>
+        //
+        <item name="android:textColorHint">@color/accent</item>
 
         //Label color in True State And Bar Color False And True State
         <item name="colorAccent">@color/accent</item>
@@ -88,7 +89,6 @@
     </style>
 
 
-
     <style name="blueButton" parent="@android:style/Widget.Button">
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
@@ -100,6 +100,7 @@
         <item name="android:background">@drawable/blue_button</item>
         <item name="android:padding">8dip</item>
     </style>
+
     <style name="FabMargin">
         <item name="android:layout_marginLeft">8dp</item>
         <item name="android:layout_marginTop">8dp</item>
@@ -129,11 +130,14 @@
     </style>
 
 
+    <style name="DialogAnimationOutUpInUp">
+        <item name="android:windowEnterAnimation">@anim/slide_in_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_up</item>
+    </style>
 
-        <style name="DialogAnimationOutUpInUp">
-            <item name="android:windowEnterAnimation">@anim/slide_in_up</item>
-            <item name="android:windowExitAnimation">@anim/slide_out_up</item>
-        </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>

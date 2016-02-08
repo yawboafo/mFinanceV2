@@ -15,7 +15,7 @@ import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Typefacer;
 
 public class CustomerDetails extends AppCompatActivity {
-Toolbar toolbar;
+    Toolbar toolbar;
     TextView toolbarTitle;
     Typefacer typefacer;
 

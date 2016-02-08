@@ -40,10 +40,7 @@
     </string-array>
 
 
-
-
-
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="collection_type">
         <item>Deposit</item>
         <item>Loan Repayment</item>
@@ -65,9 +62,7 @@
         <item>Finger Print</item>
 
 
-
     </string-array>
-
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -94,14 +89,11 @@
     <string name="StagingServerUrl1">http://staging.mbackofficehq.com/hooks/mobisusu/apps/v1/</string>
 
 
-
-
     <string name="ProductionServerUrl2">http://mbackofficehq.com/hooks/mobisusu/apps/v2/</string>
     <string name="DemoServerUrl2">http://demo.mbackofficehq.com/hooks/mobisusu/apps/v2/</string>
     <string name="StagingServerUrl2">http://staging.mbackofficehq.com/hooks/mobisusu/apps/v2/</string>
 
     <string name="AirtimeServerUrl">http://198.50.103.178/airtime/api/</string>
-
 
 
     <string name="serverUrl3">http://198.50.103.178/airtime/api/</string>
@@ -168,6 +160,7 @@
     <string name="sendOvrSms">Send Over SMS</string>
     <string name="searchCustomer">Search for a customer</string>
     <string name="title_activity_app_settings">AppSettings</string>
+    <string name="title_activity_personal_details">PersonalDetails</string>
 
 
 </resources>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whitesmoker"
-    tools:context="com.nfortics.mfinanceV2.Activities.AppSettings">
+    tools:context=".Activities.AppSettings">
 
     <RelativeLayout
         android:layout_width="match_parent"
