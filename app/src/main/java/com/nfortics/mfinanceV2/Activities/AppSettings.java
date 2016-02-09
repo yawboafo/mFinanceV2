@@ -71,30 +71,35 @@ public class AppSettings extends BaseActivity {
             case PICK_IMAGE_ID:
                 Bitmap bitmap = ImagePicker.getImageFromResult(this, resultCode, data);
 
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
+                if(bitmap!=null){
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-                Agent agent = new Agent();
-                agent.setProfile_pics(byteArray);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
 
-                try {
-                    Utils.insertAgentData(agent);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }finally {
-                    final Bitmap aa = BitmapFactory.decodeByteArray(byteArray, 0,
-                            byteArray.length);
+                    Agent agent = new Agent();
+                    agent.setProfile_pics(byteArray);
+
+                    try {
+                        Utils.insertAgentData(agent);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }finally {
+                        final Bitmap aa = BitmapFactory.decodeByteArray(byteArray, 0,
+                                byteArray.length);
 
 
-                    profile_image.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            profile_image.setImageBitmap(aa);
+                        profile_image.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                profile_image.setImageBitmap(aa);
 
-                        }
-                    });
+                            }
+                        });
+                    }
+
+
                 }
 
 
