@@ -43,6 +43,7 @@
             android:layout_alignEnd="@+id/settingsTitle"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="14dp"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_marginRight="8dp" />
     </RelativeLayout>
 </LinearLayout>

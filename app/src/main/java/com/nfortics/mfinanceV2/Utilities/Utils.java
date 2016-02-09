@@ -47,7 +47,9 @@ import java.io.OptionalDataException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -61,6 +63,17 @@ public class Utils {
 
 
     // GeneralSettings  generalSettings;
+
+
+
+    public static String getCurrentDate(){
+
+        String Datetime="";
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm a");
+        Datetime = dateformat.format(c.getTime());
+        return Datetime;
+    }
 
     public static boolean deviceIsPhone() {
         if (Application.deviceType.equalsIgnoreCase("phone")) {

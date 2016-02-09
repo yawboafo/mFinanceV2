@@ -20,10 +20,14 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nfortics.mfinanceV2.Activities.SettingsItemsActivity.AdvanceFeatures;
 import com.nfortics.mfinanceV2.Activities.SettingsItemsActivity.ContactDetails;
+import com.nfortics.mfinanceV2.Activities.SettingsItemsActivity.Device;
 import com.nfortics.mfinanceV2.Activities.SettingsItemsActivity.PersonalDetails;
+import com.nfortics.mfinanceV2.Activities.SettingsItemsActivity.Security;
 import com.nfortics.mfinanceV2.Models.Agent;
 import com.nfortics.mfinanceV2.Models.SettingsList;
+import com.nfortics.mfinanceV2.Models.User;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Typefacer;
 import com.nfortics.mfinanceV2.Utilities.ImagePicker;
@@ -40,7 +44,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AppSettings extends BaseActivity {
     CircleImageView profile_image;
     ListView listView;
+    TextView textViewUserLog,agentLastlogin;
     Typefacer typefacer;
+    User user;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +60,35 @@ public class AppSettings extends BaseActivity {
     getSupportActionBar().setTitle("");
     relativeLayout=(RelativeLayout)findViewById(R.id.compound);
 
-    view=generateActivityView();
+       view=generateActivityView();
         AgentProfileImages();
         generatListView();
-
+        loadSetUserAgent();
     relativeLayout.removeAllViews();
 
     relativeLayout.addView(view);
 
     //setContentView(R.layout.settings_activity);
 }
+
+    void loadSetUserAgent(){
+        textViewUserLog=(TextView)view.findViewById(R.id.agentLog);
+        agentLastlogin=(TextView)view.findViewById(R.id.agentLastlogin);
+        textViewUserLog.setTypeface(typefacer.squareRegular());
+        agentLastlogin.setTypeface(typefacer.squareLight());
+        textViewUserLog.setText("Don Robot");
+        user=User.load(User.class,1);
+
+        if(user!=null){
+            textViewUserLog.setText(""+user.getFirstName());
+            if(user.getLastLoginTs()==null){
+                agentLastlogin.setText(Utils.getCurrentDate());
+            }else {
+                agentLastlogin.setText("Last Login : "+user.getLastLoginTs());
+            }
+        }
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -141,6 +166,43 @@ public class AppSettings extends BaseActivity {
 
                     // com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("ActivitySetting");
                     Intent intent = new Intent(AppSettings.this, PersonalDetails.class);
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+
+                    // openContactCard();
+                    //openWhatsApp("+233209361021@s.whatsapp.net");
+                }
+
+                if (txt.getText().toString().equalsIgnoreCase("Security")) {
+
+
+                    // com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("ActivitySetting");
+                    Intent intent = new Intent(AppSettings.this, Security.class);
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+
+                    // openContactCard();
+                    //openWhatsApp("+233209361021@s.whatsapp.net");
+                }
+                if (txt.getText().toString().equalsIgnoreCase("Device")) {
+
+
+                    // com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("ActivitySetting");
+                    Intent intent = new Intent(AppSettings.this, Device.class);
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+
+                    // openContactCard();
+                    //openWhatsApp("+233209361021@s.whatsapp.net");
+                }
+                if (txt.getText().toString().equalsIgnoreCase("Advance Features")) {
+
+
+                    // com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("ActivitySetting");
+                    Intent intent = new Intent(AppSettings.this, AdvanceFeatures.class);
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);

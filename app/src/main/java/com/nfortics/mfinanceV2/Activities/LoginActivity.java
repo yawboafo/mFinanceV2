@@ -61,6 +61,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -158,6 +159,8 @@ public class LoginActivity extends GuiceActivity implements View.OnClickListener
         padLabels();
 
     }
+
+
     public boolean contactExists(Activity _activity, String number) {
         if (number != null) {
             Uri lookupUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
@@ -568,7 +571,8 @@ int lent=0;
                     } else {
 
                         Application.setActiveAgent(newUser);
-
+                       // newUser.setLastLoginTs();
+                        Utils.log("curent date : "+Utils.getCurrentDate());
                         Intent myIntent=new Intent(LoginActivity.this,MainActivity.class);
                         myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         myIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -1272,6 +1276,15 @@ int lent=0;
                 } else {
 
                     Application.setActiveAgent(newUser);
+
+                    try{
+                        newUser.setLastLoginTs(Utils.getCurrentDate());
+                        newUser.save();
+                        Utils.log("curent date : " + Utils.getCurrentDate());
+
+                    }catch (Exception e){
+
+                    }
 
                     Intent myIntent=new Intent(LoginActivity.this,MainActivity.class);
                     myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

@@ -8,11 +8,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/relativeLayout14">
+        android:id="@+id/relativeLayout14"
+        android:padding="4dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:src="@drawable/profile_avator"
@@ -21,19 +22,35 @@
             android:id="@+id/agentImage"
             app:civ_border_width="2dp"
             app:civ_border_color="@android:color/white"
-            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_margin="10dp" />
+            android:layout_marginTop="15dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
             android:id="@+id/agentLog"
             android:layout_below="@+id/agentImage"
             android:layout_centerHorizontal="true"
-            android:layout_margin="2dp" />
+            android:layout_margin="2dp"
+            android:textSize="12sp"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/agentLastlogin"
+            android:layout_below="@+id/agentLog"
+            android:layout_alignLeft="@+id/agentLog"
+            android:layout_alignStart="@+id/agentLog"
+            android:textSize="10sp"
+            android:layout_alignRight="@+id/agentLog"
+            android:layout_alignEnd="@+id/agentLog"
+            android:gravity="center" />
     </RelativeLayout>
 
     <RelativeLayout

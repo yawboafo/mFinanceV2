@@ -111,15 +111,15 @@ public class ContactDetails extends AppCompatActivity {
     public static List<SettingsList> getData() {
 
         String[] Titles={
+                "Chat",
                 "Voice Call 1",
                 "Voice Call 2",
-                "Chat",
                 "Email"};
 
         String[] Desscrip={
+                "Chat With Us",
                 "Call mFinance Support Line One",
                 "Call mFinance Support Line Two",
-                "Chat With Us",
                 "Send Us  mail"};
 
         Integer[] menuIcons = {

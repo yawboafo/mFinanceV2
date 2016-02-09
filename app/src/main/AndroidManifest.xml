@@ -231,7 +231,28 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.AppSettings" />
         </activity>
-        <activity android:name=".Activities.SettingsItemsActivity.contact_details"></activity>
+        <activity android:name=".Activities.SettingsItemsActivity.contact_details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.AppSettings" />
+        </activity>
+        <activity android:name=".Activities.SettingsItemsActivity.Security">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.AppSettings" />
+        </activity>
+        <activity android:name=".Activities.SettingsItemsActivity.Device">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.AppSettings" />
+        </activity>
+        <activity android:name=".Activities.SettingsItemsActivity.AdvanceFeatures">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.AppSettings" />
+
+
+        </activity>
     </application>
 
 </manifest>

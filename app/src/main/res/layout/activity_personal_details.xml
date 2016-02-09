@@ -12,7 +12,11 @@
 
     </include>
 
-    <include layout="@layout/content_personal_details" />
+    <include layout="@layout/content_personal_details" >
+
+
+
+    </include>
 
 
 
