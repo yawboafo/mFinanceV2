@@ -161,6 +161,8 @@
     <string name="searchCustomer">Search for a customer</string>
     <string name="title_activity_app_settings">AppSettings</string>
     <string name="title_activity_personal_details">PersonalDetails</string>
+    <string name="title_activity_contact_details">ContactDetails</string>
+    <string name="pick_image_intent_text">pick image</string>
 
 
 </resources>

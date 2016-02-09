@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="reset">Reset</string>
-    <string name="ok">Ok</string>
     <string name="pick_image_intent_text">pick image</string>
 </resources>

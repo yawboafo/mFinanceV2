@@ -117,7 +117,7 @@ GPSTracker gpsTracker;
     @Override
     protected void onResume() {
         super.onResume();
-        CheckGpsStatus();
+        //CheckGpsStatus();
     }
     public void showSettingsAlert(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);

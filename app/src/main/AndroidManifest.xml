@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -103,72 +104,72 @@
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/title_activity_main"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.BaseActivity2"
             android:label="@string/title_activity_base2"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Activities.FieldCollectionActivity"
             android:label="@string/title_activity_field_collection"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.MenuActivities.CustomersMenuActivity"
             android:label="@string/title_activity_customers_menu"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.OnBoardCustomerActivity"
             android:label="@string/title_activity_on_board_customer"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SignatureActivity"
             android:label="@string/title_activity_signature"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.FingerPrintCaptureActivity"
             android:label="@string/title_activity_finger_print"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.MenuActivities.FieldCollectionMenuActivity"
             android:label="@string/title_activity_field_collection_menu"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.MenuActivities.FieldBankingMenuActivity"
             android:label="@string/title_activity_field_banking_menu"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.CustomerActivity"
             android:label="@string/title_activity_customer"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.BalancenquiryActivity"
             android:label="@string/title_activity_balancenquiry"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.MenuActivities.MobileVasActivityMenu"
             android:label="@string/title_activity_mobile_vas"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.MenuActivities.RiskIQActivityMenu"
             android:label="@string/title_activity_risk_iqactivity_menu"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SettingActive"
             android:label="@string/title_activity_setting_active"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.ActivitySetting"
             android:label="@string/title_activity_activity_setting"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Signature.SignaturePad"
             android:label="@string/title_activity_signature_pad"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.CustomerDetails"
             android:label="@string/title_activity_customer_details"
@@ -180,7 +181,7 @@
 
         <service
             android:name=".Services.VolleyServices"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name=".Services.OnBoardDataService"
             android:enabled="true" />
@@ -210,11 +211,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.LoginActivity" />
-
         </activity>
         <activity
             android:name=".Activities.AppSettings"
-            android:label="@string/title_activity_app_settings"></activity>
+            android:label="@string/title_activity_app_settings" />
         <activity
             android:name=".Activities.SettingsItemsActivity.PersonalDetails"
             android:label="@string/title_activity_personal_details"
@@ -222,9 +222,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.AppSettings" />
-
-
         </activity>
+        <activity
+            android:name=".Activities.SettingsItemsActivity.ContactDetails"
+            android:label="@string/title_activity_contact_details"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.AppSettings" />
+        </activity>
+        <activity android:name=".Activities.SettingsItemsActivity.contact_details"></activity>
     </application>
 
 </manifest>

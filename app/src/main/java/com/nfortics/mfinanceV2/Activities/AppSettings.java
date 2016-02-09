@@ -1,12 +1,17 @@
 package com.nfortics.mfinanceV2.Activities;
 
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +20,28 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nfortics.mfinanceV2.Activities.SettingsItemsActivity.ContactDetails;
 import com.nfortics.mfinanceV2.Activities.SettingsItemsActivity.PersonalDetails;
+import com.nfortics.mfinanceV2.Models.Agent;
 import com.nfortics.mfinanceV2.Models.SettingsList;
 import com.nfortics.mfinanceV2.R;
 import com.nfortics.mfinanceV2.Typefacer;
+import com.nfortics.mfinanceV2.Utilities.ImagePicker;
+import com.nfortics.mfinanceV2.Utilities.Utils;
 import com.nfortics.mfinanceV2.ViewAdapters.SettingsListAdapter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppSettings extends BaseActivity {
+import de.hdodenhof.circleimageview.CircleImageView;
 
+public class AppSettings extends BaseActivity {
+    CircleImageView profile_image;
     ListView listView;
     Typefacer typefacer;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +55,7 @@ public class AppSettings extends BaseActivity {
     relativeLayout=(RelativeLayout)findViewById(R.id.compound);
 
     view=generateActivityView();
+        AgentProfileImages();
         generatListView();
 
     relativeLayout.removeAllViews();
@@ -50,7 +65,53 @@ public class AppSettings extends BaseActivity {
     //setContentView(R.layout.settings_activity);
 }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case PICK_IMAGE_ID:
+                Bitmap bitmap = ImagePicker.getImageFromResult(this, resultCode, data);
 
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+
+                Agent agent = new Agent();
+                agent.setProfile_pics(byteArray);
+
+                try {
+                    Utils.insertAgentData(agent);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    final Bitmap aa = BitmapFactory.decodeByteArray(byteArray, 0,
+                            byteArray.length);
+
+
+                    profile_image.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            profile_image.setImageBitmap(aa);
+
+                        }
+                    });
+                }
+
+
+                // TODO use bitmap
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+                break;
+        }
+    }
+
+    private static final int PICK_IMAGE_ID = 234; // the number doesn't matter
+
+    public void onPickImage() {
+        Intent chooseImageIntent = ImagePicker.getPickImageIntent(this);
+        startActivityForResult(chooseImageIntent, PICK_IMAGE_ID);
+    }
     private void  generatListView(){
 
         listView =(ListView)view.findViewById(R.id.settingsList);
@@ -63,28 +124,70 @@ public class AppSettings extends BaseActivity {
                 TextView txt = (TextView) view.findViewById(R.id.settingsTitle);
                 if (txt.getText().toString().equalsIgnoreCase("Contact Support")) {
 
+                    Intent sendIntent = new Intent(AppSettings.this, ContactDetails.class);
 
-                    openContactCard();
+                    startActivity(sendIntent);
+                    //  openContactCard();
                     //openWhatsApp("+233209361021@s.whatsapp.net");
                 }
 
                 if (txt.getText().toString().equalsIgnoreCase("Personal Details")) {
 
 
-                   // com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("ActivitySetting");
+                    // com.nfortics.mfinanceV2.Application.Application.setCurrentActivityState("ActivitySetting");
                     Intent intent = new Intent(AppSettings.this, PersonalDetails.class);
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
 
-                   // openContactCard();
+                    // openContactCard();
                     //openWhatsApp("+233209361021@s.whatsapp.net");
                 }
 
             }
         });
     }
+    void AgentProfileImages(){
+        profile_image=(CircleImageView)view.findViewById(R.id.agentImage);
+            profile_image.post(new Runnable() {
+                @Override
+                public void run() {
 
+                    try {
+                        Agent agent = Utils.AgentData();
+
+                        if (agent.getProfile_pics() != null) {
+
+
+                            final Bitmap bitmap = BitmapFactory.decodeByteArray(agent.getProfile_pics(), 0,
+                                    agent.getProfile_pics().length);
+
+                            profile_image.setImageBitmap(bitmap);
+                        }
+
+
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+
+       profile_image.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               onPickImage();
+
+           }
+       });
+
+
+
+
+
+   }
 
 
     private void  openContactCard(){
@@ -108,6 +211,19 @@ public class AppSettings extends BaseActivity {
         intent.setData(uri);
         startActivity(intent);***/
 
+
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(getContactId()));
+        intent.setData(uri);
+       startActivity(intent);
+
+    }
+
+    String getContactId(){
+
+
+        String contactID="";
         ContentResolver contentResolver = getContentResolver();
 
         Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode("233240088705"));
@@ -125,13 +241,14 @@ public class AppSettings extends BaseActivity {
         if(cursor!=null) {
             while(cursor.moveToNext()){
                 String contactName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup.DISPLAY_NAME));
-                String contactId = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup._ID));
+                contactID = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup._ID));
                 Log.d("oxinbo", "contactMatch name: " + contactName);
-                Log.d("xinbo", "contactMatch id: " + contactId);
+                Log.d("xinbo", "contactMatch id: " + contactID);
             }
             cursor.close();
         }
 
+        return contactID;
     }
     private void openWhatsApp(String id) {
 
@@ -143,6 +260,13 @@ public class AppSettings extends BaseActivity {
 
         startActivity(i);
         c.close();
+
+
+
+        Intent sendIntent = new Intent(this, ContactDetails.class);
+
+        startActivity(sendIntent);
+
     }
     private View generateActivityView(){
 
@@ -166,7 +290,7 @@ public class AppSettings extends BaseActivity {
                 "Set and save your security settings",
                 "Pair your device with printers,bio scanner etc",
                 "Update profile,check location,transaction limits etc",
-                "Update profile,check location,transaction limits etc"};
+                "We Are Listening"};
 
         Integer[] menuIcons = {
                 R.drawable.identitycheck,
