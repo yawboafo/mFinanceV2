@@ -109,49 +109,11 @@ public class SummaryRecycleAdapter extends RecyclerView.Adapter<SummaryRecycleVi
 
                 break;
 
-            case "MOBILE MONEY" :
-                holder.txtAllactive.setText(value);
-                holder.txtCustomerAmt.setText("GHs 9,000");
-                holder.txtcustomerLabel.setText("Cash-In");
-
-                holder.txtAmount.setText("GHs 129,081.0");
-                holder.txtCashHand.setText("Cash-Out");
-
-                holder.unsyncedItems.setText("");
-                holder.unsyncedlayout.setVisibility(View.INVISIBLE);
-                break;
-
-            case "AIRTIME" :
-                holder.txtAllactive.setText(value);
-                holder.txtCustomerAmt.setText("0");
-                holder.txtcustomerLabel.setText("Customers");
-
-                holder.txtAmount.setText("GHs 100,000");
-                holder.txtCashHand.setText("Airtime Sales");
-
-                holder.unsyncedItems.setText("");
-
-                holder.unsyncedlayout.setVisibility(View.INVISIBLE);
-
-                break;
 
 
 
-            case "BILL PAY" :
-                holder.txtAllactive.setText(value);
-                holder.txtCustomerAmt.setText("0");
-                holder.txtcustomerLabel.setText("Customers");
 
-                holder.txtAmount.setText("GHs 100,000");
-                holder.txtCashHand.setText("Payments");
-
-                holder.unsyncedItems.setText("");
-
-                holder.unsyncedlayout.setVisibility(View.INVISIBLE);
-                break;
-
-
-            case "WITHDRAWALS" :
+            case "CASH-OUT" :
                 holder.txtAllactive.setText(value);
                 holder.txtCustomerAmt.setText("0");
                 holder.txtcustomerLabel.setText("Customers");
@@ -167,7 +129,7 @@ public class SummaryRecycleAdapter extends RecyclerView.Adapter<SummaryRecycleVi
 
 
 
-            case "DEPOSITS" :
+            case "CASH-IN" :
                 holder.txtAllactive.setText(value);
                 holder.txtCustomerAmt.setText("0");
                 holder.txtcustomerLabel.setText("Customers");

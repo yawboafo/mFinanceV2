@@ -350,21 +350,21 @@ public class AppSettings extends BaseActivity {
                 "Security",
                 "Device",
                 "Advance Features",
-                "Contact Support"};
+                "Contact Support","Commissions"};
 
         String[] Desscrip={
                 "Add or update your personal details",
                 "Set and save your security settings",
                 "Pair your device with printers,bio scanner etc",
                 "Update profile,check location,transaction limits etc",
-                "We Are Listening"};
+                "We Are Listening","View your commission "};
 
         Integer[] menuIcons = {
                 R.drawable.identitycheck,
                 R.drawable.verify,
                 R.drawable.identitycheck,
                 R.drawable.verify,
-                R.drawable.verify
+                R.drawable.verify, R.drawable.identitycheck
 
         };
 

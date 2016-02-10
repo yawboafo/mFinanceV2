@@ -354,11 +354,8 @@ GPSTracker gpsTracker;
 
         List<String> values=new ArrayList<>();
         values.add("All ACTIVITIES");
-        values.add("DEPOSITS");
-        values.add("WITHDRAWALS");
-        values.add("MOBILE MONEY");
-        values.add("AIRTIME");
-        values.add("BILL PAY");
+        values.add("CASH-IN");
+        values.add("CASH-OUT");
         values.add("CUSTOMERS");
         summaryRecycleAdapter=new SummaryRecycleAdapter(MainActivity.this,values);
         RecyclerView.LayoutManager mlayout=new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false);

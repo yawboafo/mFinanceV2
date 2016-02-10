@@ -63,6 +63,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import roboguice.activity.GuiceActivity;
@@ -946,9 +947,25 @@ int lent=0;
 
 
             }
-        }) {
 
+        }
+
+
+        ) {
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                Map headers = new HashMap();
+                headers.put("MFinance-Access-Token", "MYAPP_ID_HERE");
+                headers.put("Accept", "MYAPP_ID_HERE");
+                headers.put("MFinance-Terminal-ID", "MYAPP_ID_HERE");
+                headers.put("MFinance-Agent-ID", "MYAPP_ID_HERE");
+                headers.put("MFinance-Account-Code", "MYAPP_ID_HERE");
+                headers.put("User-Agent", "MYAPP_ID_HERE");
+                return headers;
+            }
         };
+
+
         /*** int socketTimeout = 240000000;//4 minutes - change to what you want
          RetryPolicy policy = new DefaultRetryPolicy(
          socketTimeout,

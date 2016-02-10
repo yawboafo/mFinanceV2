@@ -23,7 +23,7 @@ public class PersonalDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_details);
+        setContentView(R.layout.activity_personal_details2);
 
 
         typefacer=new Typefacer();

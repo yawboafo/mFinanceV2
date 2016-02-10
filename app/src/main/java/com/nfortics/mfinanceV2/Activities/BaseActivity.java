@@ -428,8 +428,8 @@ public abstract class
                     setActiveMerchant(selectedMerchant);
 
                     generalSettings.setActivemerchant(Merchant.getMerchantByName(selectedMerchant));
-                    toolbarTitle.setText(generalSettings.getActivemerchant().getName());
-                    saveSettingsInstance(generalSettings,GeneralSettings.class);
+                    toolbarTitle.setText(""+Merchant.getActiveMerchant("true").getName());
+//                    saveSettingsInstance(generalSettings,GeneralSettings.class);
                 }catch(Exception e){
 
 
