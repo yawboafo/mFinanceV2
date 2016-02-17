@@ -300,7 +300,7 @@ public class OnBoardCustomerActivity
         Bundle intent=getIntent().getExtras();
         if(intent!=null){
 
-             value=intent.getString("type");
+            value=intent.getString("type");
         }
 
         displaymetrics=new DisplayMetrics();
@@ -308,15 +308,15 @@ public class OnBoardCustomerActivity
         screenHeight=displaymetrics.heightPixels;
         screenWeight=displaymetrics.widthPixels;
 
-         counter=  Application.getPicturesImageMap().size();
-         view=generateActivityView();
+        counter=  Application.getPicturesImageMap().size();
+        view=generateActivityView();
         inflator = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         relativeLayout=(RelativeLayout)findViewById(R.id.compound);
 
-         dipHeight=relativeLayout.getHeight();
+        dipHeight=relativeLayout.getHeight();
 
         Application.fragmentManager=this.getSupportFragmentManager();
-         valueInDp= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 440, getResources().getDisplayMetrics());
+        valueInDp= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 440, getResources().getDisplayMetrics());
 
 
         getSupportActionBar().setTitle("");
@@ -329,14 +329,14 @@ public class OnBoardCustomerActivity
 
         addButton2layout();
         //relativeLayout.requestFocus();
-       // Log.d("oxinbo","tag size  is == "+tags.size());
+        // Log.d("oxinbo","tag size  is == "+tags.size());
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(200, 200);
-        // imageView2.setLayoutParams(layoutParams);
+
+
         Bitmap bitmap=null;
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_PICTURE_REQUEST) {
@@ -345,14 +345,6 @@ public class OnBoardCustomerActivity
 
 
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
-
-
-
-
-
-                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-
 
                     Application.getGalleryImages().put(Application.activePictureLabel, imageBitmap);
                     Application. basse64Images.put(Application.activePictureLabel, getBase64Bytes(imageBitmap));
@@ -389,7 +381,7 @@ public class OnBoardCustomerActivity
                     final Uri photoUri = data.getData();
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
 
-                   // ImageView imageView2 =(ImageView)relativeLayout.findViewWithTag(generalSettings.getGetCurrentImageTag());
+                    // ImageView imageView2 =(ImageView)relativeLayout.findViewWithTag(generalSettings.getGetCurrentImageTag());
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
 
@@ -513,7 +505,7 @@ public class OnBoardCustomerActivity
                 break;
             case "multioptions":
                 value="mul_"+tag;
-             break;
+                break;
             case "gender":
                 value="gen_"+tag;
                 break;
@@ -537,136 +529,136 @@ public class OnBoardCustomerActivity
     protected FormWidget getWidget( String name, JSONObject property ) {
 
 
-                  try
-                {
+        try
+        {
 
 
 
-        String type = property.getString(SCHEMA_KEY_TYPE);
-        String tag = property.getString(SCHEMA_KEY_TAG );
-       // tags.add(generateTag(type,tag));
+            String type = property.getString(SCHEMA_KEY_TYPE);
+            String tag = property.getString(SCHEMA_KEY_TAG );
+            // tags.add(generateTag(type,tag));
 
 
-        if(type.equals(SCHEMA_KEY_MASTERPICS)){
-            try{
-                return new FormMasterPictures(this, name,property,generateTag(type,tag) );
-            }catch (Exception e){
-                e.printStackTrace();}
-        }
-
-
-
-
-        if( type.equals(SCHEMA_KEY_STRING ) ){
-            try{
-
-                return new FormEditTextInputLayout(this, name,generateTag(type,tag) );
-            }catch (Exception e){
-                e.printStackTrace();}
-        }
-                    if( type.equals(SCHEMA_KEY_NUMBER ) ){
-
-                        try{
-                            //return new FormEditTextInputLayout(this, name,tag );
-
-                            return new FormEditNumber(this, name,generateTag(type,tag) );
-
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-
-                    }
-
-
-                    if( type.equals(SCHEMA_KEY_PHONE ) ){
-
-                        try{
-                            //return new FormEditTextInputLayout(this, name,tag );
-
-                            return new FormEditPhone(this, name,generateTag(type,tag) );
-
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-
-                    }
-
-        if( type.equals(SCHEMA_KEY_GENDER ) ){
-            try{
-                return new FormGender(this, name,generateTag(type,tag) );
-            }catch (Exception e){
-
-                e.printStackTrace();}
-
-        }
-
-        if( type.equals( SCHEMA_KEY_MULTI ) ){
-
-            JSONObject toggleList = property.getJSONObject(SCHEMA_KEY_OPTIONS );
-            JSONArray toggleNames = toggleList.names();
-
-            List<String> stringList=new ArrayList<>();
-
-            try{
-                String tname;
-                toggleNames = toggleList.names();
-                for( int i = 0; i < toggleNames.length(); i++ )
-                {
-                    tname = toggleNames.getString(i);
-
-
-                    String item = toggleList.getString(tname).toString();
-                    //  item.toString().replaceAll("\"", "");
-                 //   String b = item.toString().replace("[", "");
-                  //  String c = b.toString().replace("]", "");
-                   // String e=c.toString().replaceAll("\"", "");
-                    stringList.add(item);
-
-                }
-            } catch( JSONException e ){
-                Log.i("Lykaion", e.getMessage());
+            if(type.equals(SCHEMA_KEY_MASTERPICS)){
+                try{
+                    return new FormMasterPictures(this, name,property,generateTag(type,tag) );
+                }catch (Exception e){
+                    e.printStackTrace();}
             }
-            return new FormMultiCheckBox(  this, name, generateTag(type,tag),stringList.size(),stringList );
-        }
 
 
-                    if(type.equals(SCHEMA_KEY_DROP)){
-
-                        try{
-                            JSONObject options = property.getJSONObject(SCHEMA_KEY_OPTIONS );
 
 
-                            Log.d("oxanbo","property names = "+name+"options = "+options);
+            if( type.equals(SCHEMA_KEY_STRING ) ){
+                try{
 
-                            return new FormSpinner(this, name,options,generateTag(type,tag) );
+                    return new FormEditTextInputLayout(this, name,generateTag(type,tag) );
+                }catch (Exception e){
+                    e.printStackTrace();}
+            }
+            if( type.equals(SCHEMA_KEY_NUMBER ) ){
+
+                try{
+                    //return new FormEditTextInputLayout(this, name,tag );
+
+                    return new FormEditNumber(this, name,generateTag(type,tag) );
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
 
 
-                        }catch (Exception e){e.printStackTrace();}
+            if( type.equals(SCHEMA_KEY_PHONE ) ){
+
+                try{
+                    //return new FormEditTextInputLayout(this, name,tag );
+
+                    return new FormEditPhone(this, name,generateTag(type,tag) );
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+
+            if( type.equals(SCHEMA_KEY_GENDER ) ){
+                try{
+                    return new FormGender(this, name,generateTag(type,tag) );
+                }catch (Exception e){
+
+                    e.printStackTrace();}
+
+            }
+
+            if( type.equals( SCHEMA_KEY_MULTI ) ){
+
+                JSONObject toggleList = property.getJSONObject(SCHEMA_KEY_OPTIONS );
+                JSONArray toggleNames = toggleList.names();
+
+                List<String> stringList=new ArrayList<>();
+
+                try{
+                    String tname;
+                    toggleNames = toggleList.names();
+                    for( int i = 0; i < toggleNames.length(); i++ )
+                    {
+                        tname = toggleNames.getString(i);
+
+
+                        String item = toggleList.getString(tname).toString();
+                        //  item.toString().replaceAll("\"", "");
+                        //   String b = item.toString().replace("[", "");
+                        //  String c = b.toString().replace("]", "");
+                        // String e=c.toString().replaceAll("\"", "");
+                        stringList.add(item);
 
                     }
+                } catch( JSONException e ){
+                    Log.i("Lykaion", e.getMessage());
+                }
+                return new FormMultiCheckBox(  this, name, generateTag(type,tag),stringList.size(),stringList );
+            }
 
-        if( type.equals(SCHEMA_KEY_DATE ) ){
-            try{
-            return new FormDatePicker(this, name,generateTag(type,tag) );
-        }catch (Exception e){
 
-            e.printStackTrace();
+            if(type.equals(SCHEMA_KEY_DROP)){
+
+                try{
+                    JSONObject options = property.getJSONObject(SCHEMA_KEY_OPTIONS );
+
+
+                    Log.d("oxanbo","property names = "+name+"options = "+options);
+
+                    return new FormSpinner(this, name,options,generateTag(type,tag) );
+
+
+                }catch (Exception e){e.printStackTrace();}
+
+            }
+
+            if( type.equals(SCHEMA_KEY_DATE ) ){
+                try{
+                    return new FormDatePicker(this, name,generateTag(type,tag) );
+                }catch (Exception e){
+
+                    e.printStackTrace();
+                }
+
+
+
+
+
+            }
+
+
+
+        } catch( Exception e ) {
+            // e.printStackTrace();
+            return null;
         }
-
-
-
-
-
-    }
-
-
-
-    } catch( Exception e ) {
-        // e.printStackTrace();
         return null;
     }
-    return null;
-}
     public FormWidget buildFormWidget(String name){
 
         Log.d("oxinbo", "name from buildFormWidget = " + name);
@@ -724,7 +716,7 @@ public class OnBoardCustomerActivity
                     req=false;
                 else
 
-                try{ req=Boolean.valueOf(required);}catch (Exception e){}
+                    try{ req=Boolean.valueOf(required);}catch (Exception e){}
 
 
                 widget.setRequired(req);
@@ -772,11 +764,11 @@ public class OnBoardCustomerActivity
 
 
             Log.d("oxinbo", "not sorted =" + names);
-          for (int i = 0; i < names.length(); i++){
-              jsonValues.add(names.getString(i));
-          }
+            for (int i = 0; i < names.length(); i++){
+                jsonValues.add(names.getString(i));
+            }
             Collections.sort(jsonValues);
-           JSONArray sortedJsonArray = new JSONArray(jsonValues);
+            JSONArray sortedJsonArray = new JSONArray(jsonValues);
             names=sortedJsonArray;
             Log.d("oxinbo","not sortedJsonArray ="+names);
 
@@ -811,9 +803,9 @@ public class OnBoardCustomerActivity
                     nameIn = namesInner.getString(x);
 
                     propertyInner = schemaInner.getJSONObject(nameIn);
-                   // String tagg=propertyInner.getString(SCHEMA_KEY_TAG );
+                    // String tagg=propertyInner.getString(SCHEMA_KEY_TAG );
                     //String type=propertyInner.getString(SCHEMA_KEY_TYPE );
-                   // tags.add(Nma);
+                    // tags.add(Nma);
 
 
 
@@ -850,10 +842,10 @@ public class OnBoardCustomerActivity
             JSONObject schema1 = new JSONObject( FormWidgetModel.parseFileToString(OnBoardCustomerActivity.this, "schemas2.json") );
             JSONObject    pop = schema1.getJSONObject(value);
             data=pop.toString();
-          //  Utils.log("Deadly Account ="+pop);
+            //  Utils.log("Deadly Account ="+pop);
         }catch (Exception ee){
 
-
+            ee.printStackTrace();
         }
 
 
@@ -864,57 +856,57 @@ public class OnBoardCustomerActivity
 
 
         int counter=0;
-       for(Map.Entry<String, List<FormWidget>> entry : hashmap.entrySet()) {
-           String key = entry.getKey();
-           _layout =(LinearLayout)inflator.inflate(R.layout.linear_layout_wrapper, null);
-           TextView heading=(TextView)_layout.findViewById(R.id.heading);
-           heading.setText(key);
-           heading.setTypeface(typefacer.squareRegular());
+        for(Map.Entry<String, List<FormWidget>> entry : hashmap.entrySet()) {
+            String key = entry.getKey();
+            _layout =(LinearLayout)inflator.inflate(R.layout.linear_layout_wrapper, null);
+            TextView heading=(TextView)_layout.findViewById(R.id.heading);
+            heading.setText(key);
+            heading.setTypeface(typefacer.squareRegular());
 
 
-           _viewport  = new ScrollView( this);
-           _viewport.setLayoutParams(defaultLayoutParams);
+            _viewport  = new ScrollView( this);
+            _viewport.setLayoutParams(defaultLayoutParams);
 
-           for(FormWidget val : entry.getValue()) {
+            for(FormWidget val : entry.getValue()) {
 
-          Log.d("oxanbo", "found one  tag" + val.getTag());
+                Log.d("oxanbo", "found one  tag" + val.getTag());
 
-               if(val.getTag().equalsIgnoreCase("mst_masterPics")){
-
-
-                   //TODO get screen size and set to layout height...
-                   //So therefore instead of 1000,make it screen size -100dp
-                 LinearLayout.LayoutParams par=new LinearLayout.LayoutParams(screenWeight,valueInDp);
-                  // par.setMargins(30,10,10,30);
-                   par.gravity=Gravity.CENTER;
-                   _layout.addView(val.getView(),par);
-               }else{
-                   _layout.addView(val.getView());
-               }
-
-           }
-
-           _viewport.addView(_layout);
-           _viewportList.add(_viewport);
-           linearLayoutList.add(_layout);
-          // _layout.invalidate();
+                if(val.getTag().equalsIgnoreCase("mst_masterPics")){
 
 
-           viewFlipper.addView(_viewportList.get(counter));
-           counter++;
-       }
-       _container = new LinearLayout( OnBoardCustomerActivity.this);
+                    //TODO get screen size and set to layout height...
+                    //So therefore instead of 1000,make it screen size -100dp
+                    LinearLayout.LayoutParams par=new LinearLayout.LayoutParams(screenWeight,valueInDp);
+                    // par.setMargins(30,10,10,30);
+                    par.gravity=Gravity.CENTER;
+                    _layout.addView(val.getView(),par);
+                }else{
+                    _layout.addView(val.getView());
+                }
+
+            }
+
+            _viewport.addView(_layout);
+            _viewportList.add(_viewport);
+            linearLayoutList.add(_layout);
+            // _layout.invalidate();
+
+
+            viewFlipper.addView(_viewportList.get(counter));
+            counter++;
+        }
+        _container = new LinearLayout( OnBoardCustomerActivity.this);
         _container.setOrientation(LinearLayout.VERTICAL);
 
         _container.setLayoutParams(defaultLayoutParams);
 
-       _container.addView(viewFlipper);
+        _container.addView(viewFlipper);
 
 
         relativeLayout.addView(_container);
-      //  relativeLayout.invalidate();
+        //  relativeLayout.invalidate();
 
-   }
+    }
     private void addButton2layout(){
         inflator = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         Log.d("oxinbo","size of linear list "+linearLayoutList.size());
@@ -1291,6 +1283,8 @@ public class OnBoardCustomerActivity
 
     }
 
+
+
     private ArrayList<View> getAllChildren(View v) {
 
         if (!(v instanceof ViewGroup)) {
@@ -1313,7 +1307,7 @@ public class OnBoardCustomerActivity
             ArrayList<View> viewArrayList = new ArrayList<View>();
             viewArrayList.add(v);
             ////if(v!=null)
-               // Utils.log("" + v.getTag());
+            // Utils.log("" + v.getTag());
 
             viewArrayList.addAll(getAllChildren(child));
 
@@ -1328,10 +1322,10 @@ public class OnBoardCustomerActivity
         @Override
         public void onClick(View v) {
 
-        // viewFlipper.getDisplayedChild();
-           int  count=viewFlipper.getDisplayedChild();
+            // viewFlipper.getDisplayedChild();
+            int  count=viewFlipper.getDisplayedChild();
 
-          //  getAllChildren(linearLayoutList.get(0));
+            //  getAllChildren(linearLayoutList.get(0));
 
 
             for(String x:requiredWidget){
@@ -1341,13 +1335,13 @@ public class OnBoardCustomerActivity
 
             for(View vi:getAllChildren(linearLayoutList.get(count))){
 
-              if(vi.getTag()!=null){
+                if(vi.getTag()!=null){
 
-                  if(requiredWidget.contains(vi.getTag())) validate(vi.getTag().toString());
+                    if(requiredWidget.contains(vi.getTag())) validate(vi.getTag().toString());
 
 
-                  Utils.log("position tag " + vi.getTag());
-              }
+                    Utils.log("position tag " + vi.getTag());
+                }
 
             }
             Utils.log("validateCounter casted " + validateCounter);
@@ -1384,6 +1378,29 @@ public class OnBoardCustomerActivity
 
         @Override
         public void onClick(View v) {
+          v.post(new Runnable() {
+        @Override
+        public void run() {
+
+            try{
+
+                InnerSave();
+
+            }catch (Exception e){
+
+
+                e.printStackTrace();
+            }
+
+
+        }
+
+        });
+
+    }
+
+
+        void InnerSave(){
 
             collectOnboardingData();
 
@@ -1420,7 +1437,10 @@ public class OnBoardCustomerActivity
 
 
         }
-    }
+
+
+
+        }
 
     public  void showBranchesDialog() {
         final CharSequence[] items = getErrorMessagesArray();
@@ -1479,13 +1499,10 @@ public class OnBoardCustomerActivity
 
         Application. CollectionItems=new HashMap<>();
 
-        // Application. activeSignatureLabel;
-        //  public static String activePictureLabel;
 
         Application. listOfKeysChecked=new ArrayList<>();
         //Application. SignatureLabelsList=new ArrayList<>();
         // Application. PictureLabelsList=new ArrayList<>();
-
         // Application. checkedImageLabels=new HashMap<>();
         // Application. SignatureMap=new ArrayList<>();
         //  Application. PicturesImageMap=new ArrayList<>();
@@ -1557,7 +1574,7 @@ public class OnBoardCustomerActivity
         try{
 
 
-          Long ID=  customer.save();
+            Long ID=  customer.save();
 
             Log.d("oxinbo","Inserted into DB = "+ID+" with cusID " +cusID);
             ActiveAndroid.setTransactionSuccessful();
@@ -1917,9 +1934,9 @@ public class OnBoardCustomerActivity
         pDialog.setCancelable(true);
         pDialog.show();
 
-      //  RequestQueue requestQueue = VolleySingleton.getInstance().getRequestQueue();
-      //  volleySingleton= VolleySingleton.getsInstance();
-       // requestQueue=VolleySingleton.getRequestQueue();
+
+
+
         Application.getCollectionItems().put("agent_msisdn", User.User().getMsisdn());
         Application.getCollectionItems().put("account_code", Merchant.getActiveMerchant("true").getCode());
 
@@ -1929,166 +1946,164 @@ public class OnBoardCustomerActivity
             Application.getCollectionItems().put("complete", "true");
         }
 
-                        MultipartRequest multipartRequest = new MultipartRequest(BASE_URL, Application.getCollectionItems(), new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                       pDialog.dismiss();
-                        if(response!=null){
-                            Log.d("oxinbo", "response message from  =" + response);
-                            String message="";
-                            String fName="";
-                            JSONObject jsonObject=null;
-                            String status="";
-                            try{
-                                 jsonObject=new JSONObject(response);
-                                  status= jsonObject.getString("status");
+        MultipartRequest multipartRequest = new MultipartRequest(BASE_URL, Application.getCollectionItems(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                pDialog.dismiss();
+                if(response!=null){
+                    Log.d("oxinbo", "response message from  =" + response);
+                    String message="";
+                    String fName="";
+                    JSONObject jsonObject=null;
+                    String status="";
+                    try{
+                        jsonObject=new JSONObject(response);
+                        status= jsonObject.getString("status");
 
 
 
-                                if(status.equals("000")){
+                        if(status.equals("000")){
 
-                                            OnBoardModel onBoardModel=null;
-                                            try {
-                                                onBoardModel=Utils.MapsDb();
-                                                Utils.log("Application.getCollectionItems().size  = "+Application.getCollectionItems().size());
-                                                OnBoard onBoard=new OnBoard(uniqueID,Application.getCollectionItems(),Application.basse64Images);
-                                                onBoardModel.getOnBoardMap().put(uniqueID, onBoard);
-                                                Utils.insertIn2MapDb(onBoardModel);
-                                                Utils.log("Size of map in OnBoardModel = "+onBoardModel.getOnBoardMap().size());
-                                                onBoardModel=null;
-                                            }catch (Exception e){
-
-                                                e.printStackTrace();
-                                            }
-
-                                        fName = jsonObject.getString("fullname");
-                                    Application.activeCustomerId=jsonObject.getString("customer_uid");
-                                     message= "Customer Id :"+  Application.activeCustomerId+" Created";
-
-
-                                    if(Application.basse64Images.size()>0){
-                                        CreateCustomer(Application.activeCustomerId, fName, Application.getCollectionItems(), "partial",uniqueID);
-
-
-
-                                       // combineMap(Application.activeCustomerId);
-                                        Intent intent =new Intent(OnBoardCustomerActivity.this, VolleyServices.class);
-                                        intent.putExtra("cusID", Application.activeCustomerId);
-                                        intent.putExtra("actionType","heavy");
-                                        startService(intent);
-
-                                        Log.d("oxinbo","phone number"+ User.User().getMsisdn());
-
-
-                                    }else{
-
-                                        CreateCustomer(Application.activeCustomerId, fName, Application.getCollectionItems(),"complete",uniqueID);
-                                    }
-
-                                    Toast.makeText(OnBoardCustomerActivity.this,message,Toast.LENGTH_LONG).show();
-                                    finish();
-
-
-
-
-
-                                }else{
-
-                                    String  message1="Error Message";
-                                    try{
-                                        message1 = jsonObject.getString("message");
-                                        if(message1.equals("Error Message"))
-                                          message1=  Utils.getMessageFromAPIStatus(Integer.valueOf(status));
-                                    }catch (Exception e){
-
-
-                                    }
-
-                                    Log.d("oxinbo", "response message =" + Utils.getMessageFromAPIStatus(Integer.valueOf(status)));
-
-
-
-
-                                  //  message=getMessageFromAPIStatus(status)
-                                    utils.ErrorAlertDialog(OnBoardCustomerActivity.this,  Utils.getMessageFromAPIStatus(Integer.valueOf(status)), "New Error Message").show();
-
-                                }
-
-
+                            OnBoardModel onBoardModel=null;
+                            try {
+                                onBoardModel=Utils.MapsDb();
+                                Utils.log("Application.getCollectionItems().size  = "+Application.getCollectionItems().size());
+                                OnBoard onBoard=new OnBoard(uniqueID,Application.getCollectionItems(),Application.basse64Images);
+                                onBoardModel.getOnBoardMap().put(uniqueID, onBoard);
+                                Utils.insertIn2MapDb(onBoardModel);
+                                Utils.log("Size of map in OnBoardModel = "+onBoardModel.getOnBoardMap().size());
+                                onBoardModel=null;
                             }catch (Exception e){
-
-
-
-
 
                                 e.printStackTrace();
                             }
 
+                            fName = jsonObject.getString("fullname");
+                            Application.activeCustomerId=jsonObject.getString("customer_uid");
+                            message= "Customer Id :"+  Application.activeCustomerId+" Created";
 
+
+                            if(Application.basse64Images.size()>0){
+                                CreateCustomer(Application.activeCustomerId, fName, Application.getCollectionItems(), "partial",uniqueID);
+
+
+
+                                // combineMap(Application.activeCustomerId);
+                                Intent intent =new Intent(OnBoardCustomerActivity.this, VolleyServices.class);
+                                intent.putExtra("cusID", Application.activeCustomerId);
+                                intent.putExtra("actionType","heavy");
+                                startService(intent);
+
+                                Log.d("oxinbo","phone number"+ User.User().getMsisdn());
+
+
+                            }else{
+
+                                CreateCustomer(Application.activeCustomerId, fName, Application.getCollectionItems(),"complete",uniqueID);
+                            }
+
+                            Toast.makeText(OnBoardCustomerActivity.this,message,Toast.LENGTH_LONG).show();
+                            finish();
+
+
+
+
+
+                        }else{
+
+                            String  message1="Error Message";
+                            try{
+                                message1 = jsonObject.getString("message");
+                                if(message1.equals("Error Message"))
+                                    message1=  Utils.getMessageFromAPIStatus(Integer.valueOf(status));
+                            }catch (Exception e){
+
+
+                            }
+
+                            Log.d("oxinbo", "response message =" + Utils.getMessageFromAPIStatus(Integer.valueOf(status)));
+
+
+
+
+                            //  message=getMessageFromAPIStatus(status)
+                            utils.ErrorAlertDialog(OnBoardCustomerActivity.this,  Utils.getMessageFromAPIStatus(Integer.valueOf(status)), "New Error Message").show();
 
                         }
+
+
+                    }catch (Exception e){
+
+
+
+
+
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        pDialog.dismiss();
-                        // Handle your error types accordingly.For Timeout & No connection error, you can show 'retry' button.
-                        // For AuthFailure, you can re login with user credentials.
-                        // For ClientError, 400 & 401, Errors happening on client side when sending api request.
-                        // In this case you can check how client is forming the api and debug accordingly.
-                        // For ServerError 5xx, you can do retry or handle accordingly.
-                       // utils.RetryAlertDialog(OnBoardCustomerActivity.this, "error", "pls retry");
-
-                      //  utils.ErrorAlertDialog(OnBoardCustomerActivity.this, message, " Failed").show();
-                        if (error instanceof NetworkError) {
-                            String msg="Network Error Occurred ";
-                            RetryAlertDialog(msg);
-                        } else if (error instanceof ServerError) {
-                            String msg="Server Error Occurred ";
-                            RetryAlertDialog(msg);
-                        } else if (error instanceof AuthFailureError) {
-                            String msg="Application Error Occurred ";
-                            RetryAlertDialog(msg);
-
-                        } else if (error instanceof ParseError) {
 
 
-                            String msg="A Parser Error Occurred ";
-                            RetryAlertDialog(msg);
-                        } else if (error instanceof NoConnectionError) {
+
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                pDialog.dismiss();
+                // Handle your error types accordingly.For Timeout & No connection error, you can show 'retry' button.
+                // For AuthFailure, you can re login with user credentials.
+                // For ClientError, 400 & 401, Errors happening on client side when sending api request.
+                // In this case you can check how client is forming the api and debug accordingly.
+                // For ServerError 5xx, you can do retry or handle accordingly.
+                // utils.RetryAlertDialog(OnBoardCustomerActivity.this, "error", "pls retry");
+
+                //  utils.ErrorAlertDialog(OnBoardCustomerActivity.this, message, " Failed").show();
+                if (error instanceof NetworkError) {
+                    String msg="Network Error Occurred ";
+                    RetryAlertDialog(msg);
+                } else if (error instanceof ServerError) {
+                    String msg="Server Error Occurred ";
+                    RetryAlertDialog(msg);
+                } else if (error instanceof AuthFailureError) {
+                    String msg="Application Error Occurred ";
+                    RetryAlertDialog(msg);
+
+                } else if (error instanceof ParseError) {
 
 
-                            String msg="No Internet Connection ";
-                            RetryAlertDialog(msg);
+                    String msg="A Parser Error Occurred ";
+                    RetryAlertDialog(msg);
+                } else if (error instanceof NoConnectionError) {
 
-                        } else if (error instanceof TimeoutError) {
-                            String msg="Syncing Timed Out ";
-                            RetryAlertDialog(msg);
-                        }
-                    }
-                });
+
+                    String msg="No Internet Connection ";
+                    RetryAlertDialog(msg);
+
+                } else if (error instanceof TimeoutError) {
+                    String msg="Syncing Timed Out ";
+                    RetryAlertDialog(msg);
+                }
+            }
+        });
         int socketTimeout = 999999999;//4 minutes - change to what you want
         RetryPolicy policy = new DefaultRetryPolicy(
                 socketTimeout,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         multipartRequest.setRetryPolicy(policy);
-       Application. requestQueue.add(multipartRequest);
+        Application. requestQueue.add(multipartRequest);
 
 
 
     }
 
 
-
-
-
-
-
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ClearMemory();
+    }
 
     private void parseJsonObject(JSONObject jsonObject) {
         Msisdn msisdn ;
@@ -2794,7 +2809,7 @@ public class OnBoardCustomerActivity
 
 
             try {
-               // generalSettings.setGetCurrentImageTag(v.getTag().toString());
+                // generalSettings.setGetCurrentImageTag(v.getTag().toString());
 
 
                 if(Application.PictureLabelsList.size()<=0){
@@ -2805,7 +2820,7 @@ public class OnBoardCustomerActivity
 
                     ListDialog dialog=ListDialog.newInstance("Select Picture Type","picture");
                     showDialog(dialog);
-                  //  showsDialog1();
+                    //  showsDialog1();
 
                 }
 
@@ -2917,7 +2932,7 @@ public class OnBoardCustomerActivity
                     // super.onLongPress(e);
                 }
             });
-          //  recyclerView.addOnItemTouchListener(new recyclerTouchListener());
+            //  recyclerView.addOnItemTouchListener(new recyclerTouchListener());
 
 
         }
