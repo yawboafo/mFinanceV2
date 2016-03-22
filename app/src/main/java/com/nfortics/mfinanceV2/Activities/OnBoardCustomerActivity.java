@@ -124,6 +124,7 @@ import com.nfortics.mfinanceV2.Services.VolleyServices;
 import com.nfortics.mfinanceV2.Settings.GeneralSettings;
 import com.nfortics.mfinanceV2.Signature.SignaturePad;
 import com.nfortics.mfinanceV2.Typefacer;
+import com.nfortics.mfinanceV2.Utilities.GPSTracker;
 import com.nfortics.mfinanceV2.Utilities.ToastUtil;
 import com.nfortics.mfinanceV2.Utilities.Utils;
 import com.nfortics.mfinanceV2.ViewAdapters.GalleryImagesAdapter;
@@ -269,7 +270,7 @@ public class OnBoardCustomerActivity
     private ListdialogAdapter listdialogAdapter;
 
     public static FragmentManager fragmentManager;
-
+    GPSTracker gpsTracker;
 
     public static final int GALLERY_PICTURE_REQUEST = 1;
     public static final int CAMERA_PICTURE_REQUEST = 2;

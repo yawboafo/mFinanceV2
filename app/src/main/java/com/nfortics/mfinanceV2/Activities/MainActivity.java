@@ -38,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.nfortics.mfinanceV2.Fragments.HomeFragment;
@@ -110,6 +111,7 @@ GPSTracker gpsTracker;
         startRepeatingTask();***/
         Log.d("oxinbo", "MainActivty called ");
 
+        GPSThings();
         //setViewFlipper();
     }
 
@@ -148,6 +150,7 @@ GPSTracker gpsTracker;
         // Showing Alert Message
         alertDialog.show();
     }
+
     public void SignOut()
     {
 
@@ -168,6 +171,28 @@ GPSTracker gpsTracker;
 
 
         return activityView;
+    }
+
+
+
+    private void GPSThings(){
+        // Create class object
+        gpsTracker = new GPSTracker(this);
+
+        // Check if GPS enabled
+        if(gpsTracker.canGetLocation()) {
+
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+
+            // \n is for new line
+            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+        } else {
+            // Can't get location.
+            // GPS or network is not enabled.
+            // Ask user to enable GPS/network in settings.
+            gpsTracker.showSettingsAlert();
+        }
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
